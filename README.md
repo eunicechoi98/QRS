@@ -10,3 +10,14 @@ Things that need to be implemented:
 - show Colton what I have so far in terms of front-end & design
 - & what layout I am following currently
 - discuss how we should work on things
+
+- the requirements
+- the frequency between each sessions for users
+- look into being able to run the software on the laptop and have the database online
+- invite notion
+- live coding github
+- ask about accessing process java
+- contact aaron visser for mentoring
+
+
+
