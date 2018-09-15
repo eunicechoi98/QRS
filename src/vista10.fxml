@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?scenebuilder-stylesheet vista.css?>
+
+<StackPane fx:id="vista10" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista10Controller">
+  <children>
+      <VBox alignment="CENTER">
+         <children>
+            <Label text="Your Quick Refresher Session is now complete. Thank you for participating." textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <Label layoutX="376.0" layoutY="524.0" text="If you experienced any issues with your session or have any comments/questions/concerns, please send a message to qmedQRS@gmail.com." textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font size="30.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="75.0" />
+               </VBox.margin>
+            </Label>
+            <Label layoutX="37.0" layoutY="592.0" text="You may now exit the room." textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font size="30.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="100.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
+  </children>
+</StackPane>
