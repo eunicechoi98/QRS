@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.ArrayList;import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,7 +11,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import com.sun.xml.internal.txw2.Document;
+//import com.sun.xml.internal.txw2.Document;
 
 import java.io.*;
 import java.net.URISyntaxException;
@@ -104,9 +103,17 @@ public class DataIO {
 	    	
 	    	compressionMeanDepth = Integer.parseInt(eElement.getElementsByTagName("CompressionMeanDepth").item(0).getTextContent());
 	    	compressionMeanRate = Integer.parseInt(eElement.getElementsByTagName("CompressionMeanRate").item(0).getTextContent());
-	   
 	    	
-	    	
+    	} catch (IOException ae) {
+    		
+    	} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return true;
     	
     }
     
@@ -123,7 +130,7 @@ public class DataIO {
     }
     
     
-    /*
+    
     public static boolean inTrainingGroup() {
     	if (forgotCode == false) {
     		for (int val : trainingCodes) {
@@ -135,7 +142,7 @@ public class DataIO {
     	else 
     		return forgotCodeGroup == 1;
     }
-    */
+    
     
     public static void setCurrentCode(int code) {
     	currentCode = code;
@@ -204,6 +211,9 @@ public class DataIO {
             }
         }    	
     }
+    
+    
+    
     
     public static void saveCPRData(int testNum) {
     	/*FIX THIS IMPORT TECHNIQUE BEFORE REPEATING TESTING
