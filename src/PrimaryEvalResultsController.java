@@ -1,5 +1,6 @@
 import java.awt.AWTException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.animation.Timeline;
@@ -30,8 +31,23 @@ public class PrimaryEvalResultsController {
     
     @FXML
     void initialize() throws AWTException {
+/*   	
+ 		(Calling saveCPRData throws an error rn so just commented stuff out)
+  
+    	//Note that to get the primaryEval results saveCPRData(1) must be called first
+    	DataIO.saveCPRData(1);
     	
-    	System.out.println("Its working!");
+    	//Initialize the ArrayList for the primary results
+    	ArrayList<Integer> primaryResults = new ArrayList<>();
+    	primaryResults = DataIO.getPrimaryResults();
+    	
+    	//Note that primary results is structured [mean rate,mean depth, % w adequate recoil]
+    	int meanRate = primaryResults.get(0);
+    	int meanDepth = primaryResults.get(1);
+    	int adequateRecoil = primaryResults.get(2);
+    	
+*/
+
 
     
     }

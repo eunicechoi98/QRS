@@ -19,6 +19,12 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 public class DataIO {
+	
+	//The folder containing the raw XML files
+	private static String folderWithRaw = "C:/Users/CSC/Documents/ResusciAnneWirelessSkillReporter/HighScore/ClassroomScore";
+	
+	//Contains the values of interest for the PrimaryEvalResults pane.
+	private static ArrayList<Integer> primaryResults = new ArrayList<>();
 
 	private static String csvPath = "C:\\Users\\CSC\\Desktop\\QRS Data.csv";
     private static BufferedReader br = null;
@@ -47,103 +53,41 @@ public class DataIO {
     		return forgotCodeGroup == 0;
     }   
     
+    //getPrimaryResults(): This method returns the Integer ArrayList containing the
+    //primary results of interest, as assigned in the saveCPRData method. Note that they are
+	//in the following order: 1)mean rate  
+	//						  2)mean depth  
+	//						  3)percent of compressions with adequate recoil 
+    public static ArrayList<Integer> getPrimaryResults() {
+    	return primaryResults;
+    }    
     
-    /*
-     * New function needed to show the users their results
-     * 1. mean rate  2. mean depth  3. percent of compressions with adequate recoil 
-     * 
-     */
-    
-    
-    
-    
-    /* New function created to check if they passed the initial CPR evaluation:
-     * Has to check 3 things:
-     * 1. Mean rate of CPR - target of >80% of their compressions having a rate 100-120
-     * 2. Mean depth of CPR - a depth 5-6cm
-     * 3. Percent of compressions with adequate recoil -  having full recoil 
-     */
-    public static boolean evaluationOnePassed(int testNum) {
-    	int totalCompressions;
-    	int correctlyReleasedCompressions;
-    	int compressionMeanDepth;
-    	int[] depthData = new int[3]; //[too shallow,adequate depth,too deep]
-    	int[] rateData = new int[3]; //[too slow,adequate speed,too fast]
-    	int compressionMeanRate;
-    	int corrrectHandPosition;
-    	int compressionScore;
-    	int date;
-    	int time;
+
+    //evaluationOnePassed(): This method returns a boolean indicating whether the
+    //first round of CPR meets the test's standards.
+    //It checks three things:
+    //1. Mean rate of CPR - having a rate 100-120
+    //2. Mean depth of CPR - a depth 5-6cm
+    //3. Percent of compressions with adequate recoil - target of >80% of their compressions having full recoil 
+    public static boolean evaluationOnePassed() {
     	
-    	try {
-    		Date dateFormatted = new Date();
-    		DateFormat df = new SimpleDateFormat("ddMMyyyy");
-    		String dayMonth = df.format(dateFormatted);
-    		//System.out.println(dayMonth);
-	    	File f = new File ("C:/Users/CSC/Documents/ResusciAnneWirelessSkillReporter/HighScore/ClassroomScore");
-	    	File[] matchingFiles = f.listFiles(new FilenameFilter() {
-	    		public boolean accept(File dir, String name) {
-	    			return name.startsWith(Integer.toString(getCurrentCode()) + "_" + Integer.toString(testNum)+ "_" + dayMonth)
-	    					&& name.endsWith(".xml");
-	    		}
-	    	});
-	    	if (matchingFiles.length == 0) {
-	    		DataIO.resetData();
-	        	VistaNavigator.loadVista(VistaNavigator.SaveErrorVista);
-	    	}
-	    	File saveFile = matchingFiles[0];    	
-	    	DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-	    	DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-	    	org.w3c.dom.Document doc = dBuilder.parse(saveFile);
-	    	doc.getDocumentElement().normalize();
-	    	
-	    	Node result = doc.getFirstChild();
-	    	Element eElement = (Element) result;
-	    	
-	    	
-	    	compressionMeanDepth = Integer.parseInt(eElement.getElementsByTagName("CompressionMeanDepth").item(0).getTextContent());
-	    	compressionMeanRate = Integer.parseInt(eElement.getElementsByTagName("CompressionMeanRate").item(0).getTextContent());
-	    	
-    	} catch (IOException ae) {
-    		
-    	} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SAXException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	//Verify that the mean rate is between 100 and 120 bpm
+    	if (primaryResults.get(0) < 100 || primaryResults.get(0) > 120)
+    		return false;
+    	
+    	//Verify that the mean depth is between 5 and 6 cm
+    	if (primaryResults.get(1) < 5 || primaryResults.get(1) > 6 )
+    		return false;
+    	
+    	//Verify that the % of adequate recoil is greater than 80
+    	if (primaryResults.get(2) <= 80)
+    		return false;
+    	
+    	//otherwise this evaluation passed
     	return true;
     	
     }
-    
-    public static boolean inControlGroup() {
-    	if (forgotCode == false) {
-        	for (int val : controlCodes) {
-        		if (val == currentCode)
-        			return true;
-        	}
-        	return false;
-    	}
-    	else 
-    		return forgotCodeGroup == 0;
-    }
-    
-    
-    
-    public static boolean inTrainingGroup() {
-    	if (forgotCode == false) {
-    		for (int val : trainingCodes) {
-        		if (val == currentCode)
-        			return true;
-        	}
-        	return false;
-    	}
-    	else 
-    		return forgotCodeGroup == 1;
-    }
-    
-    
+
     public static void setCurrentCode(int code) {
     	currentCode = code;
     }
@@ -179,6 +123,7 @@ public class DataIO {
     	forgotCode = false;
     	forgotCodeGroup = -1;
     	forgotCodeName = "";
+    	primaryResults.clear();
     }
     
     public static void exportToCSV() {
@@ -232,30 +177,37 @@ public class DataIO {
     	int time;
     	
     	try {
+    		//Get the current date and format into string
     		Date dateFormatted = new Date();
     		DateFormat df = new SimpleDateFormat("ddMMyyyy");
     		String dayMonth = df.format(dateFormatted);
-    		//System.out.println(dayMonth);
-	    	File f = new File ("C:/Users/CSC/Documents/ResusciAnneWirelessSkillReporter/HighScore/ClassroomScore");
+    		
+    		//Create file object at folder containing all raw XML results
+    		//**PATH MAY NEED TO BE CHANGED DEPENDING ON DRIVE/USERNAMES
+	    	File f = new File (folderWithRaw);
 	    	File[] matchingFiles = f.listFiles(new FilenameFilter() {
 	    		public boolean accept(File dir, String name) {
 	    			return name.startsWith(Integer.toString(getCurrentCode()) + "_" + Integer.toString(testNum)+ "_" + dayMonth)
 	    					&& name.endsWith(".xml");
 	    		}
 	    	});
+	    	
+	    	//If there are multiple matching files then an error has occured
 	    	if (matchingFiles.length == 0) {
 	    		DataIO.resetData();
 	        	VistaNavigator.loadVista(VistaNavigator.SaveErrorVista);
 	    	}
+	    	
+	    	//Create Element object out of XML file for easier parsing.
 	    	File saveFile = matchingFiles[0];    	
 	    	DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 	    	DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 	    	org.w3c.dom.Document doc = dBuilder.parse(saveFile);
 	    	doc.getDocumentElement().normalize();
-	    	
 	    	Node result = doc.getFirstChild();
 	    	Element eElement = (Element) result;
 	    	
+	    	//Extract values of interest
 	    	totalCompressions = Integer.parseInt(eElement.getElementsByTagName("TotalCompressions").item(0).getTextContent());
 	    	correctlyReleasedCompressions = Integer.parseInt(eElement.getElementsByTagName("CorrectlyReleasedCompression").item(0).getTextContent());
 	    	compressionMeanDepth = Integer.parseInt(eElement.getElementsByTagName("CompressionMeanDepth").item(0).getTextContent());
@@ -281,6 +233,7 @@ public class DataIO {
 	    	date = Integer.parseInt(tempDate.replaceAll("\\p{P}", ""));
 	    	time = Integer.parseInt(tempTime.replaceAll("\\p{P}", ""));
 	    	
+	    	//Add all the parsed values to the overall results ArrayList dataRow
 	    	dataRow.add(totalCompressions);
 	    	dataRow.add(correctlyReleasedCompressions);
 	    	//dataRow.add(-1); Already in percentage form
@@ -303,8 +256,19 @@ public class DataIO {
 	    	dataRow.add(date);
 	    	dataRow.add(time);
 	    	
+	    	//If this is the first test, we assign the values of primaryResults
+	    	//in the following order: 1)mean rate  
+	    	//						  2)mean depth  
+	    	//						  3)percent of compressions with adequate recoil 
+	    	if (testNum == 1) {
+	    		primaryResults.add(compressionMeanRate);
+	    		primaryResults.add(compressionMeanDepth);
+	    		primaryResults.add(correctlyReleasedCompressions);	    		
+	    	}
+	    	
     	} catch (IOException ae) {
-    		
+			// TODO Auto-generated catch block
+			ae.printStackTrace();    		
     	} catch (ParserConfigurationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -390,4 +354,31 @@ public class DataIO {
         return result;
     	
     }
+	
+    
+  public static boolean inControlGroup() {
+  	if (forgotCode == false) {
+      	for (int val : controlCodes) {
+      		if (val == currentCode)
+      			return true;
+      	}
+      	return false;
+  	}
+  	else 
+  		return forgotCodeGroup == 0;
+  }
+  
+  
+  
+  public static boolean inTrainingGroup() {
+  	if (forgotCode == false) {
+  		for (int val : trainingCodes) {
+      		if (val == currentCode)
+      			return true;
+      	}
+      	return false;
+  	}
+  	else 
+  		return forgotCodeGroup == 1;
+  }  
 }
