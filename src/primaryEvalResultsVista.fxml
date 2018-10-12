@@ -8,9 +8,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane fx:id="primary_eval_vista" minHeight="1080.0" minWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PrimaryEvalResultsController">
+<StackPane fx:id="primaryEvalResultsStackPane" minHeight="1080.0" minWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PrimaryEvalResultsController">
    <children>
-      <VBox alignment="CENTER" prefHeight="906.0" prefWidth="1457.0" StackPane.alignment="CENTER">
+      <VBox fx:id="primaryEvalVBox" alignment="CENTER" prefHeight="906.0" prefWidth="1457.0" StackPane.alignment="CENTER">
          <children>
             <Label fx:id="primaryEvalResultsLabel" alignment="CENTER" text="PERFORMANCE SUMMARY" textFill="WHITE">
                <font>
@@ -22,7 +22,7 @@
                   <Font name="Microsoft JhengHei UI" size="30.0" />
                </font>
             </Text>
-            <Label text="Recoil:" textFill="#282828">
+            <Label fx:id="primaryEvalResultsLabelTwo" text="Recoil:" textFill="#282828">
                <font>
                   <Font name="Microsoft JhengHei UI" size="30.0" />
                </font>
@@ -30,19 +30,19 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Label>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="100.0" stroke="WHITE" strokeType="INSIDE" width="400.0" />
-            <Label text="Depth:" textFill="#282828">
+            <Rectangle fx:id="primaryEvalResultsRecOne" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="100.0" stroke="WHITE" strokeType="INSIDE" width="400.0" />
+            <Label fx:id="primaryEvalResultsLabelThree" text="Depth:" textFill="#282828">
                <font>
                   <Font name="Microsoft JhengHei UI" size="30.0" />
                </font>
             </Label>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="100.0" stroke="WHITE" strokeType="INSIDE" width="400.0" />
-            <Label text="Rate:" textFill="#282828">
+            <Rectangle fx:id="primaryEvalResultsRecTwo" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="100.0" stroke="WHITE" strokeType="INSIDE" width="400.0" />
+            <Label fx:id="primaryEvalResultsLabelFour" text="Rate:" textFill="#282828">
                <font>
                   <Font name="Microsoft JhengHei UI" size="30.0" />
                </font>
             </Label>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="100.0" stroke="WHITE" strokeType="INSIDE" width="400.0" />
+            <Rectangle fx:id="primaryEvalResultsRecThree" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="100.0" stroke="WHITE" strokeType="INSIDE" width="400.0" />
          </children>
       </VBox>
    </children>
