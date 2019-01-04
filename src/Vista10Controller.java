@@ -5,6 +5,7 @@ import javafx.util.Duration;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 
 public class Vista10Controller {
@@ -20,7 +21,10 @@ public class Vista10Controller {
     @FXML // fx:id="vista10"
     private StackPane vista10; // Value injected by FXMLLoader
     
-	void timerMethod() {
+    @FXML // fx:id="vista10NextSession"
+    private TextField vista10NextSession;
+    
+	void timerMethod() { // what is this for?
 
 		if (timeLeft == 0) {
 			timeLeft = 10;
@@ -32,12 +36,15 @@ public class Vista10Controller {
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-    	if (DataIO.inTrainingGroup() == true) {
-        	DataIO.saveCPRData(2);
+    	
+    	DataIO.saveCPRData(2);
+    	String nextSession = DataIO.scheduleNextSession();
+    	if (DataIO.evaluationTwoPassed() == true) {
+    		vista10NextSession.setText(nextSession);
+    	} else {
+    		vista10NextSession.setText(nextSession);
     	}
-    	else {
-    		DataIO.saveCPRData(1);
-    	}
+    	
     	DataIO.exportToCSV();
     	DataIO.resetData();
     	Timeline timeline = new Timeline(new KeyFrame(
@@ -45,5 +52,25 @@ public class Vista10Controller {
     	        ae -> timerMethod()));
     	timeline.setCycleCount(11);
     	timeline.play();
+    	System.out.println("Vista 10: Session Complete. Return Next Session Date.");
+    	
+    	/*
+    	if (DataIO.inTrainingGroup() == true) {
+        	DataIO.saveCPRData(2);
+    	}
+    	else {
+    		DataIO.saveCPRData(1);
+    	}
+    	
+    	// why are these needed? especially resetData()?
+    	// Shouldnt I do this after the first evaluation too?
+    	DataIO.exportToCSV();
+    	DataIO.resetData();
+    	Timeline timeline = new Timeline(new KeyFrame(
+    	        Duration.millis(1000),
+    	        ae -> timerMethod()));
+    	timeline.setCycleCount(11);
+    	timeline.play();
+    	*/
     }
 }

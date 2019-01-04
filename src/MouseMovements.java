@@ -35,7 +35,7 @@ public class MouseMovements {
 		robot.mouseMove(920, 735); //save result
 		robot.mousePress(InputEvent.BUTTON1_MASK);
 		robot.mouseRelease(InputEvent.BUTTON1_MASK);
-		robot.delay(750);
+		robot.delay(750); 
 		
 		String saveString = Integer.toString(DataIO.getCurrentCode()) + "_" + Integer.toString(testNum);
 		StringSelection stringSelection = new StringSelection(saveString);

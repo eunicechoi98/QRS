@@ -37,9 +37,6 @@ public class Vista3Controller {
     @FXML // fx:id="vista3VBox"
     private VBox vista3VBox; // Value injected by FXMLLoader
     
-    @FXML // fx:id="vista3HBox"
-    private HBox vista3HBox; // Value injected by FXMLLoader
-    
     @FXML // fx:id="vista3LabelOne"
     private Label vista3LabelOne; // Value injected by FXMLLoader
     

@@ -13,7 +13,7 @@ import javafx.util.Duration;
 
 public class Vista8Controller {
 
-	private static Integer timerVal = 5;
+	private static Integer timerVal = 10;
 	private static Integer tempTimerVal;
 	
     private static Timeline timeline;
@@ -32,7 +32,7 @@ public class Vista8Controller {
     
     public static void setTimeline(Timeline parentTimeline) {
     	Vista8Controller.timeline = parentTimeline;
-    	timerVal = 5;
+    	timerVal = 10;
     }
 
     @FXML
@@ -47,13 +47,13 @@ public class Vista8Controller {
     		timeline.getKeyFrames().clear();
     		timeline.getKeyFrames().add(key);
     	}
-    	String musicFile = "C:\\Users\\CSC\\Desktop\\QRS_Application\\countdownBeeps.mp3";     // For example
+    	String musicFile = "C:\\Users\\jsuni\\Desktop\\QRS_Application\\countdownBeeps.mp3";     // For example
 
     	Media sound = new Media(new File(musicFile).toURI().toString());
     	MediaPlayer mediaPlayer = new MediaPlayer(sound);
     	mediaPlayer.play();
     	timerLabel4.setText(Integer.toString(tempTimerVal));
-    	timeline.setCycleCount(5);
+    	timeline.setCycleCount(10);
     	timeline.playFromStart();
     }
 
@@ -67,6 +67,7 @@ public class Vista8Controller {
 				e.printStackTrace();
 			}
 			VistaNavigator.loadVista(VistaNavigator.VISTA_9);
+			System.out.println("Vista 8: Countdown to 2nd Eval -> Vista 9: 2nd Eval");
 		}
 		else
 			timerLabel4.setText(Integer.toString(tempTimerVal));

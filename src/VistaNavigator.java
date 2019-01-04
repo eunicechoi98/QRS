@@ -22,7 +22,20 @@ public class VistaNavigator {
     public static final String STEPFOURVISTA = "stepFourVista.fxml";
     public static final String STEPFIVEVISTA = "stepFiveVista.fxml";
     public static final String STEPSIXVISTA = "stepSixVista.fxml";
-    public static final String PRIMARYEVALRESULTSVISTA = "primaryEvalResultsVista.fxml";
+    
+    public static final String PRIMARYEVALRESULTSVISTA = "evalOneResults.fxml";
+    public static final String EVALONEPASSED = "EvalOnePassedVista.fxml";  
+    public static final String EVALONEFAILED = "evalOneFailedVista.fxml";
+    
+    public static final String TRAININGVID = "trainingVid.fxml";
+    public static final String PRACCOUNTDOWN= "practiveCountdown.fxml";
+    public static final String PRACTICE = "practice.fxml";
+    public static final String REST = "rest.fxml";
+    public static final String EVALTWOCOUNTDOWN = "evalTwoCountdown.fxml";
+    public static final String EVALTWO = "evalTwo.fxml";
+    
+    public static final String EVALTWOFAILED = "evalTwoFailed.fxml";
+    public static final String EVALTWOPASSED = "evalTwoPassed.fxml";
     
   
     public static final String VISTA_2 = "vista2.fxml";

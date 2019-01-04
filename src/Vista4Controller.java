@@ -14,7 +14,7 @@ public class Vista4Controller {
 	private static Timeline timeline;
 	
 	private static Integer timerVal = 60;
-	private static Integer tempTimerVal;
+	private static Integer tempTimerVal; 
 	
 	private Integer milliTimerVal = 9;
 
@@ -34,15 +34,7 @@ public class Vista4Controller {
     	Vista4Controller.timeline = parentTimeline;
     	timerVal = 60; //make sure this matches above
     }
-     /*
-    @FXML
-    void tempNext1(ActionEvent event) {
-    	if (DataIO.inControlGroup() == true)
-			VistaNavigator.loadVista(VistaNavigator.VISTA_10);
-		else
-			VistaNavigator.loadVista(VistaNavigator.VISTA_5);
-        timeline.stop();
-    }\*/
+    
 
     @FXML
     
@@ -50,7 +42,7 @@ public class Vista4Controller {
     	
     	tempTimerVal = timerVal;
     	KeyFrame key = new KeyFrame(
-    	        Duration.millis(1000),
+    	        Duration.millis(1050),
     	        ae -> timerMethod());
     	if (timeline.getKeyFrames().isEmpty())
     		timeline.getKeyFrames().add(key);
@@ -62,7 +54,7 @@ public class Vista4Controller {
     	timerMethod();
     	timeline.setCycleCount(tempTimerVal);
     	timeline.play();
-    	VistaNavigator.loadVista(VistaNavigator.PRIMARYEVALRESULTSVISTA);
+  
     }
 
 	public void timerMethod() {
@@ -72,22 +64,23 @@ public class Vista4Controller {
     	        Duration.millis(105),
     	        ae -> milliTimerMethod()));
     	timeline2.setCycleCount(10);
-		if (tempTimerVal == 0) {
+    	
+    	// when time is up
+    	// 1. save the performance on laerdal
+    	// 2. go to the next step: Primary Eval Results Vista
+		if (tempTimerVal == 3) {			
 			try {
+				// **eunice's understanding: saves test with mouse bot for the next vista and DataIO to use
+				// **the saved data to evaluate and return data to the user
 				MouseMovements.saveTest(1);
 			} catch (AWTException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
-			
 			VistaNavigator.loadVista(VistaNavigator.PRIMARYEVALRESULTSVISTA);
 			
-			// new function in process
-			//if (DataIO.evaluationOnePassed() == true)
-				//VistaNavigator.loadVista(VistaNavigator.VISTA_10);
-			//else
-				//VistaNavigator.loadVista(VistaNavigator.VISTA_5);
+	
 		}
 		else
 	    	timeline2.play();

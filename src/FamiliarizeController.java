@@ -11,6 +11,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -43,11 +44,16 @@ public class FamiliarizeController {
     
     @FXML
     private ImageView demoImage;
+    
+    @FXML
+    private Button familiarizeNextButton;
 
     @FXML
     void nextAction(ActionEvent event) {
+    	
     	timeline.stop();
         VistaNavigator.loadVista(VistaNavigator.VISTA_6);
+        System.out.println("Famiarize next button clicked");
     }
     
     public static void setTimeline(Timeline parentTimeline) {
@@ -67,12 +73,14 @@ public class FamiliarizeController {
     		timeline.getKeyFrames().clear();
     		timeline.getKeyFrames().add(key);
     	}
-    	File file = new File("C:\\Users\\CSC\\Desktop\\QRS_Application\\screenshotCropped.png");
+    	File file = new File("C:\\Users\\jsuni\\Desktop\\QRS_Application\\screenshotCropped.png");
     	Image image = new Image(file.toURI().toString());
     	demoImage.setImage(image);
     	timerLabel3.setText(Integer.toString(tempTimerVal));
     	timeline.setCycleCount(61);
     	timeline.playFromStart();
+    	
+    	System.out.println("Familiarize Laerdal Software -> Vista 6: 2 min of Practice");
     	
     }
     

@@ -5,13 +5,21 @@ import java.util.ResourceBundle;
 
 import javafx.animation.*;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
+/*
+ * Countdown to the CPR Evaluation (10 seconds)
+ */
+public class evalTwoCountdownController {
 
-public class stepEightVistaController {
 	private static Integer timerVal = 10;
 	private static Integer tempTimerVal;
 	
@@ -22,23 +30,33 @@ public class stepEightVistaController {
 
     @FXML
     private URL location;
-
-    @FXML
-    private Label timerLabel1;
-
-    @FXML
-    private StackPane vista3;
+    
+    @FXML // fx:id="evalTwoCountdownVista"
+    private StackPane evalTwoCountdownVista; // Value injected by FXMLLoader
+    
+    @FXML // fx:id="evalTwoCountdownVBox"
+    private VBox evalTwoCountdownVBox; // Value injected by FXMLLoader
+    
+    @FXML // fx:id="evalTwoCountdownLabel"
+    private Label evalTwoCountdownLabel; // Value injected by FXMLLoader
+    
+    @FXML // fx:id="evalTwoCountdownTimerLabel"
+    private Label evalTwoCountdownTimerLabel;
+    
+    @FXML // fx:id="evalTwoCountdownText"
+    private Text evalTwoCountdownText; // Value injected by FXMLLoader
+   
     
     public static void setTimeline(Timeline parentTimeline) {
-    	stepEightVistaController.timeline = parentTimeline;
-    	timerVal = 5;
+    	evalTwoCountdownController.timeline = parentTimeline;
+    	timerVal = 10;
     }
 
     @FXML
     void initialize() throws AWTException {
     	tempTimerVal = timerVal;
     	KeyFrame key = new KeyFrame(
-    	        Duration.millis(875),
+    	        Duration.millis(1000),
     	        ae -> timerMethod());
     	if (timeline.getKeyFrames().isEmpty())
     		timeline.getKeyFrames().add(key);
@@ -52,24 +70,27 @@ public class stepEightVistaController {
     	//Media sound = new Media(new File(musicFile).toURI().toString());
     	//MediaPlayer mediaPlayer = new MediaPlayer(sound);
     	//mediaPlayer.play();
-    	timerLabel1.setText(Integer.toString(tempTimerVal));
-    	timeline.setCycleCount(5);
+    	evalTwoCountdownTimerLabel.setText(Integer.toString(tempTimerVal));
+    	timeline.setCycleCount(10);
     	timeline.playFromStart();
+    	
+    	System.out.println("Eval 2 Countdown -> CPR Eval 2");
     }
 
 	public void timerMethod() {
 		tempTimerVal--;
 		if (tempTimerVal == 0) {
 	    	try {
+	    		// calling mouse movements to open the laerdal file
 				MouseMovements.startTest();
 			} catch (AWTException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			VistaNavigator.loadVista(VistaNavigator.VISTA_4);
+			VistaNavigator.loadVista(VistaNavigator.EVALTWO);
 		}
 		else {
-			timerLabel1.setText(Integer.toString(tempTimerVal));
+			evalTwoCountdownTimerLabel.setText(Integer.toString(tempTimerVal));
 		}
-	}	
+	}
 }

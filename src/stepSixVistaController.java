@@ -18,7 +18,7 @@ import javafx.scene.text.Text;
 
 public class stepSixVistaController {
 
-    @FXML // ResourceBundle that was given to the FXMLLoader
+    @FXML // ResourceBundle that was given to the FXMLLoader	
     private ResourceBundle resources;
 
     @FXML // URL location of the FXML file that was given to the FXMLLoader
@@ -43,6 +43,8 @@ public class stepSixVistaController {
     @FXML
     void stepSixNextAction(ActionEvent event) {
     	VistaNavigator.loadVista(VistaNavigator.VISTA_2);
+    	//VistaNavigator.loadVista(VistaNavigator.EVALONEFAILED); //testing to see if failed path is working
+    	
     }
  
     @FXML // This method is called by the FXMLLoader when initialization is complete

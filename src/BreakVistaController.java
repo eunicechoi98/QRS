@@ -56,6 +56,7 @@ public class BreakVistaController {
 		tempTimerVal--;
 		if (tempTimerVal == 0) {
 			VistaNavigator.loadVista(VistaNavigator.VISTA_8);
+			System.out.println("BreakVista: Break from practice -> Vista 8: Countdown to 2nd eval");
 		}
 		else
 			timerLabel4.setText(Integer.toString(tempTimerVal));
