@@ -47,21 +47,18 @@
 
 #startButton {
 	-fx-background-color: #96A7FF;
-    -fx-background-radius: 16.4, 15;
-    -fx-background-insets: -1.4, 0;
-    -fx-border-radius: 15;
+    -fx-background-radius: 30, 15;
+    -fx-border-radius: 30;
   -fx-border-width: 2;
-  -fx-border-color: dimgrey;
   -fx-padding: 0;
 }
 
 #studyCodeTextBox {
 	-fx-background-color: white;
     -fx-background-radius: 16.4, 15;
-    -fx-background-insets: -1.4, 0;
+
     -fx-border-radius: 15;
   -fx-border-width: 2;
-  -fx-border-color: #96A7FF;
   -fx-padding: 0;
 }
 
@@ -160,16 +157,16 @@
 }
 
 /* Eval One Results */
-#primaryEvalResultsStackPane {
+#evalOneResultsVista {
 	-fx-background-color: #282828;
 }
 
-#primaryEvalResultsNextButton {
+#evalOneResultsNextButton {
 	-fx-background-color: Transparent;
 	-fx-base: Transparent;	
 }
 
-#primaryEvalResultsRate {
+#evalOneResultsRate {
 	-fx-background-color: white;
     -fx-background-radius: 16.4, 15;
     -fx-background-insets: -1.4, 0;
@@ -179,7 +176,7 @@
   -fx-padding: 0;	
 }
 
-#primaryEvalResultsDepth {
+#evalOneResultsDepth {
 	-fx-background-color: white;
     -fx-background-radius: 16.4, 15;
     -fx-background-insets: -1.4, 0;
@@ -189,7 +186,7 @@
   -fx-padding: 0;	
 }
 
-#primaryEvalResultsRecoil {
+#evalOneResultsRecoil {
 	-fx-background-color: white;	
     -fx-background-radius: 16.4, 15;
     -fx-background-insets: -1.4, 0;

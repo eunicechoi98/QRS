@@ -48,7 +48,8 @@ public class PrimaryEvalResultsController {
     @FXML // fx:id="primaryEvalResultsRate"
     private TextField primaryEvalResultsRate; // Value injected by FXMLLoader
     
-    @FXML // fx:id="primaryEvalResultsRate"
+    @FXML // fx:id="primaryEvalResultsRate"1_1
+    
     private TextField primaryEvalResultsDepth; 
     
     @FXML // fx:id="primaryEvalResultsRate"
@@ -57,7 +58,7 @@ public class PrimaryEvalResultsController {
     @FXML
     private Button primaryEvalResultsNextButton; 
   
-    
+
     @FXML
     void primaryEvalResultsNextAction(ActionEvent event) {
     	
@@ -77,13 +78,12 @@ public class PrimaryEvalResultsController {
     	
     	System.out.println("Eval One Results Next Action try-catch is over");
     	
-    	
-    	
-    	
     }
     
     @FXML    
     void initialize() throws AWTException {
+    	
+    	
     	try {
     		
 	 		//(Calling saveCPRData throws an error rn so just commented stuff out)	  
@@ -109,7 +109,11 @@ public class PrimaryEvalResultsController {
 	    	
     	} catch (Exception e) {
     		System.out.println("PrimaryEvalResults: Error returning data to user");
+    		
     	}
+    	
+    	
+    	//System.out.println("testing PrimaryEvalResults to see if the graphic is working");
     
     }
     	 

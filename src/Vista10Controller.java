@@ -37,6 +37,7 @@ public class Vista10Controller {
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
     	
+    	
     	DataIO.saveCPRData(2);
     	String nextSession = DataIO.scheduleNextSession();
     	if (DataIO.evaluationTwoPassed() == true) {

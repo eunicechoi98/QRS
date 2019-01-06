@@ -1,6 +1,7 @@
 public class AtestingFileOne {
 	
 	// starting point
+	/*
 	
     public static void main(String[] args) {
     	test(21, true, false, 1, 2);	
@@ -13,5 +14,5 @@ public class AtestingFileOne {
     	DataIO.setTestData(boolTwo, numTwo);
     	String result = DataIO.scheduleNextSession();
     	System.out.print(result);
-    }
+    } */
 }

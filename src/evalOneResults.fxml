@@ -12,7 +12,7 @@
 
 <StackPane fx:id="evalOneResultsVista" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@vista.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="evalOneResultsController">
    <children>
-      <Button fx:id="evalOneResultsNextButton" mnemonicParsing="false" onAction="#stepFourNextAction" text="&gt;" textFill="WHITE" StackPane.alignment="CENTER_RIGHT">
+      <Button fx:id="evalOneResultsNextButton" mnemonicParsing="false" onAction="#evalOneNextAction" text="&gt;" textFill="WHITE" StackPane.alignment="CENTER_RIGHT">
          <StackPane.margin>
             <Insets right="10.0" />
          </StackPane.margin>

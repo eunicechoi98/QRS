@@ -45,16 +45,56 @@ public class evalOneResultsController {
     private TextField evalOneResultsRecoil;
     
     @FXML
-    void stepFourNextAction(ActionEvent event) {
-    	if (DataIO.evaluationOnePassed() == true) {
-    		VistaNavigator.loadVista(VistaNavigator.VISTA_10);
-    	} else {
-    		VistaNavigator.loadVista(VistaNavigator.VISTA_5);
+    void evalOneNextAction(ActionEvent event) {
+
+    	try {
+    		System.out.println("Eval One Results Next Action Button is clicked");
+    		if (DataIO.evaluationOnePassed() == true) {
+        		VistaNavigator.loadVista(VistaNavigator.EVALONEPASSED);
+        		System.out.println("Evalation One Passed");
+        	} else {
+        		VistaNavigator.loadVista(VistaNavigator.EVALONEFAILED);
+        		System.out.println("Evaluation One Failed -> moving on to training");
+        	} 
+    
+    	} catch (Exception e) {
+    		System.out.println("Eval One Results Next Action Button is NOT clicked");
     	}
+    	
+    	System.out.println("Eval One Results Next Action try-catch is over");
     }  
     
     @FXML
     void initialize() throws AWTException {
+    	
+			try {
+			    		
+				 		//(Calling saveCPRData throws an error rn so just commented stuff out)	  
+				    	//Note that to get the primaryEval results saveCPRData(1) must be called first - comment by Colton
+				    	DataIO.saveCPRData(1);	    	
+				    	
+				    	//Initialize the ArrayList for the primary results
+				    	ArrayList<Integer> primaryResults = new ArrayList<>();
+				    	primaryResults = DataIO.getPrimaryResults();
+				    	
+				    	//Note that primary results is structured [mean rate,mean depth, % w adequate recoil]
+				    	int meanRate = primaryResults.get(0);
+				    	int meanDepth = primaryResults.get(1);
+				    	int adequateRecoil = primaryResults.get(2);
+				    	
+				    	evalOneResultsRate.setText(Integer.toString(meanRate));
+				    	evalOneResultsDepth.setText(Integer.toString(meanDepth));
+				    	evalOneResultsRecoil.setText(Integer.toString(adequateRecoil));    	
+				    	
+				 
+				    	System.out.println("PrimaryEvalResults: Successful return of data to user");
+				    	
+				    	
+			    	} catch (Exception e) {
+			    		System.out.println("PrimaryEvalResults: Error returning data to user");
+			    		
+			    	}
+
     	/*
     	ArrayList<Integer> primaryResults = DataIO.getPrimaryResults();
     	Integer rate = primaryResults.get(0);

@@ -40,7 +40,7 @@ public class evalOnePassedController {
 	    	// dont need this here because it's already done in the previous vista
 	    	
 	    	String nextSession = DataIO.scheduleNextSession();
-	    	if (DataIO.evaluationTwoPassed() == true) {
+	    	if (DataIO.evaluationTwoPassed() == true) { 
 	    		passOneReturnDate.setText(nextSession);
 	    	} else {
 	    		passOneReturnDate.setText(nextSession);

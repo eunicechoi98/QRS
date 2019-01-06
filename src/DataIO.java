@@ -309,9 +309,10 @@ public class DataIO {
     public static boolean correctCode() {
     	if (forgotCode == false) {
         	for (int val : controlCodes) {
-        		if (val == currentCode)
+        		if (val == currentCode) 
         			return true;
         	}
+        	
         	return false;
     	}
     	else 

@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane fx:id="primaryEvalResultsStackPane" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@vista.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="evalOneResultsController">
+<StackPane fx:id="primaryEvalResultsStackPane" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@vista.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PrimaryEvalResultsController">
    <children>
       <Button fx:id="primaryEvalResultsNextButton" mnemonicParsing="false" onAction="#primaryEvalResultsNextAction" text="&gt;" textFill="WHITE" StackPane.alignment="CENTER_RIGHT">
          <StackPane.margin>
@@ -35,7 +35,7 @@
                   <Insets top="50.0" />
                </VBox.margin>
             </Text>
-            <Label text="Rate" textFill="WHITE">
+            <Label fx:id="primaryEvalResultsLabelTwo" text="Rate" textFill="WHITE">
                <font>
                   <Font name="Microsoft JhengHei UI" size="35.0" />
                </font>
@@ -48,7 +48,7 @@
                   <Insets top="15.0" />
                </VBox.margin>
             </TextField>
-            <Label text="Depth" textFill="WHITE">
+            <Label fx:id="primaryEvalResultsLabelThree" text="Depth" textFill="WHITE">
                <font>
                   <Font size="35.0" />
                </font>
@@ -61,7 +61,7 @@
                   <Insets top="15.0" />
                </VBox.margin>
             </TextField>
-            <Label text="Recoil" textFill="WHITE">
+            <Label fx:id="primaryEvalResultsLabelFour" text="Recoil" textFill="WHITE">
                <font>
                   <Font size="35.0" />
                </font>

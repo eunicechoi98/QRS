@@ -68,7 +68,8 @@ public class Vista4Controller {
     	// when time is up
     	// 1. save the performance on laerdal
     	// 2. go to the next step: Primary Eval Results Vista
-		if (tempTimerVal == 3) {			
+		if (tempTimerVal == 3) {	
+			/*
 			try {
 				// **eunice's understanding: saves test with mouse bot for the next vista and DataIO to use
 				// **the saved data to evaluate and return data to the user
@@ -77,8 +78,8 @@ public class Vista4Controller {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			VistaNavigator.loadVista(VistaNavigator.PRIMARYEVALRESULTSVISTA);
+			*/
+			VistaNavigator.loadVista(VistaNavigator.EVALONERESULTS);
 			
 	
 		}

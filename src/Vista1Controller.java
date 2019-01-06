@@ -57,4 +57,9 @@ public class Vista1Controller {
     	
     }
 
+	public static void main(String[] args) {
+		
+		
+	}
+
 }
