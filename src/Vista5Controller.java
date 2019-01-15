@@ -19,6 +19,7 @@ import javafx.util.Duration;
 public class Vista5Controller {
 
 	private static int videoLength = 60;
+	
     @FXML
     private ResourceBundle resources;
 
@@ -35,21 +36,25 @@ public class Vista5Controller {
     private HBox hBoxVista5;
     
     @FXML // fx:id="nextButton"
-    private Button nextButton; // Value injected by FXMLLoader
+    private Button vista5nextButton; // Value injected by FXMLLoader
     
     @FXML
-    void next3(ActionEvent event) {
+    void vista5NextAction(ActionEvent event) {
+    	
         VistaNavigator.loadVista(VistaNavigator.FamiliarizeVista);
+        System.out.println("Vista 5 next button clicked");
+        
     }
     
     void revealMethod() {
-        nextButton.setDisable(false);
+        vista5nextButton.setDisable(false);
     }
 
     @FXML
     void initialize() {
-    	DataIO.saveCPRData(1);
-    	nextButton.setDisable(true);
+    	
+    	//DataIO.saveCPRData(1);
+    	vista5nextButton.setDisable(true);
     	Timeline timeline = new Timeline(new KeyFrame(
     	        Duration.millis(videoLength*1000),
     	        ae -> revealMethod()));
@@ -59,16 +64,18 @@ public class Vista5Controller {
     	String media = file.toURI().toString();
     	Media video = new Media(media);
     	MediaPlayer player = new MediaPlayer(video);
+    	
     	MediaView mediaView = new MediaView(player);
     	hBoxVista5.getChildren().add(mediaView);
     	mediaView.setFitHeight(650);
     	mediaView.setFitWidth(850);
     	player.play();
     	
+    	System.out.println("Vista 5: Video -> Familiarize Laerdal Software");
     	/*
     	WebView webview = new WebView();
         webview.getEngine().load(
-          "https://www.youtube.com/embed/hizBdM1Ob68?autoplay=1"
+          "https://www.youtube.com/embed/hizBdM1Ob68?autoplay=1"          
         		);
         webview.setPrefSize(1000, 100);
         hBoxVista5.getChildren().add(webview);

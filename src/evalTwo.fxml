@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="vista4" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista4Controller">
+<StackPane fx:id="evalTwoVista" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@vista.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="evalTwoController">
   <children>
       <VBox alignment="TOP_CENTER" stylesheets="@vista.css">
          <children>
@@ -19,7 +19,7 @@
                   <Insets bottom="150.0" top="70.0" />
                </VBox.margin>
             </Label>
-            <Label layoutX="340.0" layoutY="85.0" textAlignment="CENTER" textFill="#ffffffcc">
+            <Label layoutX="340.0" layoutY="85.0" textAlignment="CENTER" textFill="#000000cb">
                <font>
                   <Font size="48.0" />
                </font>
@@ -29,7 +29,7 @@
             </Label>
          </children>
       </VBox>
-      <Label fx:id="timerLabel2" textFill="#96a7ff">
+      <Label fx:id="evalTwoTimerLabel">
          <font>
             <Font name="System Bold" size="300.0" />
          </font>

@@ -1,21 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?scenebuilder-stylesheet vista.css?>
-<?import javafx.scene.image.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<StackPane fx:id="famVista" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FamiliarizeController">
+<StackPane fx:id="famVista" prefHeight="800.0" prefWidth="1000.0" stylesheets="@vista.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FamiliarizeController">
   <children>
-      <ImageView fx:id="demoImage" fitHeight="518.0" fitWidth="1366.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_CENTER" />
+      <Button fx:id="familiarizeNextButton" mnemonicParsing="false" onAction="#nextAction" text="&gt;" StackPane.alignment="CENTER_RIGHT">
+         <font>
+            <Font size="150.0" />
+         </font>
+         <StackPane.margin>
+            <Insets />
+         </StackPane.margin>
+      </Button>
+      <Label fx:id="timerLabel3" alignment="CENTER_RIGHT" text="30" textAlignment="RIGHT" StackPane.alignment="TOP_RIGHT">
+         <font>
+            <Font name="System Bold" size="70.0" />
+         </font>
+         <StackPane.margin>
+            <Insets right="50.0" top="30.0" />
+         </StackPane.margin>
+      </Label>
+      <ImageView fx:id="demoImage" fitHeight="600.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_CENTER">
+         <StackPane.margin>
+            <Insets top="200.0" />
+         </StackPane.margin></ImageView>
       <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" StackPane.alignment="CENTER">
          <children>
-            <Label prefHeight="135.0" prefWidth="880.0" text="Please take up to 30sec to familiarize yourself with the feedback software you'll be using during your practice time. When you're ready to start your practice, hit the next button." textAlignment="CENTER" textFill="#000000cb" wrapText="true">
+            <VBox stylesheets="@vista.css" />
+            <Label alignment="TOP_CENTER" graphicTextGap="0.0" prefHeight="150.0" prefWidth="800.0" text="Familiarize yourself with the feedback software you'll be using during your practice time. When you're ready to start your practice, hit the next button." textAlignment="CENTER" textFill="#ffffffcc" wrapText="true">
                <HBox.margin>
                   <Insets top="50.0" />
                </HBox.margin>
@@ -23,27 +43,10 @@
                   <Font size="25.0" />
                </font>
             </Label>
-            <Label fx:id="timerLabel3" text="30">
-               <font>
-                  <Font name="System Bold" size="70.0" />
-               </font>
-               <HBox.margin>
-                  <Insets left="75.0" right="200.0" top="50.0" />
-               </HBox.margin>
-            </Label>
          </children>
          <StackPane.margin>
-            <Insets top="518.0" />
+            <Insets />
          </StackPane.margin>
       </HBox>
-      <VBox />
-      <Button mnemonicParsing="false" onAction="#nextAction" text="Next" StackPane.alignment="BOTTOM_RIGHT">
-         <font>
-            <Font size="36.0" />
-         </font>
-         <StackPane.margin>
-            <Insets bottom="25.0" right="50.0" />
-         </StackPane.margin>
-      </Button>
   </children>
 </StackPane>

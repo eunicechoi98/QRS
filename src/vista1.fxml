@@ -9,20 +9,20 @@
 <?import javafx.scene.text.Font?>
 <?scenebuilder-stylesheet vista.css?>
 
-<StackPane fx:id="vista1" prefHeight="1080.0" prefWidth="1507.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista1Controller">
+<StackPane fx:id="vista1" prefHeight="1080.0" prefWidth="1507.0" stylesheets="@vista.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista1Controller">
   <children>
-      <VBox fx:id="vBoxVista1" alignment="CENTER">
+      <VBox fx:id="vBoxVista1" alignment="CENTER" stylesheets="@vista.css">
          <children>
             <Label text="Sign In to QRS" textAlignment="CENTER" textFill="WHITE">
                <VBox.margin>
-                  <Insets bottom="50.0" top="150.0" />
+                  <Insets bottom="20.0" top="150.0" />
                </VBox.margin>
                <font>
                   <Font size="36.0" />
                </font>
             </Label>
             <Label />
-            <TextField fx:id="studyCodeTextBox" maxWidth="250.0" onAction="#onEnter" prefHeight="77.0" prefWidth="250.0" promptText="Hospital ID">
+            <TextField fx:id="studyCodeTextBox" alignment="CENTER" maxWidth="250.0" onAction="#onEnter" prefHeight="77.0" prefWidth="250.0" promptText="Hospital ID">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>

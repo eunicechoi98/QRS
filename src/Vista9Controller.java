@@ -67,14 +67,21 @@ public class Vista9Controller {
     	        Duration.millis(110),
     	        ae -> milliTimerMethod()));
     	timeline2.setCycleCount(10);
+    	
+    	
 		if (tempTimerVal == 0) {
 			try {
+				// **saves the eval two results using bot
+				// **to be used for the evaluation in the next vista
 				MouseMovements.saveTest(2);
+				System.out.println("Vista 9: Saved Test using MouseMovements");
 			} catch (AWTException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				System.out.println("**Vista 9: ERROR couldnt save test using MouseMovements");
 			}
 			VistaNavigator.loadVista(VistaNavigator.VISTA_10);
+			System.out.println("Vista 9: 2nd Eval over -> Vista 10: Session Complete, return next session date");
 		}
 		else
 	    	timeline2.play();

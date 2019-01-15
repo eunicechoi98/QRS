@@ -1,3 +1,4 @@
+import java.awt.AWTException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -8,12 +9,12 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
-public class Vista6Controller {
+public class evalTwoController {
 
-	private static Integer timerVal = 120;
-	private static Integer tempTimerVal;
-	
 	private static Timeline timeline;
+	
+	private static Integer timerVal = 15;
+	private static Integer tempTimerVal;
 	
 	private Integer milliTimerVal = 9;
 
@@ -24,29 +25,24 @@ public class Vista6Controller {
     private URL location;
 
     @FXML
-    private Label timerLabel3;
+    private Label evalTwoTimerLabel;
 
     @FXML
-    private StackPane vista6;
+    private StackPane evalTwoVista;
     
     public static void setTimeline(Timeline parentTimeline) {
-    	Vista6Controller.timeline = parentTimeline;
-    	timerVal = 120; //make sure this matches above
+    	evalTwoController.timeline = parentTimeline;
+    	timerVal = 15; //make sure this matches above
     }
     
-    /*
-    @FXML
-    void tempNext2(ActionEvent event) {
-    	VistaNavigator.mainController.setFullScreen();
-        VistaNavigator.loadVista(VistaNavigator.VISTA_7);
-    	timeline.stop();
-    } */
 
     @FXML
+    
     void initialize() {
+    	
     	tempTimerVal = timerVal;
     	KeyFrame key = new KeyFrame(
-    	        Duration.millis(1000),
+    	        Duration.millis(1050),
     	        ae -> timerMethod());
     	if (timeline.getKeyFrames().isEmpty())
     		timeline.getKeyFrames().add(key);
@@ -54,25 +50,36 @@ public class Vista6Controller {
     		timeline.getKeyFrames().clear();
     		timeline.getKeyFrames().add(key);
     	}
-    	VistaNavigator.mainController.setMini();
-    	timerLabel3.setText(Integer.toString(tempTimerVal) + ":0");
+    	evalTwoTimerLabel.setText(Integer.toString(tempTimerVal) + ":0");
     	timerMethod();
     	timeline.setCycleCount(tempTimerVal);
     	timeline.play();
+  
     }
 
 	public void timerMethod() {
 		tempTimerVal--;
 		milliTimerVal = 9;
 		Timeline timeline2 = new Timeline(new KeyFrame(
-    	        Duration.millis(100),
+    	        Duration.millis(105),
     	        ae -> milliTimerMethod()));
     	timeline2.setCycleCount(10);
-    	
 		if (tempTimerVal == 0) {
-			VistaNavigator.mainController.setFullScreen();
-			VistaNavigator.loadVista(VistaNavigator.BreakVista);
-			System.out.println("Vista 6: practice over -> BreakVista: break from practice");
+			try {
+				MouseMovements.saveTest(1);
+			} catch (AWTException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			VistaNavigator.loadVista(VistaNavigator.PRIMARYEVALRESULTSVISTA);
+			
+			// new function in process
+			//if (DataIO.evaluationOnePassed() == true)
+				//VistaNavigator.loadVista(VistaNavigator.VISTA_10);
+			//else
+				//VistaNavigator.loadVista(VistaNavigator.VISTA_5);
 		}
 		else
 	    	timeline2.play();
@@ -81,9 +88,7 @@ public class Vista6Controller {
 	
 	public void milliTimerMethod( ) {
 		String milli = String.format("%01d", milliTimerVal);
-		timerLabel3.setText(Integer.toString(tempTimerVal) + "." + milli);
+		evalTwoTimerLabel.setText(Integer.toString(tempTimerVal) + "." + milli);
 		milliTimerVal--;
 	}
 }
-
-

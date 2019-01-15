@@ -10,9 +10,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane fx:id="primaryEvalResultsStackPane" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@vista.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PrimaryEvalResultsController">
+<StackPane fx:id="evalOneResultsVista" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@vista.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="evalOneResultsController">
    <children>
-      <Button fx:id="primaryEvalResultsNextButton" mnemonicParsing="false" onAction="#primaryEvalResultsNextAction" text="&gt;" textFill="WHITE" StackPane.alignment="CENTER_RIGHT">
+      <Button fx:id="evalOneResultsNextButton" mnemonicParsing="false" onAction="#evalOneNextAction" text="&gt;" textFill="WHITE" StackPane.alignment="CENTER_RIGHT">
          <StackPane.margin>
             <Insets right="10.0" />
          </StackPane.margin>
@@ -20,56 +20,56 @@
             <Font name="Microsoft JhengHei UI" size="130.0" />
          </font>
       </Button>
-      <VBox fx:id="primaryEvalVBox" alignment="CENTER" maxWidth="800.0">
+      <VBox fx:id="evalOneResultsVBox" alignment="CENTER" maxWidth="800.0">
          <children>
-            <Label fx:id="primaryEvalResultsLabel" alignment="CENTER" text="PERFORMANCE SUMMARY" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="evalOneResultsLabel" alignment="CENTER" text="PERFORMANCE SUMMARY" textAlignment="CENTER" textFill="WHITE">
                <font>
-                  <Font name="Microsoft JhengHei UI Bold" size="40.0" />
+                  <Font name="Microsoft JhengHei UI Bold" size="35.0" />
                </font>
             </Label>
-            <Text fx:id="primaryEvalResultsText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Guidelines recommend at least 80% of compressions at a rate of 100-120, a depth of 5-6cm, and allowing for full chest recoil." textAlignment="CENTER" wrappingWidth="800.0">
+            <Text fx:id="evalOneResultsText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Guidelines recommend at least 80% of compressions at a rate of 100-120, a depth of 5-6cm, and allowing for full chest recoil." textAlignment="CENTER" wrappingWidth="800.0">
                <font>
-                  <Font name="Microsoft JhengHei UI" size="35.0" />
+                  <Font name="Microsoft JhengHei UI" size="25.0" />
                </font>
                <VBox.margin>
                   <Insets top="50.0" />
                </VBox.margin>
             </Text>
-            <Label fx:id="primaryEvalResultsLabelTwo" text="Rate" textFill="WHITE">
+            <Label text="Rate" textFill="WHITE">
                <font>
-                  <Font name="Microsoft JhengHei UI" size="35.0" />
+                  <Font name="Microsoft JhengHei UI" size="25.0" />
                </font>
                <VBox.margin>
                   <Insets top="75.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="primaryEvalResultsRate" maxWidth="300.0" minHeight="60.0">
+            <TextField fx:id="evalOneResultsRate" maxWidth="300.0" minHeight="60.0">
                <VBox.margin>
                   <Insets top="15.0" />
                </VBox.margin>
             </TextField>
-            <Label fx:id="primaryEvalResultsLabelThree" text="Depth" textFill="WHITE">
+            <Label text="Depth" textFill="WHITE">
                <font>
-                  <Font size="35.0" />
+                  <Font size="25.0" />
                </font>
                <VBox.margin>
                   <Insets top="15.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="primaryEvalResultsDepth" maxWidth="300.0" minHeight="60.0" minWidth="300.0">
+            <TextField fx:id="evalOneResultsDepth" maxWidth="300.0" minHeight="60.0" minWidth="300.0">
                <VBox.margin>
                   <Insets top="15.0" />
                </VBox.margin>
             </TextField>
-            <Label fx:id="primaryEvalResultsLabelFour" text="Recoil" textFill="WHITE">
+            <Label text="Recoil" textFill="WHITE">
                <font>
-                  <Font size="35.0" />
+                  <Font size="25.0" />
                </font>
                <VBox.margin>
                   <Insets top="15.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="primaryEvalResultsRecoil" maxWidth="300.0" minHeight="60.0">
+            <TextField fx:id="evalOneResultsRecoil" maxWidth="300.0" minHeight="60.0">
                <VBox.margin>
                   <Insets top="15.0" />
                </VBox.margin>

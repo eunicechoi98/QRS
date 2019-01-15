@@ -45,6 +45,7 @@ public class stepOneVistaController {
 
     @FXML
     void stepOneNextAction(ActionEvent event) {
+    	
     	VistaNavigator.loadVista(VistaNavigator.STEPTWOVISTA);
     }
 
