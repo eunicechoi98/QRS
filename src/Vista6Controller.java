@@ -10,7 +10,7 @@ import javafx.util.Duration;
 
 public class Vista6Controller {
 
-	private static Integer timerVal = 120;
+	private static Integer timerVal = 5;
 	private static Integer tempTimerVal;
 	
 	private static Timeline timeline;
@@ -31,7 +31,7 @@ public class Vista6Controller {
     
     public static void setTimeline(Timeline parentTimeline) {
     	Vista6Controller.timeline = parentTimeline;
-    	timerVal = 120; //make sure this matches above
+    	timerVal = 5; //make sure this matches above
     }
     
     /*

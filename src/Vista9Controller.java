@@ -32,7 +32,7 @@ public class Vista9Controller {
     
     public static void setTimeline(Timeline parentTimeline) {
     	Vista9Controller.timeline = parentTimeline;
-    	timerVal = 60; //make sure this matches above
+    	timerVal = 6; //make sure this matches above
     }
     
     /*

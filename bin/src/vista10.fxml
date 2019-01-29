@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?scenebuilder-stylesheet vista.css?>
+
+<StackPane fx:id="vista10" prefHeight="800.0" prefWidth="1000.0" stylesheets="@vista.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista10Controller">
+  <children>
+      <VBox alignment="CENTER">
+         <children>
+            <Label text="Session Complete" textAlignment="CENTER" textFill="WHITE">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <font>
+                  <Font size="65.0" />
+               </font>
+            </Label>
+            <Label layoutX="376.0" layoutY="524.0" text="Your next session is in: " textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font size="36.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="vista10NextSession" maxHeight="200.0" maxWidth="300.0" prefHeight="50.0">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </TextField>
+            <Label layoutX="37.0" layoutY="592.0" text="You may now exit the room." textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font size="30.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="100.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
+  </children>
+</StackPane>

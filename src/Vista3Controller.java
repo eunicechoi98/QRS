@@ -49,7 +49,7 @@ public class Vista3Controller {
     
     public static void setTimeline(Timeline parentTimeline) {
     	Vista3Controller.timeline = parentTimeline;
-    	timerVal = 10;
+    	timerVal = 5;
     }
 
     @FXML

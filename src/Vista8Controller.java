@@ -32,7 +32,7 @@ public class Vista8Controller {
     
     public static void setTimeline(Timeline parentTimeline) {
     	Vista8Controller.timeline = parentTimeline;
-    	timerVal = 10;
+    	timerVal = 5;
     }
 
     @FXML
@@ -48,11 +48,11 @@ public class Vista8Controller {
     		timeline.getKeyFrames().add(key);
     	}
     	
-    	String musicFile = "C:\\Users\\CSC\\Desktop\\QRS_Application\\countdownBeeps.mp3";     // For example
-
-    	Media sound = new Media(new File(musicFile).toURI().toString());
-    	MediaPlayer mediaPlayer = new MediaPlayer(sound);
-    	mediaPlayer.play();
+//    	String musicFile = "C:\\Users\\CSC\\Desktop\\QRS_Application\\countdownBeeps.mp3";     // For example
+//
+//    	Media sound = new Media(new File(musicFile).toURI().toString());
+//    	MediaPlayer mediaPlayer = new MediaPlayer(sound);
+//    	mediaPlayer.play();
     	timerLabel4.setText(Integer.toString(tempTimerVal));
     	timeline.setCycleCount(10);
     	timeline.playFromStart();

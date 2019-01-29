@@ -18,7 +18,7 @@ import javafx.util.Duration;
 
 public class Vista5Controller {
 
-	private static int videoLength = 60;
+	private static int videoLength = 6;
 	
     @FXML
     private ResourceBundle resources;
@@ -60,7 +60,7 @@ public class Vista5Controller {
     	        ae -> revealMethod()));
     	timeline.setCycleCount(1);
     	timeline.play();
-    	File file = new File("C:\\Users\\CSC\\Desktop\\QRS_trainingvideo.mp4");
+    	File file = new File("C:\\Users\\Colton\\Anaconda3\\pkgs\\imageio-2.4.1-py37_0\\Lib\\site-packages\\imageio\\resources\\images\\realshort.mp4");
     	String media = file.toURI().toString();
     	Media video = new Media(media);
     	MediaPlayer player = new MediaPlayer(video);

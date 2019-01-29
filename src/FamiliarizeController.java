@@ -20,7 +20,7 @@ import javafx.util.Duration;
 
 public class FamiliarizeController {
 	
-	private static Integer timerVal = 30;
+	private static Integer timerVal = 5;
 	private static Integer tempTimerVal;
 	
     private static Timeline timeline;
@@ -58,7 +58,7 @@ public class FamiliarizeController {
     
     public static void setTimeline(Timeline parentTimeline) {
     	FamiliarizeController.timeline = parentTimeline;
-    	timerVal = 30;
+    	timerVal = 5;
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
