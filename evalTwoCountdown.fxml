@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane fx:id="evalTwoCountdownVista" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@vista.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="evalTwoCountdownController">
+   <children>
+      <VBox fx:id="evalTwoCountdownVBox" alignment="CENTER" maxWidth="800.0">
+         <children>
+            <Label fx:id="evalTwoCountdownLabel" text="Get Ready!" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft JhengHei UI Bold" size="40.0" />
+               </font>
+            </Label>
+            <Text fx:id="evalTwoCountdownText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="You will now perform chest compressions for 2 minutes with feedback in: " textAlignment="CENTER" wrappingWidth="800.0">
+               <font>
+                  <Font name="Microsoft JhengHei UI" size="35.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Text>
+            <Label fx:id="evalTwoCountdownTimerLabel">
+               <font>
+                  <Font name="System Bold" size="250.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+         <stylesheets>
+            <URL value="@vista.css" />
+            <URL value="@vista.css" />
+         </stylesheets>
+      </VBox>
+   </children>
+</StackPane>

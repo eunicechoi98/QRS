@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane fx:id="stepTwoStackPane" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@vista.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stepTwoVistaController">
+   <children>
+      <Button fx:id="stepTwoNextButton" mnemonicParsing="false" onAction="#stepTwoNextAction" text="&gt;" textFill="WHITE" StackPane.alignment="CENTER_RIGHT">
+         <font>
+            <Font size="130.0" />
+         </font>
+         <StackPane.margin>
+            <Insets right="10.0" />
+         </StackPane.margin>
+      </Button>
+      <VBox fx:id="stepTwoVBox" alignment="CENTER" maxWidth="800.0">
+         <children>
+            <Label fx:id="stepTwoLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="800.0" text="Step 1: One-Minute CPR Performance Evaluation" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Microsoft JhengHei UI" size="35.0" />
+               </font>
+            </Label>
+            <Text fx:id="stepTwoTextOne" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="You will perform CPR for 1 minute without feedback. The timer will indicate when you are complete." textAlignment="CENTER" wrappingWidth="800.0">
+               <font>
+                  <Font name="Microsoft JhengHei UI" size="30.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="30.0" top="50.0" />
+               </VBox.margin>
+            </Text>
+            <Text fx:id="stepTwoTextTwo" fill="#dba9a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Do NOT administer any breaths to the manikin.">
+               <font>
+                  <Font name="Microsoft JhengHei UI" size="30.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin>
+            </Text>
+            <Text fx:id="stepTwoTextThree" fill="#dba9a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Do NOT pause after 30 compressions.">
+               <font>
+                  <Font name="Microsoft JhengHei UI" size="30.0" />
+               </font>
+            </Text>
+         </children>
+      </VBox>
+   </children>
+</StackPane>
