@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -34,10 +37,10 @@ public class DataIO {
 	private static ArrayList<Integer> primaryResults = new ArrayList<>();
 	
 	//Contains the values of interest from the second round of CPR
-	private static ArrayList<Integer> secondaryResults = new ArrayList<>();	
-
-	private static String csvPath = "C:\\Users\\CSC\\Desktop\\QRS Data.csv";
-    private static BufferedReader br = null;
+	private static ArrayList<Integer> secondaryResults = new ArrayList<>();
+	
+	private static String rawDataPath = "C:\\Users\\Colton\\Desktop\\QRSTestFolder\\QRS_Data.csv";
+	private static String overallSchedulingFile = "C:\\Users\\Colton\\Desktop\\QRSTestFolder\\All_Scheduling_Data.csv";    private static BufferedReader br = null;
     private static BufferedWriter bw = null;
     private static String line = "";
     private static String cvsSplitBy = ",";
@@ -51,7 +54,7 @@ public class DataIO {
     private static int forgotCodeGroup = -1; //0 for control, 1 for training, -1 if code not forgotten
     private static String forgotCodeName = "";
     
-    public static String scheduleNextSession() {
+   public static String scheduleNextSession() {
     	
     	////////////////////////////////////////////////
     	//Start by determining if the file exists; create
@@ -133,7 +136,7 @@ public class DataIO {
 			nextRowString = nextRowString + nextRow[i] + ",";
 		}
 		
-		//Write the new row string to the file
+		//Write the new row string to the individual file
 		BufferedWriter writer;
 		try {
 			writer = new BufferedWriter(new FileWriter(schedule,true));
@@ -143,6 +146,23 @@ public class DataIO {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+		
+		//Add the current study code to the start of the nextRowString
+		String overallResult = Integer.toString(currentCode) + "," + nextRowString;
+		
+		//Write the next row string to the overall scheduling csv
+		BufferedWriter writer2;
+		try {
+			writer2 = new BufferedWriter(new FileWriter(overallSchedulingFile,true));
+			writer2.newLine();
+			writer2.append(overallResult);
+    		writer2.close();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		//Re-sort the scheduling file
+		sortFile(overallSchedulingFile,0);
 		
         return nextRow[(nextRow.length)-1];
         // what exactly is the result of this string?
@@ -428,7 +448,7 @@ public class DataIO {
     			newRow = Integer.toString(currentCode) + "," + stringDataRow.stream().collect(Collectors.joining(",")) + "\n";
     		}
     		System.out.println(newRow);
-            FileWriter pw = new FileWriter(csvPath, true);
+            FileWriter pw = new FileWriter(rawDataPath, true);
             pw.append(newRow);
             pw.close();
             
@@ -445,7 +465,10 @@ public class DataIO {
                     e.printStackTrace();
                 }
             }
-        }    	
+        } 
+   
+    	sortFile(rawDataPath,0);
+    	
     }
     
     
@@ -485,8 +508,8 @@ public class DataIO {
 	    	if (matchingFiles.length == 0) {
 	    		DataIO.resetData();
 	        	VistaNavigator.loadVista(VistaNavigator.SaveErrorVista);
-	    	}
-	    	
+	    	}    		
+    		
 	    	//Create Element object out of XML file for easier parsing.
 	    	File saveFile = matchingFiles[0];    	
 	    	DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -594,7 +617,7 @@ public class DataIO {
     	 * 
     	try {
     		int lineCount = 1;
-            br = new BufferedReader(new FileReader(csvPath));
+            br = new BufferedReader(new FileReader(rawDataPath));
             br.readLine();
             while ((line = br.readLine()) != null) {
                 // use comma as separator
@@ -646,7 +669,66 @@ public class DataIO {
             } 
         }       
         return result;
-    	
     }
 	
+	public static void sortFile(String filename, int compIndex) {
+       File file= new File(filename);
+
+        // this gives you a 2-dimensional array of strings
+        List<List<String>> lines = new ArrayList<>();
+        Scanner inputStream;
+
+        try{
+            inputStream = new Scanner(file);
+
+            while(inputStream.hasNext()){
+                String line= inputStream.next();
+                String[] values = line.split(",");
+                // this adds the currently parsed line to the 2-dimensional string array
+                lines.add(Arrays.asList(values));
+            }
+
+            inputStream.close();
+        }catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        for(List<String> line: lines) {
+            System.out.println(line.toString());
+        }
+        
+        //Remove the line of headers for sorting
+        List<String> headers = lines.remove(0);
+        
+        Collections.sort(lines, new Comparator<List<String>>() {    
+            @Override
+            public int compare(List<String> o1, List<String> o2) {
+                return Integer.valueOf(o1.get(compIndex)).compareTo(Integer.valueOf(o2.get(compIndex)));
+            }               
+        });
+        
+        lines.add(0, headers);
+        
+        for(List<String> line: lines) {
+            System.out.println(line.toString());
+        } 
+        
+        //Convert lines to a single csv string
+        String lines_str = "";
+        for(List<String> line: lines) {
+        	String collect = line.stream().collect(Collectors.joining(",")) + "\n";
+        	lines_str += collect;
+        } 
+        System.out.println(lines_str);
+        
+        //False parameter indicates that we wish to overwrite the original file
+        try {
+        	BufferedWriter outStream= new BufferedWriter(new FileWriter(filename, false));
+			outStream.write(lines_str);
+	        outStream.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }	
 }
