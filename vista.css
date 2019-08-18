@@ -121,10 +121,10 @@
 }
 
 #stepSixNextButton {
-	-fx-background-color: #FFFFFF;
+	-fx-background-color: #96A7FF;
     -fx-border-radius: 15;
   -fx-border-width: 2;
-  -fx-border-color: #FFFFFF;
+  -fx-border-color: #96A7FF;
   -fx-padding: 0;	
 }
 
@@ -207,19 +207,7 @@
 	-fx-base: Transparent;	
 }
 
-/* EvalOnePassed */
-#passOneReturnDate {
-	-fx-background-color: Transparent;
-	-fx-base: Transparent;	
-	-fx-text-fill: #FFFFFF;
-}
 
-/* Vista10 (final vista) */
-#vista10NextSession {
-	-fx-background-color: Transparent;
-	-fx-base: Transparent;	
-	-fx-text-fill: #FFFFFF;
-}
 /* Video: Vista 5 */
 #vista5 {
 	-fx-background-color: #282828;
@@ -235,7 +223,7 @@
 	-fx-background-color: #282828;
 }
 #timerLabel3 {
-	-fx-text-fill: #96A7FF;
+	-fx-text-fill: mistyrose;
 }
 
 #familiarizeNextButton {
@@ -268,11 +256,63 @@
 }
 
 #vista8 {
-    -fx-background-color: lightcoral;
+    -fx-background-color: #282828;
+}
+
+#vista8LabelOne {
+	-fx-font-color: #ffffff;
+}
+
+#vista8Text {
+	-fx-font-color: #ffffff;
+}
+
+#timerLabel4 {
+	-fx-font-color: #96A7FF;
 }
 
 #vista9 {
-    -fx-background-color: mistyrose;
+    -fx-background-color: #282828;
+}
+
+/* Eval Two Results */
+#evalTwoResultsVista {
+	-fx-background-color: #282828;
+}
+
+#evalTwoResultsNextButton {
+	-fx-background-color: Transparent;
+	-fx-base: Transparent;	
+}
+
+#evalTwoResultsRate {
+	-fx-background-color: white;
+    -fx-background-radius: 16.4, 15;
+    -fx-background-insets: -1.4, 0;
+    -fx-border-radius: 15;
+  -fx-border-width: 2;
+  -fx-border-color: #96A7FF;
+  -fx-padding: 0;	
+}
+
+#evalTwoResultsDepth {
+	-fx-background-color: white;
+    -fx-background-radius: 16.4, 15;
+    -fx-background-insets: -1.4, 0;
+    -fx-border-radius: 15;
+  -fx-border-width: 2;
+  -fx-border-color: #96A7FF;
+  -fx-padding: 0;	
+}
+
+#evalTwoResultsRecoil {
+	-fx-background-color: white;	
+    -fx-background-radius: 16.4, 15;
+    -fx-background-insets: -1.4, 0;
+    -fx-border-radius: 15;
+  -fx-border-width: 2;
+  -fx-border-color: #96A7FF;
+  -fx-padding: 0;	
 }
 
 #vista10 {

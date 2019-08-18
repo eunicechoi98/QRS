@@ -20,12 +20,12 @@
       </Button>
       <VBox fx:id="stepTwoVBox" alignment="CENTER" maxWidth="800.0">
          <children>
-            <Label fx:id="stepTwoLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="800.0" text="Step 1: One-Minute CPR Performance Evaluation" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="stepTwoLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="800.0" text="Step 2: One-Minute CPR Performance Evaluation" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Microsoft JhengHei UI" size="35.0" />
                </font>
             </Label>
-            <Text fx:id="stepTwoTextOne" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="You will perform CPR for 1 minute without feedback. The timer will indicate when you are complete." textAlignment="CENTER" wrappingWidth="800.0">
+            <Text fx:id="stepTwoTextOne" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="You will perform CPR for 1 minute without feedback. The timer will indicate when you are complete." wrappingWidth="800.0">
                <font>
                   <Font name="Microsoft JhengHei UI" size="30.0" />
                </font>

@@ -60,7 +60,7 @@ public class Vista5Controller {
     	        ae -> revealMethod()));
     	timeline.setCycleCount(1);
     	timeline.play();
-    	File file = new File("C:\\Users\\CSC\\Desktop\\QRS_trainingvideo.mp4");
+    	File file = new File("C:\\Users\\CPR QRS\\Desktop\\QRS Resources\\QRS_trainingvideo.mp4");
     	String media = file.toURI().toString();
     	Media video = new Media(media);
     	MediaPlayer player = new MediaPlayer(video);

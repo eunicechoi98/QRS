@@ -41,11 +41,11 @@ public class stepFourVistaController {
     
     @FXML
     void stepFourNextAction(ActionEvent event) {
-    	VistaNavigator.loadVista(VistaNavigator.STEPFIVEVISTA);
+    	VistaNavigator.loadVista(VistaNavigator.STEPSIXVISTA);
     }
  
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-    	System.out.println("Step Three (StepFourVistaController) -> Step Four (StepFiveVistaController)");
+    	System.out.println("Step Three (StepFourVistaController) -> Step Four (StepSixVistaController)");
     }
 }

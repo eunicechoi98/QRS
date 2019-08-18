@@ -47,9 +47,6 @@
                <VBox.margin>
                   <Insets top="15.0" />
                </VBox.margin>
-               <font>
-                  <Font name="Microsoft JhengHei UI" size="25.0" />
-               </font>
             </TextField>
             <Label text="Depth" textFill="WHITE">
                <font>
@@ -63,9 +60,6 @@
                <VBox.margin>
                   <Insets top="15.0" />
                </VBox.margin>
-               <font>
-                  <Font size="25.0" />
-               </font>
             </TextField>
             <Label text="Recoil" textFill="WHITE">
                <font>
@@ -79,9 +73,6 @@
                <VBox.margin>
                   <Insets top="15.0" />
                </VBox.margin>
-               <font>
-                  <Font size="25.0" />
-               </font>
             </TextField>
          </children>
          <stylesheets>

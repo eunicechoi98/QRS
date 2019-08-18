@@ -18,8 +18,9 @@ public class MouseMovements {
 		robot.setAutoDelay(delay);
 		
 		switchWindow();
-		
-		robot.mouseMove(1164, 736); 
+
+		robot.mouseMove(0,0);
+		robot.mouseMove(1109,767);
 		robot.mousePress(InputEvent.BUTTON1_MASK);
 		robot.mouseRelease(InputEvent.BUTTON1_MASK);
 		
@@ -31,8 +32,9 @@ public class MouseMovements {
 		robot.setAutoDelay(delay);
 		
 		switchWindow();
-		
-		robot.mouseMove(920, 735); //save result
+
+		robot.mouseMove(0,0);
+		robot.mouseMove(849, 768); //save result
 		robot.mousePress(InputEvent.BUTTON1_MASK);
 		robot.mouseRelease(InputEvent.BUTTON1_MASK);
 		robot.delay(750); 
@@ -58,7 +60,8 @@ public class MouseMovements {
 		
 		
 		robot.delay(800);
-		robot.mouseMove(1160, 735); //Practice button
+		robot.mouseMove(0,0);
+		robot.mouseMove(1101, 767); //Practice button
 		robot.mousePress(InputEvent.BUTTON1_MASK);
 		robot.mouseRelease(InputEvent.BUTTON1_MASK);
 		

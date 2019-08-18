@@ -10,7 +10,7 @@ import javafx.util.Duration;
 
 public class Vista6Controller {
 
-	private static Integer timerVal = 120;
+	private static Integer timerVal = 12;
 	private static Integer tempTimerVal;
 	
 	private static Timeline timeline;

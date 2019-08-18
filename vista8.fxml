@@ -10,45 +10,34 @@
 <?import javafx.scene.layout.StackPane?>
 
 <StackPane fx:id="vista8" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista8Controller">
-  <children>
-      <VBox alignment="TOP_CENTER">
-         <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Label alignment="CENTER" text="You will now perform " textAlignment="CENTER" textFill="#000000cb">
-                     <font>
-                        <Font size="36.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" layoutX="340.0" layoutY="34.0" text="chest-compressions" textAlignment="CENTER" textFill="#000000cb" underline="true">
-                     <font>
-                        <Font name="System Bold" size="36.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" layoutX="970.0" layoutY="34.0" text=" for 1 minute without visual feedback." textAlignment="CENTER" textFill="#000000cb">
-                     <font>
-                        <Font size="36.0" />
-                     </font>
-                  </Label>
-               </children>
-               <VBox.margin>
-                  <Insets bottom="50.0" top="25.0" />
-               </VBox.margin>
-            </HBox>
-            <Label layoutX="340.0" layoutY="85.0" text="Your time starts in:" textAlignment="CENTER" textFill="#000000cb">
-               <font>
-                  <Font size="48.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="50.0" />
-               </VBox.margin>
-            </Label>
-         </children>
-      </VBox>
-      <Label fx:id="timerLabel4" textAlignment="CENTER">
+   <children>
+      <Label fx:id="timerLabel4" textAlignment="CENTER" textFill="#96a7ff">
          <font>
             <Font name="System Bold" size="250.0" />
          </font>
+         <StackPane.margin>
+            <Insets top="150.0" />
+         </StackPane.margin>
       </Label>
-  </children>
+      <VBox fx:id="vista8VBox" alignment="TOP_CENTER" stylesheets="@vista.css">
+         <children>
+            <Label fx:id="vista8LabelOne" alignment="TOP_CENTER" contentDisplay="TOP" ellipsisString="" text="Get Ready!" textAlignment="CENTER" textFill="#ffffffcc">
+               <font>
+                  <Font name="Microsoft JhengHei UI Bold" size="36.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="150.0" />
+               </VBox.margin>
+            </Label>
+            <Text fx:id="vista8Text" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="You will now perform chest compressions for 1 minute without visual feedback in: " textAlignment="CENTER" wrappingWidth="700.0">
+               <font>
+                  <Font size="36.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Text>
+         </children>
+      </VBox>
+   </children>
 </StackPane>

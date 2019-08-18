@@ -23,10 +23,10 @@ public class DataIO {
 	
 	//The folder containing the raw XML files
 	// !!!made a fake file to do testing!!!
-	private static String folderWithRaw = "C:/Users/CSC/Documents/ResusciAnneWirelessSkillReporter/HighScore/ClassroomScore";
+	private static String folderWithRaw = "C:/Users/CPR QRS/Documents/ResusciAnneWirelessSkillReporter/HighScore/ClassroomScore";
 	
 	//This folder value MUST BE CHANGED, for testing only
-	private static String schedulingFolder = "C:\\Users\\CSC\\Desktop\\QRSTesting";
+	private static String schedulingFolder = "C:\\Users\\CPR QRS\\Desktop\\QRSTesting";
 	// change this to any valid folder on my own laptop to test to see 
 	// colton sent a new testing file so put it in the pakcage to test it 
 	
@@ -36,7 +36,7 @@ public class DataIO {
 	//Contains the values of interest from the second round of CPR
 	private static ArrayList<Integer> secondaryResults = new ArrayList<>();	
 
-	private static String csvPath = "C:\\Users\\CSC\\Desktop\\QRSTesting\\QRSTesting.csv";
+	private static String csvPath = "C:\\Users\\CPR QRS\\Desktop\\QRSTesting\\QRSTesting.csv";
     private static BufferedReader br = null;
     private static BufferedWriter bw = null;
     private static String line = "";
@@ -326,8 +326,16 @@ public class DataIO {
 	//						  3)percent of compressions with adequate recoil 
     public static ArrayList<Integer> getPrimaryResults() {
     	return primaryResults;
-    }    
+    }   
     
+    //getSecondaryResults(): This method returns the Integer ArrayList containing the
+    //secondary results of interest, as assigned in the saveCPRData method. Note that they are
+	//in the following order: 1)mean rate  
+	//						  2)mean depth  
+	//						  3)percent of compressions with adequate recoil 
+    public static ArrayList<Integer> getSecondaryResults() {
+    	return secondaryResults;
+    }    
 
     //evaluationOnePassed(): This method returns a boolean indicating whether the
     //first round of CPR meets the test's standards.
@@ -337,17 +345,25 @@ public class DataIO {
     //3. Percent of compressions with adequate recoil - target of >80% of their compressions having full recoil 
     public static boolean evaluationOnePassed() {
     	
-    	//Verify that the mean rate is between 100 and 120 bpm
-    	if (primaryResults.get(0) < 100 || primaryResults.get(0) > 120)
-    		return false;
+    	System.out.println(primaryResults.toString());
     	
-    	//Verify that the mean depth is between 5 and 6 cm
-    	if (primaryResults.get(1) < 5 || primaryResults.get(1) > 6 )
+    	//Verify that the mean rate is between 100 and 120 bpm
+    	if (primaryResults.get(0) < 100 || primaryResults.get(0) > 120) {
+    		System.out.println("failed 1");
     		return false;
+    	}
+    	
+    	//Verify that the mean depth is between 5 and 6.5 cm
+    	if (primaryResults.get(1) < 50 || primaryResults.get(1) > 65 ) {
+    		System.out.println("failed 2");
+    		return false;
+    	}
     	
     	//Verify that the % of adequate recoil is greater than 80
-    	if (primaryResults.get(2) <= 80)
+    	if (primaryResults.get(2) <= 80) {
+    		System.out.println("failed 3");
     		return false;
+    	}
     	
     	//otherwise this evaluation passed
     	return true;
@@ -366,7 +382,7 @@ public class DataIO {
     		return false;
     	
     	//Verify that the mean depth is between 5 and 6 cm
-    	if (secondaryResults.get(1) < 5 || secondaryResults.get(1) > 6 )
+    	if (secondaryResults.get(1) < 5 || secondaryResults.get(1) > 6.5 )
     		return false;
     	
     	//Verify that the % of adequate recoil is greater than 80

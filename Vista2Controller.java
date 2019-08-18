@@ -74,6 +74,7 @@ public class Vista2Controller {
     	int exposure = 1 - toggleGroupYN.getToggles().indexOf(toggleGroupYN.getSelectedToggle());
     	DataIO.savePreQuestions(exposure, comfort);
     	VistaNavigator.loadVista(VistaNavigator.VISTA_3);
+ //   	VistaNavigator.loadVista(VistaNavigator.BreakVista);
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete

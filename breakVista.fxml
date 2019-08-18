@@ -13,28 +13,28 @@
   <children>
       <VBox alignment="TOP_CENTER">
          <children>
-            <Label alignment="CENTER" text="Break time. You now have 1 minute to relax before your post-training assessment." textAlignment="CENTER" textFill="#000000cb">
+            <Label alignment="CENTER" text="Break time. You now have 1 minute to relax before your post-training assessment." textAlignment="CENTER" textFill="#000000cb" wrapText="true">
                <font>
-                  <Font name="System Bold" size="34.0" />
+                  <Font name="System Bold" size="30.0" />
                </font>
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
             </Label>
-            <Label text="Please do not perform any compressions during your break. Please do not leave the room.">
+            <Label text="Please do not perform any compressions during your break. Please do not leave the room." wrapText="true">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
                <font>
-                  <Font size="32.0" />
+                  <Font size="28.0" />
                </font>
             </Label>
-            <Label layoutX="493.0" layoutY="148.0" text="Be ready to start compressions as soon as the break time is finished.">
+            <Label layoutX="493.0" layoutY="148.0" text="Be ready to start compressions as soon as the break time is finished." wrapText="true">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
                <font>
-                  <Font size="32.0" />
+                  <Font size="28.0" />
                </font>
             </Label>
             <Label layoutX="340.0" layoutY="85.0" text="Your break ends in:" textAlignment="CENTER" textFill="#000000cb">

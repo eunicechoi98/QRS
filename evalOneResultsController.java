@@ -82,9 +82,9 @@ public class evalOneResultsController {
 				    	int meanDepth = primaryResults.get(1);
 				    	int adequateRecoil = primaryResults.get(2);
 				    	
-				    	evalOneResultsRate.setText(Integer.toString(meanRate));
-				    	evalOneResultsDepth.setText(Integer.toString(meanDepth));
-				    	evalOneResultsRecoil.setText(Integer.toString(adequateRecoil));    	
+				    	evalOneResultsRate.setText(Integer.toString(meanRate) + " bpm");
+				    	evalOneResultsDepth.setText(Integer.toString(meanDepth) + " mm");
+				    	evalOneResultsRecoil.setText(Integer.toString(adequateRecoil) +"%");    	
 				    	
 				 
 				    	System.out.println("PrimaryEvalResults: Successful return of data to user");

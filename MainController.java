@@ -80,7 +80,7 @@ public class MainController {
     
     public void setMini() {
     	Main.publicStage.setHeight(250);
-    	Main.publicStage.setY(768-250);
+    	Main.publicStage.setY(799-250);
     }
     
     public void setFullScreen() {

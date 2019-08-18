@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.StackPane?>
@@ -7,19 +12,19 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane fx:id="stepThreeStackPane" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@vista.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stepThreeVistaController">
+<StackPane fx:id="stepThreeStackPane" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="stepThreeVistaController">
    <children>
       <Button fx:id="stepThreeNextButton" mnemonicParsing="false" onAction="#stepThreeNextAction" text="&gt;" textFill="WHITE" StackPane.alignment="CENTER_RIGHT">
          <StackPane.margin>
             <Insets right="10.0" />
          </StackPane.margin>
          <font>
-            <Font size="130.0" />
+            <Font name="Microsoft JhengHei UI" size="130.0" />
          </font>
       </Button>
       <VBox fx:id="stepThreeVBox" alignment="CENTER" maxWidth="800.0">
          <children>
-            <Text fx:id="stepThreeTextOne" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="If you are able to perform 1 minute of chest compressions within the recommended guidelines, your session is complete and you will be notified when to return." textAlignment="CENTER" wrappingWidth="800.0">
+            <Text fx:id="stepThreeTextOne" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="If you are able to perform 1 minute of chest compressions within the recommended guidelines your session is complete and you will be notified when to return." textAlignment="CENTER" wrappingWidth="800.0">
                <font>
                   <Font name="Microsoft JhengHei UI" size="30.0" />
                </font>
@@ -27,7 +32,7 @@
                   <Insets bottom="30.0" />
                </VBox.margin>
             </Text>
-            <Text fx:id="stepThreeTextTwo" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="If you are unable to perform one minute of chest compressions within the recommended guidelines, you will view a one-minute training video." textAlignment="CENTER" wrappingWidth="800.0">
+            <Text fx:id="stepThreeTextTwo" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="If you are unable to perform 1 minute of chest compressions within the recommended guidelines, you will proceed with further training." textAlignment="CENTER" wrappingWidth="800.0">
                <font>
                   <Font name="Microsoft JhengHei UI" size="30.0" />
                </font>
