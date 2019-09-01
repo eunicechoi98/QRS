@@ -37,7 +37,7 @@ public class Vista1Controller {
     	int entered = Integer.parseInt(studyCodeTextBox.getText());
     	DataIO.setCurrentCode(entered);
 		//if (DataIO.inControlGroup())
-			VistaNavigator.loadVista(VistaNavigator.TrainingIntroVista);
+			VistaNavigator.loadVista(VistaNavigator.VISTA_2);
 			
 		//else if (DataIO.inTrainingGroup())
 			//VistaNavigator.loadVista(VistaNavigator.TrainingIntroVista);

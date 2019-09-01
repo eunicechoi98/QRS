@@ -82,7 +82,7 @@ public class evalOneResultsController {
 				    	int meanDepth = primaryResults.get(1);
 				    	int adequateRecoil = primaryResults.get(2);
 				    	
-				    	evalOneResultsRate.setText(Integer.toString(meanRate) + " bpm");
+				    	evalOneResultsRate.setText(Integer.toString(meanRate) + " cpm");
 				    	evalOneResultsDepth.setText(Integer.toString(meanDepth) + " mm");
 				    	evalOneResultsRecoil.setText(Integer.toString(adequateRecoil) +"%");    	
 				    	

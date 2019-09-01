@@ -27,7 +27,7 @@
                   <Font name="Microsoft JhengHei UI Bold" size="40.0" />
                </font>
             </Label>
-            <Text fx:id="primaryEvalResultsText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Guidelines recommend at least 80% of compressions at a rate of 100-120, a depth of 5-6cm, and allowing for full chest recoil." textAlignment="CENTER" wrappingWidth="800.0">
+            <Text fx:id="primaryEvalResultsText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Guidelines recommend compressions at a rate of 100-120, a depth of 5-6cm, and allowing for full chest recoil." textAlignment="CENTER" wrappingWidth="800.0">
                <font>
                   <Font name="Microsoft JhengHei UI" size="35.0" />
                </font>
