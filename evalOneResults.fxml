@@ -44,12 +44,12 @@
                </VBox.margin>
             </Label>
             <TextField fx:id="evalOneResultsRate" maxWidth="300.0" minHeight="60.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
                <VBox.margin>
                   <Insets top="15.0" />
                </VBox.margin>
-               <font>
-                  <Font name="Microsoft JhengHei UI" size="25.0" />
-               </font>
             </TextField>
             <Label text="Depth" textFill="WHITE">
                <font>
@@ -60,12 +60,12 @@
                </VBox.margin>
             </Label>
             <TextField fx:id="evalOneResultsDepth" maxWidth="300.0" minHeight="60.0" minWidth="300.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
                <VBox.margin>
                   <Insets top="15.0" />
                </VBox.margin>
-               <font>
-                  <Font size="25.0" />
-               </font>
             </TextField>
             <Label text="Recoil" textFill="WHITE">
                <font>
@@ -76,12 +76,12 @@
                </VBox.margin>
             </Label>
             <TextField fx:id="evalOneResultsRecoil" maxWidth="300.0" minHeight="60.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
                <VBox.margin>
                   <Insets top="15.0" />
                </VBox.margin>
-               <font>
-                  <Font size="25.0" />
-               </font>
             </TextField>
          </children>
          <stylesheets>

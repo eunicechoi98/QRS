@@ -10,18 +10,18 @@
 <?import javafx.scene.layout.StackPane?>
 
 <StackPane fx:id="vista9" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista9Controller">
-  <children>
-      <VBox alignment="TOP_CENTER">
+   <children>
+      <VBox alignment="TOP_CENTER" stylesheets="@vista.css">
          <children>
-            <Label text="You will now perform chest-compressions for 1 minute without visual feedback." textAlignment="CENTER" textFill="#000000cb">
+            <Label text="PERFORM CHEST COMPRESSIONS" textAlignment="CENTER" textFill="#ffffffcc">
                <font>
-                  <Font size="36.0" />
+                  <Font name="Microsoft JhengHei UI Bold" size="36.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="150.0" top="25.0" />
+                  <Insets bottom="150.0" top="70.0" />
                </VBox.margin>
             </Label>
-            <Label layoutX="340.0" layoutY="85.0" textAlignment="CENTER" textFill="#000000cb">
+            <Label layoutX="340.0" layoutY="85.0" textAlignment="CENTER" textFill="#ffffffcc">
                <font>
                   <Font size="48.0" />
                </font>
@@ -31,10 +31,10 @@
             </Label>
          </children>
       </VBox>
-      <Label fx:id="timerLabel5">
+      <Label fx:id="timerLabel5" textFill="#96a7ff">
          <font>
             <Font name="System Bold" size="300.0" />
          </font>
       </Label>
-  </children>
+   </children>
 </StackPane>

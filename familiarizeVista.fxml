@@ -20,27 +20,27 @@
             <Insets />
          </StackPane.margin>
       </Button>
-      <Label fx:id="timerLabel3" alignment="CENTER" text="20" textAlignment="CENTER" StackPane.alignment="TOP_CENTER">
+      <Label fx:id="timerLabel3" alignment="CENTER_RIGHT" text="30" textAlignment="RIGHT" StackPane.alignment="TOP_RIGHT">
          <font>
             <Font name="System Bold" size="70.0" />
          </font>
          <StackPane.margin>
-            <Insets top="150.0" />
+            <Insets right="50.0" top="30.0" />
          </StackPane.margin>
       </Label>
-      <ImageView fx:id="demoImage" fitHeight="400.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
+      <ImageView fx:id="demoImage" fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="TOP_CENTER">
          <StackPane.margin>
-            <Insets top="110.0" />
+            <Insets top="200.0" />
          </StackPane.margin></ImageView>
       <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" StackPane.alignment="CENTER">
          <children>
             <VBox stylesheets="@vista.css" />
-            <Label alignment="TOP_CENTER" graphicTextGap="0.0" prefHeight="150.0" prefWidth="700.0" text="Familiarize yourself with the feedback software you'll be using during your practice time. When you're ready to start your practice, hit the next button." textAlignment="CENTER" textFill="#ffffffcc" wrapText="true">
+            <Label alignment="TOP_CENTER" graphicTextGap="0.0" prefHeight="150.0" prefWidth="800.0" text="Familiarize yourself with the feedback software you'll be using during your practice time. When you're ready to start your practice, hit the next button." textAlignment="CENTER" textFill="#ffffffcc" wrapText="true">
                <HBox.margin>
-                  <Insets top="100.0" />
+                  <Insets top="50.0" />
                </HBox.margin>
                <font>
-                  <Font name="Microsoft JhengHei UI" size="20.0" />
+                  <Font size="25.0" />
                </font>
             </Label>
          </children>

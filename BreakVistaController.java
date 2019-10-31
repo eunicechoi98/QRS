@@ -13,7 +13,7 @@ import javafx.util.Duration;
 
 public class BreakVistaController {
 
-	private static Integer timerVal = 60;
+	private static Integer timerVal = 6;
 	private static Integer tempTimerVal;
 	
     private static Timeline timeline;

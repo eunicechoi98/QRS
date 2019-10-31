@@ -17,7 +17,7 @@
                   <Insets />
                </VBox.margin>
                <font>
-                  <Font name="Microsoft JhengHei UI" size="65.0" />
+                  <Font size="65.0" />
                </font>
             </Label>
             <Label layoutX="376.0" layoutY="524.0" text="Your next session is in: " textAlignment="CENTER" textFill="WHITE" wrapText="true">
@@ -38,7 +38,7 @@
             </TextField>
             <Label layoutX="37.0" layoutY="592.0" text="You may now exit the room." textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <font>
-                  <Font name="Microsoft JhengHei UI" size="30.0" />
+                  <Font size="30.0" />
                </font>
                <VBox.margin>
                   <Insets top="100.0" />

@@ -23,6 +23,8 @@ public class VistaNavigator {
     public static final String STEPFIVEVISTA = "stepFiveVista.fxml";
     public static final String STEPSIXVISTA = "stepSixVista.fxml";
     
+    public static final String EVALTWORESULTS = "evalTwoResults.fxml";
+    
     public static final String EVALONERESULTS = "evalOneResults.fxml";
     public static final String EVALONEPASSED = "EvalOnePassedVista.fxml";  
     public static final String EVALONEFAILED = "evalOneFailedVista.fxml";

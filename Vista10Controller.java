@@ -38,12 +38,12 @@ public class Vista10Controller {
     void initialize() {
     	
     	
-    	DataIO.saveCPRData(2);
+//    	DataIO.saveCPRData(2);
     	String nextSession = DataIO.scheduleNextSession();
     	if (DataIO.evaluationTwoPassed() == true) {
-    		vista10NextSession.setText(nextSession);
+    		vista10NextSession.setText(nextSession + " month(s)");
     	} else {
-    		vista10NextSession.setText(nextSession);
+    		vista10NextSession.setText(nextSession + " month(s)");
     	}
     	
     	DataIO.exportToCSV();

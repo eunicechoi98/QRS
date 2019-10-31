@@ -18,13 +18,13 @@
             </Text>
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Great job! Your next session is in:">
                <font>
-                  <Font name="Microsoft JhengHei UI" size="36.0" />
+                  <Font size="36.0" />
                </font>
                <VBox.margin>
                   <Insets top="50.0" />
                </VBox.margin>
             </Text>
-            <TextField fx:id="passOneReturnDate" maxWidth="300.0" prefHeight="77.0" stylesheets="@vista.css">
+            <TextField fx:id="passOneReturnDate" maxWidth="300.0" prefHeight="77.0">
                <font>
                   <Font size="36.0" />
                </font>

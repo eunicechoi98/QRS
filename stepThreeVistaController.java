@@ -40,7 +40,7 @@ public class stepThreeVistaController {
     
     @FXML
     void stepThreeNextAction(ActionEvent event) {
-    	VistaNavigator.loadVista(VistaNavigator.STEPFIVEVISTA);
+    	VistaNavigator.loadVista(VistaNavigator.STEPFOURVISTA);
     }
  
     @FXML // This method is called by the FXMLLoader when initialization is complete

@@ -22,7 +22,7 @@
                   <Insets bottom="100.0" top="50.0" />
                </VBox.margin>
             </Label>
-            <Label text="1. Have you been exposed to CPR / chest compressions since your last training session?" textFill="WHITE">
+            <Label text="1. Have you performed CPR / chest compressions since your last training session?" textFill="WHITE">
                <font>
                   <Font size="25.0" />
                </font>
@@ -50,7 +50,7 @@
                   <Insets top="25.0" />
                </VBox.margin>
             </HBox>
-            <Label text="2. Rate your comfort level in performing chest-compressions on a scale of 1-10:" textFill="WHITE">
+            <Label text="2. Rate your comfort level in performing chest compressions on a scale of 1-10:" textFill="WHITE">
                <VBox.margin>
                   <Insets top="100.0" />
                </VBox.margin>

@@ -9,17 +9,18 @@ import java.awt.event.InputEvent;
 import java.awt.AWTException;
 
 public class MouseMovements {
-	private static int delay = 50;
+	private static int delay = 100;
 	
 	private static int bottomScreenY = 768;	
 	
 	public static void startTest() throws AWTException {
 		Robot robot = new Robot();
 		robot.setAutoDelay(delay);
-		
+
 		switchWindow();
-		
-		robot.mouseMove(1164, 736); 
+
+		robot.mouseMove(0,0);
+		robot.mouseMove(1109,767);
 		robot.mousePress(InputEvent.BUTTON1_MASK);
 		robot.mouseRelease(InputEvent.BUTTON1_MASK);
 		
@@ -31,8 +32,9 @@ public class MouseMovements {
 		robot.setAutoDelay(delay);
 		
 		switchWindow();
-		
-		robot.mouseMove(920, 735); //save result
+
+		robot.mouseMove(0,0);
+		robot.mouseMove(849, 768); //save result
 		robot.mousePress(InputEvent.BUTTON1_MASK);
 		robot.mouseRelease(InputEvent.BUTTON1_MASK);
 		robot.delay(750); 
@@ -58,9 +60,11 @@ public class MouseMovements {
 		
 		
 		robot.delay(800);
-		robot.mouseMove(1160, 735); //Practice button
+		robot.mouseMove(0,0);
+		robot.mouseMove(1101, 767); //Practice button
 		robot.mousePress(InputEvent.BUTTON1_MASK);
 		robot.mouseRelease(InputEvent.BUTTON1_MASK);
+		robot.delay(200);
 		
 		switchWindow();
 

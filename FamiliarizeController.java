@@ -20,7 +20,7 @@ import javafx.util.Duration;
 
 public class FamiliarizeController {
 	
-	private static Integer timerVal = 20;
+	private static Integer timerVal = 30;
 	private static Integer tempTimerVal;
 	
     private static Timeline timeline;
@@ -58,7 +58,7 @@ public class FamiliarizeController {
     
     public static void setTimeline(Timeline parentTimeline) {
     	FamiliarizeController.timeline = parentTimeline;
-    	timerVal = 20;
+    	timerVal = 30;
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
@@ -73,7 +73,7 @@ public class FamiliarizeController {
     		timeline.getKeyFrames().clear();
     		timeline.getKeyFrames().add(key);
     	}
-    	File file = new File("C:\\Users\\CSC\\Desktop\\QRS_Application\\screenshotCropped.png");
+    	File file = new File("C:\\Users\\CPR QRS\\Desktop\\QRS Resources\\updatedScreenshot.png");
     	Image image = new Image(file.toURI().toString());
     	demoImage.setImage(image);
     	timerLabel3.setText(Integer.toString(tempTimerVal));
