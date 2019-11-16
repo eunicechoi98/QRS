@@ -9,9 +9,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 import java.awt.AWTException;
+import java.awt;
 
 public class evalOneResultsController {
 	@FXML // ResourceBundle that was given to the FXMLLoader
@@ -83,9 +85,38 @@ public class evalOneResultsController {
 				    	int adequateRecoil = primaryResults.get(2);
 				    	
 				    	evalOneResultsRate.setText(Integer.toString(meanRate) + " cpm");
-				    	evalOneResultsDepth.setText(Integer.toString(meanDepth) + " mm");
+				    	
+				    	// convert depth in mm to cm
+				    	float meanDepthCm = meanDepth/10;
+				    	evalOneResultsDepth.setText(Float.toString(meanDepth) + " cm");
 				    	evalOneResultsRecoil.setText(Integer.toString(adequateRecoil) +"%");    	
 				    	
+				    	// indicating which fields they passed or not
+				    	// 1. Rate
+				    	if (meanRate >= 100 && meanRate <= 120){
+				    		// set textfield to green
+
+				    		evalOneResultsRate.setStyle("-fx-background-color: #91FF8E;");
+				    	} else {
+				    		// set textfield to red
+				    		evalOneResultsRate.setStyle("-fx-background-color: #FFA7A7;");
+				    	}
+				    	
+				    	
+				    	// 2. Depth
+				    	if (meanDepth >= 50 && meanDepth <= 60) {
+				    		evalOneResultsDepth.setStyle("-fx-background-color: #91FF8E;");
+				    	} else {
+				    		evalOneResultsDepth.setStyle("-fx-background-color: #FFA7A7;");
+				    	}
+				    	
+				    	
+				    	// 3. Recoil
+				    	if (adequateRecoil >= 80) {
+				    		evalOneResultsRecoil.setStyle("-fx-background-color: #91FF8E;");
+				    	} else {
+				    		evalOneResultsRecoil.setStyle("-fx-background-color: #FFA7A7;");
+				    	}
 				 
 				    	System.out.println("PrimaryEvalResults: Successful return of data to user");
 				    	

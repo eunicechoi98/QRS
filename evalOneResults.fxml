@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -20,9 +21,9 @@
             <Font name="Microsoft JhengHei UI" size="130.0" />
          </font>
       </Button>
-      <VBox fx:id="evalOneResultsVBox" alignment="CENTER" maxWidth="800.0">
+      <VBox fx:id="evalOneResultsVBox" alignment="CENTER" maxWidth="1000.0">
          <children>
-            <Label fx:id="evalOneResultsLabel" alignment="CENTER" text="PERFORMANCE SUMMARY" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="evalOneResultsLabel" alignment="CENTER" text="Your CPR Performance Results:" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Microsoft JhengHei UI Bold" size="35.0" />
                </font>
@@ -35,54 +36,86 @@
                   <Insets top="50.0" />
                </VBox.margin>
             </Text>
-            <Label text="Rate" textFill="WHITE">
-               <font>
-                  <Font name="Microsoft JhengHei UI" size="25.0" />
-               </font>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox minHeight="300.0" prefHeight="300.0" prefWidth="100.0">
+                     <children>
+                        <Label alignment="TOP_CENTER" contentDisplay="CENTER" text="Rate" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Microsoft JhengHei UI" size="35.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="125.0" />
+                           </VBox.margin>
+                        </Label>
+                        <StackPane minHeight="200.0" minWidth="300.0" prefHeight="300.0" prefWidth="200.0">
+                           <children>
+                              <TextField fx:id="evalOneResultsRate" alignment="CENTER" maxWidth="300.0" minHeight="200.0" promptText="Rate">
+                                 <font>
+                                    <Font name="Microsoft JhengHei UI" size="50.0" />
+                                 </font>
+                                 <StackPane.margin>
+                                    <Insets />
+                                 </StackPane.margin>
+                              </TextField>
+                           </children>
+                        </StackPane>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Depth" textFill="WHITE">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="110.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="evalOneResultsDepth" alignment="CENTER" maxWidth="300.0" minHeight="200.0" minWidth="300.0" promptText="Depth">
+                           <font>
+                              <Font name="Microsoft JhengHei UI" size="50.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="25.0" />
+                           </VBox.margin>
+                        </TextField>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="80.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <VBox prefHeight="300.0" prefWidth="300.0">
+                     <children>
+                        <Label text="Recoil" textFill="WHITE">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="110.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="evalOneResultsRecoil" alignment="CENTER" maxWidth="300.0" minHeight="200.0" minWidth="300.0" promptText="Recoil">
+                           <font>
+                              <Font name="Microsoft JhengHei UI" size="50.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="25.0" />
+                           </VBox.margin>
+                        </TextField>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="80.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
                <VBox.margin>
-                  <Insets top="75.0" />
+                  <Insets top="50.0" />
                </VBox.margin>
-            </Label>
-            <TextField fx:id="evalOneResultsRate" maxWidth="300.0" minHeight="60.0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="15.0" />
-               </VBox.margin>
-            </TextField>
-            <Label text="Depth" textFill="WHITE">
-               <font>
-                  <Font size="25.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="15.0" />
-               </VBox.margin>
-            </Label>
-            <TextField fx:id="evalOneResultsDepth" maxWidth="300.0" minHeight="60.0" minWidth="300.0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="15.0" />
-               </VBox.margin>
-            </TextField>
-            <Label text="Recoil" textFill="WHITE">
-               <font>
-                  <Font size="25.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="15.0" />
-               </VBox.margin>
-            </Label>
-            <TextField fx:id="evalOneResultsRecoil" maxWidth="300.0" minHeight="60.0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="15.0" />
-               </VBox.margin>
-            </TextField>
+            </HBox>
          </children>
          <stylesheets>
             <URL value="@vista.css" />

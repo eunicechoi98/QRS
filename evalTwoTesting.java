@@ -9,11 +9,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 import java.awt.AWTException;
+import java.awt;
 
-public class evalTwoResultsController {
+public class evalTwoTesting {
 	@FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
@@ -21,31 +23,31 @@ public class evalTwoResultsController {
     private URL location;
 	
     @FXML // fx:id="primaryEvalResultsStackPane"
-    private StackPane evalTwoResultsVista; // Value injected by FXMLLoader	
+    private StackPane evalOneResultsVista; // Value injected by FXMLLoader	
 
     @FXML // fx:id="primaryEvalVBox"
-    private VBox evalTwoResultsVBox; // Value injected by FXMLLoader	
+    private VBox evalOneResultsVBox; // Value injected by FXMLLoader	
   
     @FXML // fx:id="primaryEvalResultsLabel"
-    private Label evalTwoResultsLabel; // Value injected by FXMLLoader	
+    private Label evalOneResultsLabel; // Value injected by FXMLLoader	
     
     @FXML // fx:id="primaryEvalResultsLabelTwo"
-    private Text evalTwoResultsText; // Value injected by FXM7743_1
+    private Text evalOneResultsText; // Value injected by FXMLLoader
     
     @FXML // fx:id="primaryEvalResultsLabelThree"
-    private Button evalTwoResultsNextButton; // Value injected by FXMLLoader
+    private Button evalOneResultsNextButton; // Value injected by FXMLLoader
     
     @FXML // fx:id="primaryEvalResultsLabelFour"
-    private TextField evalTwoResultsRate; // Value injected by FXMLLoader
+    private TextField evalOneResultsRate; // Value injected by FXMLLoader
     
     @FXML
-    private TextField evalTwoResultsDepth; 
+    private TextField evalOneResultsDepth; 
     
     @FXML
-    private TextField evalTwoResultsRecoil;
+    private TextField evalOneResultsRecoil;
     
     @FXML
-    void evalTwoNextAction(ActionEvent event) {
+    void evalOneNextAction(ActionEvent event) {
 
     	try {
     		VistaNavigator.loadVista(VistaNavigator.VISTA_10);
@@ -61,8 +63,8 @@ public class evalTwoResultsController {
     	
 			try {
 			    		
-				 		//(Calling saveCPRData throws an error rn so just commented stuff out)	  
-				    	//Note that to get the primaryEval results saveCPRData(1) must be called first - comment by Colton
+				    	
+				    	
 				    	DataIO.saveCPRData(2);	    	
 				    	
 				    	//Initialize the ArrayList for the primary results
@@ -74,39 +76,40 @@ public class evalTwoResultsController {
 				    	int meanDepth = secondaryResults.get(1);
 				    	int adequateRecoil = secondaryResults.get(2);
 				    	
-				    	evalTwoResultsRate.setText(Integer.toString(meanRate) + " bpm");
+				    	evalOneResultsRate.setText(Integer.toString(meanRate) + " cpm");
+				    	
+				    	// convert depth in mm to cm
 				    	float meanDepthCm = meanDepth/10;
-				    	evalTwoResultsDepth.setText(Float.toString(meanDepthCm) + " cm");
-				    	evalTwoResultsRecoil.setText(Integer.toString(adequateRecoil) +"%");    	
+				    	evalOneResultsDepth.setText(Float.toString(meanDepth) + " cm");
+				    	evalOneResultsRecoil.setText(Integer.toString(adequateRecoil) +"%");    	
 				    	
 				    	// indicating which fields they passed or not
 				    	// 1. Rate
 				    	if (meanRate >= 100 && meanRate <= 120){
 				    		// set textfield to green
 
-				    		evalTwoResultsRate.setStyle("-fx-background-color: #91FF8E;");
+				    		evalOneResultsRate.setStyle("-fx-background-color: #91FF8E;");
 				    	} else {
 				    		// set textfield to red
-				    		evalTwoResultsRate.setStyle("-fx-background-color: #FFA7A7;");
+				    		evalOneResultsRate.setStyle("-fx-background-color: #FFA7A7;");
 				    	}
 				    	
 				    	
 				    	// 2. Depth
 				    	if (meanDepth >= 50 && meanDepth <= 60) {
-				    		evalTwoResultsDepth.setStyle("-fx-background-color: #91FF8E;");
+				    		evalOneResultsDepth.setStyle("-fx-background-color: #91FF8E;");
 				    	} else {
-				    		evalTwoResultsDepth.setStyle("-fx-background-color: #FFA7A7;");
+				    		evalOneResultsDepth.setStyle("-fx-background-color: #FFA7A7;");
 				    	}
 				    	
 				    	
 				    	// 3. Recoil
 				    	if (adequateRecoil >= 80) {
-				    		evalTwoResultsRecoil.setStyle("-fx-background-color: #91FF8E;");
+				    		evalOneResultsRecoil.setStyle("-fx-background-color: #91FF8E;");
 				    	} else {
-				    		evalTwoResultsRecoil.setStyle("-fx-background-color: #FFA7A7;");
+				    		evalOneResultsRecoil.setStyle("-fx-background-color: #FFA7A7;");
 				    	}
-				 	    	
-				    	
+				 
 				    	System.out.println("PrimaryEvalResults: Successful return of data to user");
 				    	
 				    	
@@ -114,6 +117,21 @@ public class evalTwoResultsController {
 			    		System.out.println("PrimaryEvalResults: Error returning data to user");
 			    		
 			    	}
+
+    	/*
+    	ArrayList<Integer> primaryResults = DataIO.getPrimaryResults();
+    	Integer rate = primaryResults.get(0);
+    	Integer depth = primaryResults.get(1);
+    	Integer recoil = primaryResults.get(2);
+    	
+    	String rateResult = rate.toString();
+    	String depthResult = depth.toString();
+    	String recoilResult = recoil.toString();
+    	
+    	evalOneResultsRate.setText(rateResult);
+    	evalOneResultsDepth.setText(depthResult);    	
+    	evalOneResultsRecoil.setText(recoilResult);
+    	*/
     }
 
 }

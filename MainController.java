@@ -52,9 +52,7 @@ public class MainController {
     	alert.setTitle("Quick Refresher Sesssions");
     	alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
     	alert.getDialogPane().setMinWidth(450);
-    	alert.setContentText("You are terminating your session early and it will not be "
-    					+ "recorded. Please come back to complete the session at your "
-    					+ "earliest convenience.");
+    	alert.setContentText("You are about to end your session early. Are you sure you want to do this? There is no way to resume your session after this point.");
     	ButtonType yesButton = new ButtonType("Yes, I want to end my session", ButtonBar.ButtonData.YES);
     	ButtonType noButton = new ButtonType("No, I want to resume my session", ButtonBar.ButtonData.NO);
     	alert.getButtonTypes().setAll(yesButton, noButton);

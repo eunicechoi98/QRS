@@ -169,31 +169,28 @@
 
 #evalOneResultsRate {
 	-fx-background-color: white;
-    -fx-background-radius: 16.4, 15;
+    -fx-background-radius: 50, 50;
     -fx-background-insets: -1.4, 0;
-    -fx-border-radius: 15;
-  -fx-border-width: 2;
-  -fx-border-color: #96A7FF;
+    -fx-border-radius: 50;
+
   -fx-padding: 0;	
 }
 
 #evalOneResultsDepth {
 	-fx-background-color: white;
-    -fx-background-radius: 16.4, 15;
+    -fx-background-radius: 50,50;
     -fx-background-insets: -1.4, 0;
-    -fx-border-radius: 15;
-  -fx-border-width: 2;
-  -fx-border-color: #96A7FF;
+    -fx-border-radius: 50;
+
   -fx-padding: 0;	
 }
 
 #evalOneResultsRecoil {
 	-fx-background-color: white;	
-    -fx-background-radius: 16.4, 15;
+    -fx-background-radius: 50, 50;
     -fx-background-insets: -1.4, 0;
-    -fx-border-radius: 15;
-  -fx-border-width: 2;
-  -fx-border-color: #96A7FF;
+    -fx-border-radius: 50;
+
   -fx-padding: 0;	
 }
 
