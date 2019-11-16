@@ -38,22 +38,14 @@ public class DataIO {
 
 	// main directory of the user data in csv
 	private static String csvPath = "C:\\Users\\CPR QRS\\Desktop\\QRSTesting\\QRSTesting.csv";
-    private static BufferedReader br = null;
     private static BufferedWriter bw = null;
-    private static String line = "";
-    private static String cvsSplitBy = ",";
     
-    private static int[] controlCodes = new int[20];
-    private static int[] trainingCodes = new int[40];
     private static int currentCode = -1;
     private static ArrayList<Integer> dataRow = new ArrayList<>();
     
     private static boolean forgotCode = false;
     private static int forgotCodeGroup = -1; //0 for control, 1 for training, -1 if code not forgotten
     private static String forgotCodeName = "";
-    
-    
-    
     
     
     public static String scheduleNextSession() {
@@ -153,12 +145,6 @@ public class DataIO {
         // what exactly is the result of this string?
         // is this just giving the result or is it also saving the data to the CSV?
     }
-    
-    
-    
-    
-    
-    
     
     
     public static String[] getNextScheduleRow(String lastLine) {
@@ -279,13 +265,6 @@ public class DataIO {
 	}
     
     
-    
-    
-    
-    
-    
-    
-    
     //******ONLY FOR TESTING
     public static void setTestData(boolean pass, int cprRound) {
     	
@@ -326,18 +305,6 @@ public class DataIO {
     		
     }
     
-    public static boolean correctCode() {
-    	if (forgotCode == false) {
-        	for (int val : controlCodes) {
-        		if (val == currentCode) 
-        			return true;
-        	}
-        	
-        	return false;
-    	}
-    	else 
-    		return forgotCodeGroup == 0;
-    }   
     
     //getPrimaryResults(): This method returns the Integer ArrayList containing the
     //primary results of interest, as assigned in the saveCPRData method. Note that they are
@@ -422,25 +389,9 @@ public class DataIO {
     	return currentCode;
     }
     
-    public static void forgotCode(String name, int group) {
-    	forgotCode = true;
-    	forgotCodeGroup = group;
-    	forgotCodeName = name;
-    	//This version of QRS Project saves the currentCode as -2 if the individual has forgotten their code,
-    	//and instead saved their data under their name in the .csv
-    	for (int i=0;i<name.length();i++) {
-    		currentCode += Character.getNumericValue(name.charAt(i));
-    	}
-    }
-
-    
     public static void savePreQuestions(int exposure, int comfort) {
 		dataRow.add(exposure);
 		dataRow.add(comfort);
-    }
-    
-    public static void savePostQuestion(int comfort2) {
-		dataRow.add(comfort2);
     }
     
     public static void resetData() {
@@ -608,68 +559,6 @@ public class DataIO {
 			e.printStackTrace();
 		}
     }
-    
-        
-    public static void loadCSV() {
-    	
-    	for (int lineCount = 1;lineCount<=60;lineCount++) {
-    		if (lineCount <= 40)
-            	trainingCodes[lineCount-1] = lineCount;
-            else {
-            	controlCodes[lineCount-41] = lineCount;        	
-    	}
-    	
-    	
-    	
-    	/*
-    	 * This method will be useful when the study codes don't directly correspond to the row numbers,
-    	 * and the study codes need to be loaded from the .csv file.
-    	 * 
-    	 * For the time being, the .csv file will be blank other than the headers, and the study
-    	 * codes will be appended to the start of the appended data row.
-    	 * 
-    	try {
-    		int lineCount = 1;
-            br = new BufferedReader(new FileReader(csvPath));
-            br.readLine();
-            while ((line = br.readLine()) != null) {
-                // use comma as separator
-                String[] temp = line.split(cvsSplitBy);
-                /*
-                 * This is where we make some distinction between control
-                 * and training data.
-                 * In this version:
-                 *      Rows 1-20: Group A - Training sessions every 2 months
-                 *     Rows 21-40: Group B - Training sessions every 4 months
-                 *     Rows 41-60: Group C - Control.
-                 * 
-                 * For now the first 10 data will be control, the second 10 training. 
-                 
-                if (lineCount <= 40)
-                	trainingCodes[lineCount-1] = Integer.parseInt(temp[0]);
-                	//System.out.println(temp[0]);
-                else {
-                	controlCodes[lineCount-41] = Integer.parseInt(temp[0]);        	
-                	//System.out.println(temp[0]);
-                }
-                //System.out.println("Country [code= " + temp[2] + " , name=" + country[5] + "]");
-                lineCount++;
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (br != null) {
-                try {
-                    br.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        */
-    	}
-    }
     	
 	private static ArrayList<String> getStringArray(ArrayList<Integer> intArray) {
         ArrayList<String> result = new ArrayList<String>();
@@ -682,7 +571,5 @@ public class DataIO {
             } 
         }       
         return result;
-    	
-    }
-	
+	}
 }

@@ -79,6 +79,10 @@ public class Vista2Controller {
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
+    	
+    	//If the current user code is equal to the testing code, show the button
+//    	VistaNavigator.mainController.addExitButton(DataIO.getCurrentCode());
+    	
     	scale1.setToggleGroup(toggleGroupScale);
     	scale2.setToggleGroup(toggleGroupScale);
     	scale3.setToggleGroup(toggleGroupScale);

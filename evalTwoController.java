@@ -73,7 +73,7 @@ public class evalTwoController {
 			}
 			
 			
-			VistaNavigator.loadVista(VistaNavigator.PRIMARYEVALRESULTSVISTA);
+//			VistaNavigator.loadVista(VistaNavigator.PRIMARYEVALRESULTSVISTA);
 			
 			// new function in process
 			//if (DataIO.evaluationOnePassed() == true)

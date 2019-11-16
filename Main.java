@@ -4,6 +4,10 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;import java.util.List;
+
 import java.io.IOException;
 import javafx.scene.image.*;
 /**
@@ -14,7 +18,17 @@ public class Main extends Application {
 	
 	// starting point
     public static void main(String[] args) {
-    	DataIO.loadCSV();
+    	
+//    	String testPath = "C:/Users/colto/Desktop/repo/QRS_Data/UserCodes.csv";
+//    	
+//    	try {
+//			Authenticate authObj = new Authenticate(testPath);
+//			boolean result = authObj.authenticateCode("qwertyui");
+////			System.out.println(result);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
     	
     	// method inside the Application class
     	// set up the program as a JavaFX application

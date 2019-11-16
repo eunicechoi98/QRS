@@ -17,6 +17,8 @@ import java.util.ResourceBundle;
 import javafx.scene.control.Label;
 
 public class MainController {
+	
+//	private static Integer testingUserID = 100;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -44,7 +46,6 @@ public class MainController {
     private Timeline familiarizeTimeline = new Timeline();
     private Timeline vista8Timeline = new Timeline();
     private Timeline vista9Timeline = new Timeline();
-    
 
     @FXML
     public void exitAction(ActionEvent event) {
@@ -71,6 +72,7 @@ public class MainController {
     	        	setFullScreen();
     	        	DataIO.resetData();
     	        	VistaNavigator.loadVista(VistaNavigator.EndEarlyVista);
+//    	        	exitButton1.setVisible(false);    	
     	        } else {
     	        }
     	});
@@ -90,6 +92,11 @@ public class MainController {
     	Main.publicStage.setY(-5);
     }
     
+//    public void addExitButton(int currentCode) {
+//    	if (testingUserID.equals(currentCode))
+//    		exitButton1.setVisible(true);    	   		
+//    }
+    
     public void setTimelines() {
     	Vista3Controller.setTimeline(vista3Timeline);
     	Vista4Controller.setTimeline(vista4Timeline);
@@ -102,6 +109,13 @@ public class MainController {
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
+    	
+    	//Bind the management of the button with its visibility
+//    	exitButton1.managedProperty().bind(exitButton1.visibleProperty());
+    	
+    	//Hide the button and make it unresponsive
+//    	exitButton1.setVisible(false);    	
+    	
     	setTimelines();
         assert headerLabel != null : "fx:id=\"headerLabel\" was not injected: check your FXML file 'main.fxml'.";
         assert exitButton1 != null : "fx:id=\"exitButton1\" was not injected: check your FXML file 'main.fxml'.";
