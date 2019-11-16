@@ -80,7 +80,8 @@ public class Vista9Controller {
 				e.printStackTrace();
 				System.out.println("**Vista 9: ERROR couldnt save test using MouseMovements");
 			}
-			VistaNavigator.loadVista(VistaNavigator.EVALTWORESULTS);
+//			VistaNavigator.loadVista(VistaNavigator.EVALTWORESULTS);
+			VistaNavigator.loadVista(VistaNavigator.EVALTWOTESTING);
 			System.out.println("Vista 9: 2nd Eval over -> Eval Two Results Vista");
 		}
 		else

@@ -34,7 +34,7 @@ public class VistaNavigator {
     public static final String PRACTICE = "practice.fxml";
     public static final String REST = "rest.fxml";
     public static final String EVALTWOCOUNTDOWN = "evalTwoCountdown.fxml";
-    public static final String EVALTWO = "evalTwo.fxml";
+    public static final String EVALTWOTESTING = "evalTwoTesting.fxml";
     
     public static final String EVALTWOFAILED = "evalTwoFailed.fxml";
     public static final String EVALTWOPASSED = "evalTwoPassed.fxml";

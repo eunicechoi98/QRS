@@ -16,6 +16,7 @@ public class Main extends Application {
     public static void main(String[] args) {
     	DataIO.loadCSV();
     	
+    	
     	// method inside the Application class
     	// set up the program as a JavaFX application
         launch(args);
@@ -62,6 +63,7 @@ public class Main extends Application {
 
         VistaNavigator.setMainController(mainController);
         VistaNavigator.loadVista(VistaNavigator.VISTA_1);
+        
 
         return mainPane;
     }
