@@ -87,7 +87,7 @@ public class evalOneResultsController {
 				    	evalOneResultsRate.setText(Integer.toString(meanRate) + " cpm");
 				    	
 				    	// convert depth in mm to cm
-				    	float meanDepthCm = meanDepth/10;
+				    	float meanDepthCm = meanDepth/100;
 				    	evalOneResultsDepth.setText(Float.toString(meanDepth) + " cm");
 				    	evalOneResultsRecoil.setText(Integer.toString(adequateRecoil) +"%");    	
 				    	

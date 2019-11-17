@@ -23,7 +23,7 @@ public class evalTwoTesting {
     private URL location;
 	
     @FXML // fx:id="primaryEvalResultsStackPane"
-    private StackPane evalOneResultsVista; // Value injected by FXMLLoader	
+    private StackPane evalTwoResultsVista; // Value injected by FXMLLoader	
 
     @FXML // fx:id="primaryEvalVBox"
     private VBox evalOneResultsVBox; // Value injected by FXMLLoader	
@@ -35,7 +35,7 @@ public class evalTwoTesting {
     private Text evalOneResultsText; // Value injected by FXMLLoader
     
     @FXML // fx:id="primaryEvalResultsLabelThree"
-    private Button evalOneResultsNextButton; // Value injected by FXMLLoader
+    private Button evalTwoResultsNextButton; // Value injected by FXMLLoader
     
     @FXML // fx:id="primaryEvalResultsLabelFour"
     private TextField evalOneResultsRate; // Value injected by FXMLLoader
@@ -47,7 +47,7 @@ public class evalTwoTesting {
     private TextField evalOneResultsRecoil;
     
     @FXML
-    void evalOneNextAction(ActionEvent event) {
+    void evalTwoNextAction(ActionEvent event) {
 
     	try {
     		VistaNavigator.loadVista(VistaNavigator.VISTA_10);
@@ -72,20 +72,20 @@ public class evalTwoTesting {
 				    	secondaryResults = DataIO.getSecondaryResults();
 				    	
 				    	//Note that primvary results is structured [mean rate,mean depth, % w adequate recoil]
-				    	int meanRate = secondaryResults.get(0);
-				    	int meanDepth = secondaryResults.get(1);
-				    	int adequateRecoil = secondaryResults.get(2);
+				    	int meanRateTwo = secondaryResults.get(0);
+				    	int meanDepthTwo = secondaryResults.get(1);
+				    	int adequateRecoilTwo = secondaryResults.get(2);
 				    	
-				    	evalOneResultsRate.setText(Integer.toString(meanRate) + " cpm");
+				    	evalOneResultsRate.setText(Integer.toString(meanRateTwo) + " cpm");
 				    	
 				    	// convert depth in mm to cm
-				    	float meanDepthCm = meanDepth/10;
-				    	evalOneResultsDepth.setText(Float.toString(meanDepth) + " cm");
-				    	evalOneResultsRecoil.setText(Integer.toString(adequateRecoil) +"%");    	
+				    	float meanDepthCm = meanDepthTwo/100;
+				    	evalOneResultsDepth.setText(Float.toString(meanDepthTwo) + " cm");
+				    	evalOneResultsRecoil.setText(Integer.toString(adequateRecoilTwo) +"%");    	
 				    	
 				    	// indicating which fields they passed or not
 				    	// 1. Rate
-				    	if (meanRate >= 100 && meanRate <= 120){
+				    	if (meanRateTwo >= 100 && meanRateTwo <= 120){
 				    		// set textfield to green
 
 				    		evalOneResultsRate.setStyle("-fx-background-color: #91FF8E;");
@@ -96,7 +96,7 @@ public class evalTwoTesting {
 				    	
 				    	
 				    	// 2. Depth
-				    	if (meanDepth >= 50 && meanDepth <= 60) {
+				    	if (meanDepthTwo >= 50 && meanDepthTwo <= 60) {
 				    		evalOneResultsDepth.setStyle("-fx-background-color: #91FF8E;");
 				    	} else {
 				    		evalOneResultsDepth.setStyle("-fx-background-color: #FFA7A7;");
@@ -104,17 +104,17 @@ public class evalTwoTesting {
 				    	
 				    	
 				    	// 3. Recoil
-				    	if (adequateRecoil >= 80) {
+				    	if (adequateRecoilTwo >= 80) {
 				    		evalOneResultsRecoil.setStyle("-fx-background-color: #91FF8E;");
 				    	} else {
 				    		evalOneResultsRecoil.setStyle("-fx-background-color: #FFA7A7;");
 				    	}
 				 
-				    	System.out.println("PrimaryEvalResults: Successful return of data to user");
+				    	System.out.println("second eval results testing");
 				    	
 				    	
 			    	} catch (Exception e) {
-			    		System.out.println("PrimaryEvalResults: Error returning data to user");
+			    		System.out.println("error: second eval results testing");
 			    		
 			    	}
 
