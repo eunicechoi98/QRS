@@ -85,7 +85,6 @@ public class Vista4Controller {
 		}
 		else
 	    	timeline2.play();
-			//timerLabel2.setText(Integer.toString(timerVal));
 	}
 	
 	public void milliTimerMethod( ) {

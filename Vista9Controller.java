@@ -34,13 +34,6 @@ public class Vista9Controller {
     	Vista9Controller.timeline = parentTimeline;
     	timerVal = 60; //make sure this matches above
     }
-    
-    /*
-    @FXML
-    void tempNext3(ActionEvent event) {
-    	timeline.stop();
-        VistaNavigator.loadVista(VistaNavigator.VISTA_10);
-    } */
 
     @FXML
     void initialize() {
@@ -80,13 +73,11 @@ public class Vista9Controller {
 				e.printStackTrace();
 				System.out.println("**Vista 9: ERROR couldnt save test using MouseMovements");
 			}
-//			VistaNavigator.loadVista(VistaNavigator.EVALTWORESULTS);
 			VistaNavigator.loadVista(VistaNavigator.EVALTWOTESTING);
 			System.out.println("Vista 9: 2nd Eval over -> Eval Two Results Vista");
 		}
 		else
 	    	timeline2.play();
-			//timerLabel2.setText(Integer.toString(timerVal));
 	}
 	
 	public void milliTimerMethod( ) {

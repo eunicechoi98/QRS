@@ -36,25 +36,12 @@ public class Vista1Controller {
     void onEnter(ActionEvent event) {
     	int entered = Integer.parseInt(studyCodeTextBox.getText());
     	DataIO.setCurrentCode(entered);
-		//if (DataIO.inControlGroup())
 		VistaNavigator.loadVista(VistaNavigator.VISTA_2);
-			
-		//else if (DataIO.inTrainingGroup())
-			//VistaNavigator.loadVista(VistaNavigator.TrainingIntroVista);
-		//else {
-			//errorLabel.setText("Invalid Study Code");
-			//studyCodeTextBox.clear();
-		//}
     }
     
     @FXML
     void initialize() {
     	System.out.println("Sign In (Vista 1) -> Step One");
-    	
-    	//Image img = new Image("CPR sign in.png");
-    	//ImageView imgView = new ImageView(img);
-    	//vista1.getChildren().add(imgView);
-    	
     }
 
 	public static void main(String[] args) {

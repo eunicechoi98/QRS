@@ -5,14 +5,9 @@ import java.util.ResourceBundle;
 
 import javafx.animation.*;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 /*
@@ -64,12 +59,7 @@ public class Vista3Controller {
     		timeline.getKeyFrames().clear();
     		timeline.getKeyFrames().add(key);
     	}
-    	//String musicFile = "C:\\Users\\CSC\\Desktop\\QRS_Application\\countdownBeeps.mp3";     // For example
-    	//System.out.println("in initialize again");
 
-    	//Media sound = new Media(new File(musicFile).toURI().toString());
-    	//MediaPlayer mediaPlayer = new MediaPlayer(sound);
-    	//mediaPlayer.play();
     	timerLabel1.setText(Integer.toString(tempTimerVal));
     	timeline.setCycleCount(10);
     	timeline.playFromStart();

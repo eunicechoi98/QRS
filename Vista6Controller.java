@@ -33,14 +33,6 @@ public class Vista6Controller {
     	Vista6Controller.timeline = parentTimeline;
     	timerVal = 120; //make sure this matches above
     }
-    
-    /*
-    @FXML
-    void tempNext2(ActionEvent event) {
-    	VistaNavigator.mainController.setFullScreen();
-        VistaNavigator.loadVista(VistaNavigator.VISTA_7);
-    	timeline.stop();
-    } */
 
     @FXML
     void initialize() {
@@ -76,7 +68,6 @@ public class Vista6Controller {
 		}
 		else
 	    	timeline2.play();
-			//timerLabel2.setText(Integer.toString(timerVal));
 	}
 	
 	public void milliTimerMethod( ) {

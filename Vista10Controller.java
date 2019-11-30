@@ -60,23 +60,5 @@ public class Vista10Controller {
     	timeline.play();
     	System.out.println("Vista 10: Session Complete. Return Next Session Date.");
     	
-    	/*
-    	if (DataIO.inTrainingGroup() == true) {
-        	DataIO.saveCPRData(2);
-    	}
-    	else {
-    		DataIO.saveCPRData(1);
-    	}
-    	
-    	// why are these needed? especially resetData()?
-    	// Shouldnt I do this after the first evaluation too?
-    	DataIO.exportToCSV();
-    	DataIO.resetData();
-    	Timeline timeline = new Timeline(new KeyFrame(
-    	        Duration.millis(1000),
-    	        ae -> timerMethod()));
-    	timeline.setCycleCount(11);
-    	timeline.play();
-    	*/
     }
 }

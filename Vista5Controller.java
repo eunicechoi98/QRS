@@ -72,15 +72,6 @@ public class Vista5Controller {
     	player.play();
     	
     	System.out.println("Vista 5: Video -> Familiarize Laerdal Software");
-    	/*
-    	WebView webview = new WebView();
-        webview.getEngine().load(
-          "https://www.youtube.com/embed/hizBdM1Ob68?autoplay=1"          
-        		);
-        webview.setPrefSize(1000, 100);
-        hBoxVista5.getChildren().add(webview);
-        
-        */
     }
 }
 
