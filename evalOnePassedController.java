@@ -67,7 +67,6 @@ public class evalOnePassedController {
 	    	String nextSession = DataIO.scheduleNextSession();
 	    	passOneReturnDate.setText(nextSession + " month(s)");
 	    	
-	    	DataIO.exportToCSV();
 	    	DataIO.resetData(); //needed?
 	    	/*
 	    	Timeline timeline = new Timeline(new KeyFrame(

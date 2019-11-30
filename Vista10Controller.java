@@ -51,7 +51,6 @@ public class Vista10Controller {
     		vista10NextSession.setText(nextSession + " months");
     	}
     	
-    	DataIO.exportToCSV();
     	DataIO.resetData();
     	Timeline timeline = new Timeline(new KeyFrame(
     	        Duration.millis(1000),

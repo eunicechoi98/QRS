@@ -11,7 +11,6 @@ import javafx.scene.image.*;
  */
 public class Main extends Application {
 	
-	
 	// starting point
     public static void main(String[] args) {		
     	// method inside the Application class

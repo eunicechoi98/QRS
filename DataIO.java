@@ -29,11 +29,16 @@ public class DataIO {
 //	private static String schedulingFolder = "C:\\Users\\cbarr\\Desktop\\QRS_Test_Folder";
 	private static String schedulingFolder = "C:\\Users\\cbarr\\Desktop\\QRS_Test_Folder\\Scheduling_Folder";
 	
+	//Contains the results of the two survey questions
+	private static ArrayList<Integer> surveyData = new ArrayList<>();
+	
 	//Contains the values of interest for the PrimaryEvalResults pane.
 	private static ArrayList<Integer> primaryResults = new ArrayList<>();
+    private static ArrayList<Integer> primaryData = new ArrayList<>();
 	
 	//Contains the values of interest from the second round of CPR
 	private static ArrayList<Integer> secondaryResults = new ArrayList<>();	
+    private static ArrayList<Integer> secondaryData = new ArrayList<>();
 
 	// main directory of the user data in csv
 //	private static String csvPath = "C:\\Users\\CPR QRS\\Desktop\\QRSTesting\\QRSTesting.csv";
@@ -41,7 +46,6 @@ public class DataIO {
     private static BufferedWriter bw = null;
     
     private static int currentCode = -1;
-    private static ArrayList<Integer> dataRow = new ArrayList<>();
     
     public static String scheduleNextSession() {
     	
@@ -383,23 +387,25 @@ public class DataIO {
     }
     
     public static void savePreQuestions(int exposure, int comfort) {
-		dataRow.add(exposure);
-		dataRow.add(comfort);
+		surveyData.add(exposure);
+		surveyData.add(comfort);
     }
     
     public static void resetData() {
     	currentCode = -1;
-    	dataRow.clear();
+    	surveyData.clear();
     	primaryResults.clear();
-    	primaryResults.clear();
+    	primaryData.clear();
+    	secondaryResults.clear();
+    	secondaryData.clear();
     }
     
-    public static void exportToCSV() {
+    public static void exportToCSV(ArrayList<Integer> data) {
+		ArrayList<String> stringDataRow = getStringArray(data);
+		String newRow;
+		newRow = Integer.toString(currentCode) + "," + stringDataRow.stream().collect(Collectors.joining(",")) + "\n";
+		System.out.println(newRow);
     	try {
-    		ArrayList<String> stringDataRow = getStringArray(dataRow);
-    		String newRow;
-			newRow = Integer.toString(currentCode) + "," + stringDataRow.stream().collect(Collectors.joining(",")) + "\n";
-    		System.out.println(newRow);
             FileWriter pw = new FileWriter(csvPath, true);
             pw.append(newRow);
             pw.close();
@@ -501,43 +507,69 @@ public class DataIO {
 	    	date = Integer.parseInt(tempDate.replaceAll("\\p{P}", ""));
 	    	time = Integer.parseInt(tempTime.replaceAll("\\p{P}", ""));
 	    	
-	    	//Add all the parsed values to the overall results ArrayList dataRow
-	    	dataRow.add(totalCompressions);
-	    	dataRow.add(correctlyReleasedCompressions);
-	    	//dataRow.add(-1); Already in percentage form
-	    	dataRow.add(compressionMeanDepth);
-	    	dataRow.add(depthData[0]);
-	    	dataRow.add(-1);
-	    	dataRow.add(depthData[1]);
-	    	dataRow.add(-1);
-	    	dataRow.add(depthData[2]);
-	    	dataRow.add(-1);
-	    	dataRow.add(rateData[0]);
-	    	dataRow.add(-1);
-	    	dataRow.add(rateData[1]);
-	    	dataRow.add(-1);
-	    	dataRow.add(rateData[2]);
-	    	dataRow.add(-1);
-	    	dataRow.add(compressionMeanRate);
-	    	dataRow.add(corrrectHandPosition);
-	    	dataRow.add(compressionScore);
-	    	dataRow.add(date);
-	    	dataRow.add(time);
-	    	
-	    	//If this is the first test, we assign the values of primaryResults
-	    	//in the following order: 1)mean rate  
-	    	//						  2)mean depth  
-	    	//						  3)percent of compressions with adequate recoil 
+
 	    	if (testNum == 1) {
 	    		primaryResults.add(compressionMeanRate);
 	    		primaryResults.add(compressionMeanDepth);
-	    		primaryResults.add(correctlyReleasedCompressions);	    		
+	    		primaryResults.add(correctlyReleasedCompressions);	  
+	    		
+	    		primaryData.add(1); //Add the CPR round number to the start of the row
+	    		primaryData.add(surveyData.get(0));
+	    		primaryData.add(surveyData.get(1));
+	    		primaryData.add(totalCompressions);
+	    		primaryData.add(correctlyReleasedCompressions);
+	    		primaryData.add(compressionMeanDepth);
+	    		primaryData.add(depthData[0]);
+	    		primaryData.add(-1);
+	    		primaryData.add(depthData[1]);
+	    		primaryData.add(-1);
+	    		primaryData.add(depthData[2]);
+	    		primaryData.add(-1);
+	    		primaryData.add(rateData[0]);
+	    		primaryData.add(-1);
+	    		primaryData.add(rateData[1]);
+	    		primaryData.add(-1);
+	    		primaryData.add(rateData[2]);
+	    		primaryData.add(-1);
+	    		primaryData.add(compressionMeanRate);
+	    		primaryData.add(corrrectHandPosition);
+	    		primaryData.add(compressionScore);
+	    		primaryData.add(date);
+	    		primaryData.add(time);
+	    		
+	    		exportToCSV(primaryData);
 	    	}
 	    	else if (testNum == 2) {
 	    		secondaryResults.add(compressionMeanRate);
 	    		secondaryResults.add(compressionMeanDepth);
-	    		secondaryResults.add(correctlyReleasedCompressions);	    		
-	    	}
+	    		secondaryResults.add(correctlyReleasedCompressions);	    
+	    		
+	    		secondaryData.add(2); //Add the CPR round number to the start of the row
+	    		secondaryData.add(-1);
+	    		secondaryData.add(-1);
+	    		secondaryData.add(totalCompressions);
+	    		secondaryData.add(correctlyReleasedCompressions);
+	    		secondaryData.add(compressionMeanDepth);
+	    		secondaryData.add(depthData[0]);
+	    		secondaryData.add(-1);
+	    		secondaryData.add(depthData[1]);
+	    		secondaryData.add(-1);
+	    		secondaryData.add(depthData[2]);
+	    		secondaryData.add(-1);
+	    		secondaryData.add(rateData[0]);
+	    		secondaryData.add(-1);
+	    		secondaryData.add(rateData[1]);
+	    		secondaryData.add(-1);
+	    		secondaryData.add(rateData[2]);
+	    		secondaryData.add(-1);
+	    		secondaryData.add(compressionMeanRate);
+	    		secondaryData.add(corrrectHandPosition);
+	    		secondaryData.add(compressionScore);
+	    		secondaryData.add(date);
+	    		secondaryData.add(time);
+	    		
+	    		exportToCSV(secondaryData);
+	    	}    
 	    	
 	    	
     	} catch (IOException ae) {
