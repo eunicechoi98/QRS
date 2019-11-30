@@ -18,7 +18,7 @@ import javafx.util.Duration;
 
 public class Vista8Controller {
 
-	private static Integer timerVal = 10;
+	private static Integer timerVal = 3;
 	private static Integer tempTimerVal;
 	
     private static Timeline timeline;
@@ -46,7 +46,6 @@ public class Vista8Controller {
     
     public static void setTimeline(Timeline parentTimeline) {
     	Vista8Controller.timeline = parentTimeline;
-    	timerVal = 10;
     }
 
     @FXML

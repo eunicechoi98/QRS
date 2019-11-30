@@ -18,7 +18,7 @@ import javafx.util.Duration;
 
 public class Vista5Controller {
 
-	private static int videoLength = 60;
+	private static int videoLength = 1;
 	
     @FXML
     private ResourceBundle resources;
@@ -60,16 +60,16 @@ public class Vista5Controller {
     	        ae -> revealMethod()));
     	timeline.setCycleCount(1);
     	timeline.play();
-    	File file = new File("C:\\Users\\CPR QRS\\Desktop\\QRS Resources\\QRS_trainingvideo.mp4");
-    	String media = file.toURI().toString();
-    	Media video = new Media(media);
-    	MediaPlayer player = new MediaPlayer(video);
-    	
-    	MediaView mediaView = new MediaView(player);
-    	hBoxVista5.getChildren().add(mediaView);
-    	mediaView.setFitHeight(650);
-    	mediaView.setFitWidth(850);
-    	player.play();
+//    	File file = new File("C:\\Users\\CPR QRS\\Desktop\\QRS Resources\\QRS_trainingvideo.mp4");
+//    	String media = file.toURI().toString();
+//    	Media video = new Media(media);
+//    	MediaPlayer player = new MediaPlayer(video);
+//    	
+//    	MediaView mediaView = new MediaView(player);
+//    	hBoxVista5.getChildren().add(mediaView);
+//    	mediaView.setFitHeight(650);
+//    	mediaView.setFitWidth(850);
+//    	player.play();
     	
     	System.out.println("Vista 5: Video -> Familiarize Laerdal Software");
     }

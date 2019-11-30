@@ -32,7 +32,7 @@ public class BreakVistaController {
     
     public static void setTimeline(Timeline parentTimeline) {
     	BreakVistaController.timeline = parentTimeline;
-    	timerVal = 60;
+    	timerVal = 3;
     }
 
     @FXML

@@ -14,49 +14,26 @@ public class VistaNavigator {
     /**
      * Convenience constants for fxml layouts managed by the navigator.
      */
-    public static final String MAIN    = "main.fxml";
+    public static final String MAIN    = "main.fxml";   
+    
     public static final String VISTA_1 = "vista1.fxml";
-    
-    public static final String STEPTWOVISTA = "stepTwoVista.fxml";
-    public static final String STEPTHREEVISTA = "stepThreeVista.fxml";
-    public static final String STEPFOURVISTA = "stepFourVista.fxml";
-    public static final String STEPFIVEVISTA = "stepFiveVista.fxml";
-    public static final String STEPSIXVISTA = "stepSixVista.fxml";
-    
-    public static final String EVALTWORESULTS = "evalTwoResults.fxml";
-    
-    public static final String EVALONERESULTS = "evalOneResults.fxml";
-    public static final String EVALONEPASSED = "EvalOnePassedVista.fxml";  
-    public static final String EVALONEFAILED = "evalOneFailedVista.fxml";
-    
-    public static final String TRAININGVID = "trainingVid.fxml";
-    public static final String PRACCOUNTDOWN= "practiveCountdown.fxml";
-    public static final String PRACTICE = "practice.fxml";
-    public static final String REST = "rest.fxml";
-    public static final String EVALTWOCOUNTDOWN = "evalTwoCountdown.fxml";
-    public static final String EVALTWOTESTING = "evalTwoTesting.fxml";
-    
-    public static final String EVALTWOFAILED = "evalTwoFailed.fxml";
-    public static final String EVALTWOPASSED = "evalTwoPassed.fxml";
-    
-  
     public static final String VISTA_2 = "vista2.fxml";
     public static final String VISTA_3 = "vista3.fxml";
     public static final String VISTA_4 = "vista4.fxml";
+    public static final String EVALONERESULTS = "evalOneResults.fxml";
+    public static final String EVALONEPASSED = "EvalOnePassedVista.fxml";  
+    public static final String EVALONEFAILED = "evalOneFailedVista.fxml";
     public static final String VISTA_5 = "vista5.fxml";
+    public static final String FamiliarizeVista = "familiarizeVista.fxml";
     public static final String VISTA_6 = "vista6.fxml";
-    public static final String VISTA_7 = "vista7.fxml";
+    public static final String BreakVista = "breakVista.fxml";
     public static final String VISTA_8 = "vista8.fxml";
     public static final String VISTA_9 = "vista9.fxml";
+    public static final String EVALTWOTESTING = "evalTwoTesting.fxml";
     public static final String VISTA_10 = "vista10.fxml";
-    public static final String ForgotCodeVista = "forgotCodeVista.fxml";
-    public static final String ControlIntroVista = "introControlVista.fxml";
-    public static final String TrainingIntroVista = "introTrainingVista.fxml";
-    public static final String EndEarlyVista = "endEarlyVista.fxml";
-    public static final String SaveErrorVista = "saveErrorVista.fxml";
-    public static final String BreakVista = "breakVista.fxml";
-    public static final String FamiliarizeVista = "familiarizeVista.fxml";
     
+    public static final String EndEarlyVista = "endEarlyVista.fxml";
+    public static final String SaveErrorVista = "saveErrorVista.fxml";    
     
     public static String currentVista;
 

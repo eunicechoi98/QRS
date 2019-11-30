@@ -13,7 +13,7 @@ public class Vista4Controller {
 
 	private static Timeline timeline;
 	
-	private static Integer timerVal = 60;
+	private static Integer timerVal = 3;
 	private static Integer tempTimerVal; 
 	
 	private Integer milliTimerVal = 9;
@@ -32,7 +32,6 @@ public class Vista4Controller {
     
     public static void setTimeline(Timeline parentTimeline) {
     	Vista4Controller.timeline = parentTimeline;
-    	timerVal = 60; //make sure this matches above
     }
     
 

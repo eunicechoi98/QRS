@@ -31,7 +31,7 @@ public class Vista6Controller {
     
     public static void setTimeline(Timeline parentTimeline) {
     	Vista6Controller.timeline = parentTimeline;
-    	timerVal = 120; //make sure this matches above
+    	timerVal = 2; //make sure this matches above
     }
 
     @FXML

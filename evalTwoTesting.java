@@ -1,4 +1,4 @@
-import java.net.URL;\
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -59,64 +59,55 @@ public class evalTwoTesting {
     }  
     
     @FXML
-    void initialize() throws AWTException {
+    void initialize() throws AWTException {	    	
     	
-			try {
-			    		
-				    	
-				    	
-				    	DataIO.saveCPRData(2);	    	
-				    	
-				    	//Initialize the ArrayList for the primary results
-				    	ArrayList<Integer> secondaryResults = new ArrayList<>();
-				    	secondaryResults = DataIO.getSecondaryResults();
-				    	
-				    	//Note that primvary results is structured [mean rate,mean depth, % w adequate recoil]
-				    	int meanRateTwo = secondaryResults.get(0);
-				    	int meanDepthTwo = secondaryResults.get(1);
-				    	int adequateRecoilTwo = secondaryResults.get(2);
-				    	
-				    	evalOneResultsRate.setText(Integer.toString(meanRateTwo) + " cpm");
-				    	
-				    	// convert depth in mm to cm
-				    	float meanDepthCm = meanDepthTwo/100;
-				    	evalOneResultsDepth.setText(Float.toString(meanDepthTwo) + " cm");
-				    	evalOneResultsRecoil.setText(Integer.toString(adequateRecoilTwo) +"%");    	
-				    	
-				    	// indicating which fields they passed or not
-				    	// 1. Rate
-				    	if (meanRateTwo >= 100 && meanRateTwo <= 120){
-				    		// set textfield to green
+    	DataIO.saveCPRData(2);	    	
+    	
+    	//Initialize the ArrayList for the primary results
+    	ArrayList<Integer> secondaryResults = new ArrayList<>();
+    	secondaryResults = DataIO.getSecondaryResults();
+    	
+    	//Note that primvary results is structured [mean rate,mean depth, % w adequate recoil]
+    	int meanRateTwo = secondaryResults.get(0);
+    	int meanDepthTwo = secondaryResults.get(1);
+    	int adequateRecoilTwo = secondaryResults.get(2);
+    	
+    	evalOneResultsRate.setText(Integer.toString(meanRateTwo) + " cpm");
+    	
+    	// convert depth in mm to cm
+    	float meanDepthCm = meanDepthTwo/100;
+    	evalOneResultsDepth.setText(Float.toString(meanDepthTwo) + " cm");
+    	evalOneResultsRecoil.setText(Integer.toString(adequateRecoilTwo) +"%");    	
+    	
+    	// indicating which fields they passed or not
+    	// 1. Rate
+    	if (meanRateTwo >= 100 && meanRateTwo <= 120){
+    		// set textfield to green
 
-				    		evalOneResultsRate.setStyle("-fx-background-color: #91FF8E;");
-				    	} else {
-				    		// set textfield to red
-				    		evalOneResultsRate.setStyle("-fx-background-color: #FFA7A7;");
-				    	}
-				    	
-				    	
-				    	// 2. Depth
-				    	if (meanDepthTwo >= 50 && meanDepthTwo <= 60) {
-				    		evalOneResultsDepth.setStyle("-fx-background-color: #91FF8E;");
-				    	} else {
-				    		evalOneResultsDepth.setStyle("-fx-background-color: #FFA7A7;");
-				    	}
-				    	
-				    	
-				    	// 3. Recoil
-				    	if (adequateRecoilTwo >= 80) {
-				    		evalOneResultsRecoil.setStyle("-fx-background-color: #91FF8E;");
-				    	} else {
-				    		evalOneResultsRecoil.setStyle("-fx-background-color: #FFA7A7;");
-				    	}
-				 
-				    	System.out.println("second eval results testing");
-				    	
-				    	
-			    	} catch (Exception e) {
-			    		System.out.println("error: second eval results testing");
-			    		
-			    	}
+    		evalOneResultsRate.setStyle("-fx-background-color: #91FF8E;");
+    	} else {
+    		// set textfield to red
+    		evalOneResultsRate.setStyle("-fx-background-color: #FFA7A7;");
+    	}
+    	
+    	
+    	// 2. Depth
+    	if (meanDepthTwo >= 50 && meanDepthTwo <= 60) {
+    		evalOneResultsDepth.setStyle("-fx-background-color: #91FF8E;");
+    	} else {
+    		evalOneResultsDepth.setStyle("-fx-background-color: #FFA7A7;");
+    	}
+    	
+    	
+    	// 3. Recoil
+    	if (adequateRecoilTwo >= 80) {
+    		evalOneResultsRecoil.setStyle("-fx-background-color: #91FF8E;");
+    	} else {
+    		evalOneResultsRecoil.setStyle("-fx-background-color: #FFA7A7;");
+    	}
+ 
+    	System.out.println("second eval results testing");
+	    	
 
     	/*
     	ArrayList<Integer> primaryResults = DataIO.getPrimaryResults();

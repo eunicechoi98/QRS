@@ -13,10 +13,7 @@ public class Main extends Application {
 	
 	
 	// starting point
-    public static void main(String[] args) {
-    	DataIO.loadCSV();
-    	
-    	
+    public static void main(String[] args) {		
     	// method inside the Application class
     	// set up the program as a JavaFX application
         launch(args);

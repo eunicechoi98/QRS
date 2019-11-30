@@ -10,7 +10,7 @@ import javafx.scene.layout.StackPane;
 
 public class Vista10Controller {
 	
-	Integer timeLeft = 10;
+	Integer timeLeft = 5;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -41,7 +41,7 @@ public class Vista10Controller {
 //    	DataIO.saveCPRData(2);
     	String nextSession = DataIO.scheduleNextSession();
     	if (DataIO.evaluationTwoPassed() == true) {
-    		if nextSession == "1" {
+    		if (nextSession.equals("1")) {
     			vista10NextSession.setText(nextSession + " month");
     		} else {
     			vista10NextSession.setText(nextSession + " months");

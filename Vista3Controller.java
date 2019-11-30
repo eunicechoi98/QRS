@@ -15,7 +15,7 @@ import javafx.util.Duration;
  */
 public class Vista3Controller {
 
-	private static Integer timerVal = 10;
+	private static Integer timerVal = 3;
 	private static Integer tempTimerVal;
 	
 	private static Timeline timeline;
@@ -44,7 +44,6 @@ public class Vista3Controller {
     
     public static void setTimeline(Timeline parentTimeline) {
     	Vista3Controller.timeline = parentTimeline;
-    	timerVal = 10;
     }
 
     @FXML

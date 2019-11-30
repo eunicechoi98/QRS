@@ -67,79 +67,56 @@ public class evalOneResultsController {
     }  
     
     @FXML
-    void initialize() throws AWTException {
+    void initialize() throws AWTException {  		
+ 		//(Calling saveCPRData throws an error rn so just commented stuff out)	  
+    	//Note that to get the primaryEval results saveCPRData(1) must be called first - comment by Colton
+    	DataIO.saveCPRData(1);	    	
+		
+    	//Initialize the ArrayList for the primary results
+    	ArrayList<Integer> primaryResults = new ArrayList<>();
+    	primaryResults = DataIO.getPrimaryResults();
     	
-			try {
-			    		
-				 		//(Calling saveCPRData throws an error rn so just commented stuff out)	  
-				    	//Note that to get the primaryEval results saveCPRData(1) must be called first - comment by Colton
-				    	DataIO.saveCPRData(1);	    	
-				    	
-				    	//Initialize the ArrayList for the primary results
-				    	ArrayList<Integer> primaryResults = new ArrayList<>();
-				    	primaryResults = DataIO.getPrimaryResults();
-				    	
-				    	//Note that primary results is structured [mean rate,mean depth, % w adequate recoil]
-				    	int meanRate = primaryResults.get(0);
-				    	int meanDepth = primaryResults.get(1);
-				    	int adequateRecoil = primaryResults.get(2);
-				    	
-				    	evalOneResultsRate.setText(Integer.toString(meanRate) + " cpm");
-				    	
-				    	// convert depth in mm to cm
-				    	float meanDepthCm = meanDepth/100;
-				    	evalOneResultsDepth.setText(Float.toString(meanDepth) + " cm");
-				    	evalOneResultsRecoil.setText(Integer.toString(adequateRecoil) +"%");    	
-				    	
-				    	// indicating which fields they passed or not
-				    	// 1. Rate
-				    	if (meanRate >= 100 && meanRate <= 120){
-				    		// set textfield to green
+    	//Note that primary results is structured [mean rate,mean depth, % w adequate recoil]
+    	int meanRate = primaryResults.get(0);
+    	int meanDepth = primaryResults.get(1);
+    	int adequateRecoil = primaryResults.get(2);
+    	
+    	evalOneResultsRate.setText(Integer.toString(meanRate) + " cpm");
+    	
+    	// convert depth in mm to cm
+    	float meanDepthCm = meanDepth/100;
+    	evalOneResultsDepth.setText(Float.toString(meanDepth) + " cm");
+    	evalOneResultsRecoil.setText(Integer.toString(adequateRecoil) +"%");    	
+    	
+    	// indicating which fields they passed or not
+    	// 1. Rate
+    	if (meanRate >= 100 && meanRate <= 120){
+    		// set textfield to green
 
-				    		evalOneResultsRate.setStyle("-fx-background-color: #91FF8E;");
-				    	} else {
-				    		// set textfield to red
-				    		evalOneResultsRate.setStyle("-fx-background-color: #FFA7A7;");
-				    	}
-				    	
-				    	
-				    	// 2. Depth
-				    	if (meanDepth >= 50 && meanDepth <= 60) {
-				    		evalOneResultsDepth.setStyle("-fx-background-color: #91FF8E;");
-				    	} else {
-				    		evalOneResultsDepth.setStyle("-fx-background-color: #FFA7A7;");
-				    	}
-				    	
-				    	
-				    	// 3. Recoil
-				    	if (adequateRecoil >= 80) {
-				    		evalOneResultsRecoil.setStyle("-fx-background-color: #91FF8E;");
-				    	} else {
-				    		evalOneResultsRecoil.setStyle("-fx-background-color: #FFA7A7;");
-				    	}
-				 
-				    	System.out.println("PrimaryEvalResults: Successful return of data to user");
-				    	
-				    	
-			    	} catch (Exception e) {
-			    		System.out.println("PrimaryEvalResults: Error returning data to user");
-			    		
-			    	}
-
-    	/*
-    	ArrayList<Integer> primaryResults = DataIO.getPrimaryResults();
-    	Integer rate = primaryResults.get(0);
-    	Integer depth = primaryResults.get(1);
-    	Integer recoil = primaryResults.get(2);
+    		evalOneResultsRate.setStyle("-fx-background-color: #91FF8E;");
+    	} else {
+    		// set textfield to red
+    		evalOneResultsRate.setStyle("-fx-background-color: #FFA7A7;");
+    	}
     	
-    	String rateResult = rate.toString();
-    	String depthResult = depth.toString();
-    	String recoilResult = recoil.toString();
     	
-    	evalOneResultsRate.setText(rateResult);
-    	evalOneResultsDepth.setText(depthResult);    	
-    	evalOneResultsRecoil.setText(recoilResult);
-    	*/
+    	// 2. Depth
+    	if (meanDepth >= 50 && meanDepth <= 60) {
+    		evalOneResultsDepth.setStyle("-fx-background-color: #91FF8E;");
+    	} else {
+    		evalOneResultsDepth.setStyle("-fx-background-color: #FFA7A7;");
+    	}
+    	
+    	
+    	// 3. Recoil
+    	if (adequateRecoil >= 80) {
+    		evalOneResultsRecoil.setStyle("-fx-background-color: #91FF8E;");
+    	} else {
+    		evalOneResultsRecoil.setStyle("-fx-background-color: #FFA7A7;");
+    	}
+ 
+    	System.out.println("PrimaryEvalResults: Successful return of data to user");
+	    	
     }
 
 }
