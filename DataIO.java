@@ -19,6 +19,18 @@ import java.net.URISyntaxException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Iterator;
+ 
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+
 public class DataIO {
 	
 	//The folder containing the raw XML files
@@ -424,6 +436,45 @@ public class DataIO {
         }    	
     }
     
+    public static void exportToLockedXLSX(ArrayList<Integer> data) {
+		
+		String filePath = "C:\\Users\\cbarr\\Desktop\\QRS_Test_Folder\\TestWorkBook.xlsx";
+		String password = "testpassword";
+		
+        //Convert the data to an ArrayList<String> and add the study code to the start
+        ArrayList<String> stringDataRow = getStringArray(data);
+        stringDataRow.add(0, Integer.toString(currentCode));
+		
+        try {
+        	//Create the input stream for the xlsx file
+        	InputStream inp = new FileInputStream(filePath);
+        	//Open the workbook and get the first sheet
+            Workbook workbook = WorkbookFactory.create(inp, password);
+            Sheet firstSheet = workbook.getSheetAt(0);
+            //Create a new row at the sheet's last row num in the sheet
+            int lastRow = firstSheet.getLastRowNum();
+            Row row = firstSheet.createRow(++lastRow);
+            
+            //Go through each value and write it to the column that corresponds with it's index in data
+            int index = 0;
+            for (String val : stringDataRow) {
+            	row.createCell(index).setCellValue(val);
+            	index++;
+            }
+
+            //Create output stream
+            FileOutputStream out = new FileOutputStream(filePath);
+            workbook.write(out);
+            out.close();
+            workbook.close();
+            inp.close();
+        } catch (EncryptedDocumentException | IOException
+                ex) {
+            ex.printStackTrace();
+        }
+  
+    }
+    
     
     public static void saveCPRData(int testNum) {
     	/*FIX THIS IMPORT TECHNIQUE BEFORE REPEATING TESTING
@@ -514,6 +565,8 @@ public class DataIO {
 	    		primaryResults.add(correctlyReleasedCompressions);	  
 	    		
 	    		primaryData.add(1); //Add the CPR round number to the start of the row
+	    		primaryData.add(date);
+	    		primaryData.add(time);
 	    		primaryData.add(surveyData.get(0));
 	    		primaryData.add(surveyData.get(1));
 	    		primaryData.add(totalCompressions);
@@ -534,10 +587,8 @@ public class DataIO {
 	    		primaryData.add(compressionMeanRate);
 	    		primaryData.add(corrrectHandPosition);
 	    		primaryData.add(compressionScore);
-	    		primaryData.add(date);
-	    		primaryData.add(time);
 	    		
-	    		exportToCSV(primaryData);
+	    		exportToLockedXLSX(primaryData);
 	    	}
 	    	else if (testNum == 2) {
 	    		secondaryResults.add(compressionMeanRate);
@@ -545,6 +596,8 @@ public class DataIO {
 	    		secondaryResults.add(correctlyReleasedCompressions);	    
 	    		
 	    		secondaryData.add(2); //Add the CPR round number to the start of the row
+	    		secondaryData.add(date);
+	    		secondaryData.add(time);
 	    		secondaryData.add(-1);
 	    		secondaryData.add(-1);
 	    		secondaryData.add(totalCompressions);
@@ -565,10 +618,8 @@ public class DataIO {
 	    		secondaryData.add(compressionMeanRate);
 	    		secondaryData.add(corrrectHandPosition);
 	    		secondaryData.add(compressionScore);
-	    		secondaryData.add(date);
-	    		secondaryData.add(time);
 	    		
-	    		exportToCSV(secondaryData);
+	    		exportToLockedXLSX(secondaryData);
 	    	}    
 	    	
 	    	
@@ -596,5 +647,48 @@ public class DataIO {
         }       
         return result;
     }
+	
+	
+	public static void testExcel() {
+		String filePath = "C:\\Users\\cbarr\\Desktop\\QRS_Test_Folder\\TestWorkBook.xlsx";
+		String password = "testpassword";
+		
+        try {
+            Workbook workbook = WorkbookFactory.create(new File(filePath), password);
+            Sheet firstSheet = workbook.getSheetAt(0);
+            Iterator<Row> iterator = firstSheet.iterator();
+ 
+            while (iterator.hasNext()) {
+                Row nextRow = iterator.next();
+                Iterator<Cell> cellIterator = nextRow.cellIterator();
+ 
+                while (cellIterator.hasNext()) {
+                    Cell cell = cellIterator.next();
+ 
+                    switch (cell.getCellType()) {
+                    case STRING:
+                        System.out.print(cell.getStringCellValue());
+                        break;
+                    case BOOLEAN:
+                        System.out.print(cell.getBooleanCellValue());
+                        break;
+                    case NUMERIC:
+                        System.out.print(cell.getNumericCellValue());
+                        break;
+					default:
+						break;
+                    }
+                    System.out.print("\t");
+                }
+                System.out.println();
+            }
+ 
+            workbook.close();
+        } catch (EncryptedDocumentException | IOException
+                ex) {
+            ex.printStackTrace();
+        }
+		
+	}
 	
 }
