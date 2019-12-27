@@ -12,13 +12,10 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-//import com.sun.xml.internal.txw2.Document;
-
 import java.io.*;
 import java.net.URISyntaxException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-
 
 import java.io.File;
 import java.io.IOException;
@@ -39,7 +36,7 @@ public class DataIO {
 	
 	//This folder value MUST BE CHANGED, for testing only
 //	private static String schedulingFolder = "C:\\Users\\cbarr\\Desktop\\QRS_Test_Folder";
-	private static String schedulingFolder = "C:\\Users\\cbarr\\Desktop\\QRS_Test_Folder\\Scheduling_Folder";
+	private static String schedulingFile = "C:\\Users\\cbarr\\Desktop\\QRS_Test_Folder\\Scheduling_File.csv";
 	
 	//Contains the results of the two survey questions
 	private static ArrayList<Integer> surveyData = new ArrayList<>();
@@ -53,66 +50,18 @@ public class DataIO {
     private static ArrayList<Integer> secondaryData = new ArrayList<>();
 
 	// main directory of the user data in csv
-//	private static String csvPath = "C:\\Users\\CPR QRS\\Desktop\\QRSTesting\\QRSTesting.csv";
 	private static String csvPath = "C:\\Users\\cbarr\\Desktop\\QRS_Test_Folder\\QRSTesting.csv";
     private static BufferedWriter bw = null;
     
     private static int currentCode = -1;
     
     public static String scheduleNextSession() {
-    	
-    	////////////////////////////////////////////////
-    	//Start by determining if the file exists; create
-    	
-    	//one if its doesn't.
-    	////////////////////////////////////////////////
-    	
-    	//State the name of the expected file/the file we will be creating
-    	String filename = schedulingFolder + "\\" + Integer.toString(getCurrentCode()) + "_scheduling_data.csv";
-    	
-    	//Determining if a scheduling file already exists for this participant in schedulingFolder
-		//Create file object at folder containing scheduling data
-    	File dir = new File (schedulingFolder);
-    	File[] matchingFiles = dir.listFiles(new FilenameFilter() {
-    		public boolean accept(File dir, String name) {
-    			return name.equalsIgnoreCase(Integer.toString(getCurrentCode()) + "_scheduling_data.csv");
-    		}
-    	});
-    	
-    	//Initialize file
-    	File schedule;
-
-    	//If there are no matching file, create a new scheduling file
-    	if (matchingFiles.length == 0) {
-    		
-    		String firstRow = "Session Number,Date Completed,Time Completed,Pre-Test Result,Post-Test Result," + 
-    							"Months Until Next Session";
-    		
-    		//Create the new file and initialize a BufferedWriter
-    		schedule = new File(filename);
-    		BufferedWriter writer;
-			try {
-	    		schedule.createNewFile();
-				writer = new BufferedWriter(new FileWriter(schedule));
-				writer.append(firstRow);
-	    		writer.close();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-    	} else {
-    		schedule = matchingFiles[0];
-    	}
-    	
-    	////////////////////////////////////////////////
-    	//Read the last two lines of the file to determine
-    	//Session Number, Months Until Next Session and
-    	//Next Session Date.
-    	////////////////////////////////////////////////
 		
-		String lastLine = "";
+		String studyCodeLastLine = "";
+		int latestSessionNumber = -1;
 		
 		try {
-			FileInputStream in = new FileInputStream(filename);
+			FileInputStream in = new FileInputStream(schedulingFile);
 			BufferedReader br = new BufferedReader(new InputStreamReader(in));
 
 			//Create a temporary string to hold the line being read
@@ -124,8 +73,14 @@ public class DataIO {
 			
 			while ((tmp = br.readLine()) != null)
 			{
-//				secondLastLine = lastLine;
-			    lastLine = tmp;
+				String[] parts = tmp.split("\\s*,\\s*");
+
+				//If the study code is equal to our current study code and the session number is larger than latestSessionNumber
+				if (parts[0] == Integer.toString(currentCode) && Integer.parseInt(parts[1]) > latestSessionNumber) {
+					studyCodeLastLine = tmp;
+					latestSessionNumber = Integer.parseInt(parts[1]);
+				}
+					
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -133,7 +88,7 @@ public class DataIO {
 		}
 		
 		// most important step here!!
-		String[] nextRow = getNextScheduleRow(lastLine);
+		String[] nextRow = getNextScheduleRow(studyCodeLastLine);
 		
 		//Convert the String array to a single string
 		String nextRowString = "";
@@ -144,7 +99,7 @@ public class DataIO {
 		//Write the new row string to the file
 		BufferedWriter writer;
 		try {
-			writer = new BufferedWriter(new FileWriter(schedule,true));
+			writer = new BufferedWriter(new FileWriter(schedulingFile,true));
 			writer.newLine();
 			writer.append(nextRowString);
     		writer.close();
@@ -159,8 +114,11 @@ public class DataIO {
     
     public static String[] getNextScheduleRow(String lastLine) {
     	
-    	String[] newSchedule = new String[6];
+    	String[] newSchedule = new String[7];
     	Arrays.fill(newSchedule, "");
+    	
+    	//Add the current study code to the 0th position
+    	newSchedule[0] = Integer.toString(getCurrentCode());
     	
     	//Get the pass/fail status of each round of CPR completed
     	boolean round1Passed = evaluationOnePassed();
@@ -189,8 +147,8 @@ public class DataIO {
     	}
     	
     	//Add the round1StrResult and round2StrResult to the ArrayList
-    	newSchedule[3] = round1StrResult;
-    	newSchedule[4] = round2StrResult;
+    	newSchedule[4] = round1StrResult;
+    	newSchedule[5] = round2StrResult;
     	
     	//Generate the date and time stamps needed for a row in the schedule
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -199,22 +157,22 @@ public class DataIO {
 		String time = tf.format(new Date());
 		
 		//Add the date and time to the corresponding positions in the ArrayList
-    	newSchedule[1] = date;
-    	newSchedule[2] = time;		
+    	newSchedule[2] = date;
+    	newSchedule[3] = time;		
     	
 		if (lastLine == "") {
 			//Case 1: The file is empty because it was just created.
 			//Start by adding the session number, which in this case is 1
-			newSchedule[0] = "1";
+			newSchedule[1] = "1";
 			
 			if (round1Passed) {
 				//If the participant passed round 1, schedule in 3 months
-				newSchedule[5] = "3";		
+				newSchedule[6] = "3";		
 				
 			} else {
 				//In this case, regardless of the result of the second test, the participant must
 				//come back in one month (either same interval, ie 1 month, or explicitly 1 month)
-				newSchedule[5] = "1";		
+				newSchedule[6] = "1";		
 			}
 			
 		} else {
@@ -223,12 +181,12 @@ public class DataIO {
 			ArrayList<String> lastLineList = new ArrayList<String>(Arrays.asList(lastLine.split("\\s*,\\s*")));
 			
 			//To set the session date, get the first element in LastLineList and add 1
-			newSchedule[0] = Integer.toString(Integer.parseInt(lastLineList.get(0))+1);
+			newSchedule[1] = Integer.toString(Integer.parseInt(lastLineList.get(1))+1);
 			
 			if (round1Passed) {
 				//If the participant passed round 1, take the previous line's "months until next session"
 				//and increment appropriately
-				int previousInterval = Integer.parseInt(lastLineList.get(5));
+				int previousInterval = Integer.parseInt(lastLineList.get(6));
 				int newInterval;
 				
 				if (previousInterval == 1)
@@ -243,7 +201,7 @@ public class DataIO {
 					newInterval = previousInterval; //In case there's some unknown interval, double it.
 				
 				//Add the new interval to the schedule document and determine the nextSessionDate
-				newSchedule[5] = Integer.toString(newInterval);		
+				newSchedule[6] = Integer.toString(newInterval);		
 			} else {
 				//If the participant didn't pass round 1, then their return interval is determined
 				//by their performance on the second round of CPR
@@ -251,7 +209,7 @@ public class DataIO {
 					//If the participant passes their second round after failing their first, then
 					//they return at the same interval as their most recent session
 					int newInterval = Integer.parseInt(lastLineList.get(5));
-					newSchedule[5] = Integer.toString(newInterval);					
+					newSchedule[6] = Integer.toString(newInterval);					
 				} else {
 					//If the participant didn't pass either round of CPR, then they must return in
 					//1 month. We must also determine whether they failed both rounds of CPR
@@ -260,12 +218,12 @@ public class DataIO {
 					if (lastLineList.get(3).equals("FAIL") && lastLineList.get(4).equals("FAIL")) {
 						//In this case the participant has failed both rounds of CPR for 2 sessions
 						//in a row
-						newSchedule[5] = "1";								
+						newSchedule[6] = "1";								
 						System.out.println("Please see trainer for further information.");
 					} else {
 						//In this case the participant failed both rounds this session, but passed
 						//at least one round last session. They must come back in 1 month.
-						newSchedule[5] = "1";		
+						newSchedule[6] = "1";		
 					}//end else
 				}//end else
 			}//end else
@@ -646,49 +604,5 @@ public class DataIO {
             } 
         }       
         return result;
-    }
-	
-	
-	public static void testExcel() {
-		String filePath = "C:\\Users\\cbarr\\Desktop\\QRS_Test_Folder\\TestWorkBook.xlsx";
-		String password = "testpassword";
-		
-        try {
-            Workbook workbook = WorkbookFactory.create(new File(filePath), password);
-            Sheet firstSheet = workbook.getSheetAt(0);
-            Iterator<Row> iterator = firstSheet.iterator();
- 
-            while (iterator.hasNext()) {
-                Row nextRow = iterator.next();
-                Iterator<Cell> cellIterator = nextRow.cellIterator();
- 
-                while (cellIterator.hasNext()) {
-                    Cell cell = cellIterator.next();
- 
-                    switch (cell.getCellType()) {
-                    case STRING:
-                        System.out.print(cell.getStringCellValue());
-                        break;
-                    case BOOLEAN:
-                        System.out.print(cell.getBooleanCellValue());
-                        break;
-                    case NUMERIC:
-                        System.out.print(cell.getNumericCellValue());
-                        break;
-					default:
-						break;
-                    }
-                    System.out.print("\t");
-                }
-                System.out.println();
-            }
- 
-            workbook.close();
-        } catch (EncryptedDocumentException | IOException
-                ex) {
-            ex.printStackTrace();
-        }
-		
-	}
-	
+    }	
 }
