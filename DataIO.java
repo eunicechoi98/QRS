@@ -30,13 +30,14 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 public class DataIO {
 	
+	
 	//The folder containing the raw XML files
 //	private static String folderWithRaw = "C:/Users/CPR QRS/Documents/ResusciAnneWirelessSkillReporter/HighScore/ClassroomScore";
-	private static String folderWithRaw = "C:\\Users\\cbarr\\Desktop\\QRS_Test_Folder\\Raw_Folder";
+	private static String folderWithRaw = "C:\\Users\\colto\\OneDrive\\Desktop\\QRS_Test_Folder\\Raw_Folder";
 	
 	//This folder value MUST BE CHANGED, for testing only
 //	private static String schedulingFolder = "C:\\Users\\cbarr\\Desktop\\QRS_Test_Folder";
-	private static String schedulingFile = "C:\\Users\\cbarr\\Desktop\\QRS_Test_Folder\\Scheduling_File.csv";
+	private static String schedulingFile = "C:\\Users\\colto\\OneDrive\\Desktop\\QRS_Test_Folder\\Scheduling_File.csv";
 	
 	//Contains the results of the two survey questions
 	private static ArrayList<Integer> surveyData = new ArrayList<>();
@@ -50,7 +51,7 @@ public class DataIO {
     private static ArrayList<Integer> secondaryData = new ArrayList<>();
 
 	// main directory of the user data in csv
-	private static String csvPath = "C:\\Users\\cbarr\\Desktop\\QRS_Test_Folder\\QRSTesting.csv";
+	private static String csvPath = "C:\\Users\\colto\\OneDrive\\Desktop\\QRS_Test_Folder\\QRSTesting.csv";
     private static BufferedWriter bw = null;
     
     private static int currentCode = -1;
@@ -74,9 +75,11 @@ public class DataIO {
 			while ((tmp = br.readLine()) != null)
 			{
 				String[] parts = tmp.split("\\s*,\\s*");
+				System.out.println("Current temp: " + tmp);
 
 				//If the study code is equal to our current study code and the session number is larger than latestSessionNumber
-				if (parts[0] == Integer.toString(currentCode) && Integer.parseInt(parts[1]) > latestSessionNumber) {
+				if (Integer.parseInt(parts[0]) == currentCode && Integer.parseInt(parts[1]) > latestSessionNumber) {
+					System.out.println("in if block");
 					studyCodeLastLine = tmp;
 					latestSessionNumber = Integer.parseInt(parts[1]);
 				}
@@ -100,8 +103,8 @@ public class DataIO {
 		BufferedWriter writer;
 		try {
 			writer = new BufferedWriter(new FileWriter(schedulingFile,true));
-			writer.newLine();
 			writer.append(nextRowString);
+			writer.newLine();
     		writer.close();
 		} catch (IOException e1) {
 			e1.printStackTrace();
@@ -113,6 +116,8 @@ public class DataIO {
     } 
     
     public static String[] getNextScheduleRow(String lastLine) {
+    	
+    	System.out.println("Last line: " + lastLine);
     	
     	String[] newSchedule = new String[7];
     	Arrays.fill(newSchedule, "");
@@ -396,7 +401,7 @@ public class DataIO {
     
     public static void exportToLockedXLSX(ArrayList<Integer> data) {
 		
-		String filePath = "C:\\Users\\cbarr\\Desktop\\QRS_Test_Folder\\TestWorkBook.xlsx";
+		String filePath = "C:\\Users\\colto\\OneDrive\\Desktop\\QRS_Test_Folder\\TestWorkBook.xlsx";
 		String password = "testpassword";
 		
         //Convert the data to an ArrayList<String> and add the study code to the start
