@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,22 +40,30 @@ public class DataIO {
 //	private static String schedulingFolder = "C:\\Users\\cbarr\\Desktop\\QRS_Test_Folder";
 	private static String schedulingFile = "C:\\Users\\colto\\OneDrive\\Desktop\\QRS_Test_Folder\\Scheduling_File.csv";
 	
+	//Data file path and password
+	private static String dataFilePath = "C:\\Users\\colto\\OneDrive\\Desktop\\QRS_Test_Folder\\TestWorkBook.xlsx";
+	private static String dataPassword = "testpassword";
+
+	//Schedule file path and password
+	private static String scheduleFilePath = "C:\\Users\\colto\\OneDrive\\Desktop\\QRS_Test_Folder\\Scheduling_File.xlsx";
+	private static String schedulePassword = "testpassword";
+
 	//Contains the results of the two survey questions
-	private static ArrayList<Integer> surveyData = new ArrayList<>();
+	private static ArrayList<String> surveyData = new ArrayList<>();
 	
 	//Contains the values of interest for the PrimaryEvalResults pane.
 	private static ArrayList<Integer> primaryResults = new ArrayList<>();
-    private static ArrayList<Integer> primaryData = new ArrayList<>();
+    private static ArrayList<String> primaryData = new ArrayList<>();
 	
 	//Contains the values of interest from the second round of CPR
 	private static ArrayList<Integer> secondaryResults = new ArrayList<>();	
-    private static ArrayList<Integer> secondaryData = new ArrayList<>();
+    private static ArrayList<String> secondaryData = new ArrayList<>();
 
-	// main directory of the user data in csv
+	//Main directory of the user data in csv
 	private static String csvPath = "C:\\Users\\colto\\OneDrive\\Desktop\\QRS_Test_Folder\\QRSTesting.csv";
     private static BufferedWriter bw = null;
     
-    private static int currentCode = -1;
+    private static String currentCode = "";
     
     public static String scheduleNextSession() {
 		
@@ -78,7 +87,7 @@ public class DataIO {
 				System.out.println("Current temp: " + tmp);
 
 				//If the study code is equal to our current study code and the session number is larger than latestSessionNumber
-				if (Integer.parseInt(parts[0]) == currentCode && Integer.parseInt(parts[1]) > latestSessionNumber) {
+				if (parts[0].equals(currentCode) && Integer.parseInt(parts[1]) > latestSessionNumber) {
 					System.out.println("in if block");
 					studyCodeLastLine = tmp;
 					latestSessionNumber = Integer.parseInt(parts[1]);
@@ -91,39 +100,41 @@ public class DataIO {
 		}
 		
 		// most important step here!!
-		String[] nextRow = getNextScheduleRow(studyCodeLastLine);
+		ArrayList<String> nextRow = getNextScheduleRow(studyCodeLastLine);
 		
-		//Convert the String array to a single string
-		String nextRowString = "";
-		for (int i = 0;i<nextRow.length;i++) {
-			nextRowString = nextRowString + nextRow[i] + ",";
-		}
+		//Export the scheduling data to the locked scheduling file
+		exportToLockedXLSX(nextRow, scheduleFilePath, schedulePassword);
 		
-		//Write the new row string to the file
-		BufferedWriter writer;
-		try {
-			writer = new BufferedWriter(new FileWriter(schedulingFile,true));
-			writer.append(nextRowString);
-			writer.newLine();
-    		writer.close();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+//		//Convert the String array to a single string
+//		String nextRowString = "";
+//		for (int i = 0;i<nextRow.length;i++) {
+//			nextRowString = nextRowString + nextRow[i] + ",";
+//		}
+//		
+//		//Write the new row string to the file
+//		BufferedWriter writer;
+//		try {
+//			writer = new BufferedWriter(new FileWriter(schedulingFile,true));
+//			writer.append(nextRowString);
+//			writer.newLine();
+//    		writer.close();
+//		} catch (IOException e1) {
+//			e1.printStackTrace();
+//		}
 		
-        return nextRow[(nextRow.length)-1];
+        return nextRow.get(6);
         // what exactly is the result of this string?
         // is this just giving the result or is it also saving the data to the CSV?
     } 
     
-    public static String[] getNextScheduleRow(String lastLine) {
+    public static ArrayList<String> getNextScheduleRow(String lastLine) {
     	
     	System.out.println("Last line: " + lastLine);
     	
-    	String[] newSchedule = new String[7];
-    	Arrays.fill(newSchedule, "");
+    	ArrayList<String> newSchedule = new ArrayList<String>(Collections.nCopies(7,""));
     	
     	//Add the current study code to the 0th position
-    	newSchedule[0] = Integer.toString(getCurrentCode());
+    	newSchedule.set(0, getCurrentCode());
     	
     	//Get the pass/fail status of each round of CPR completed
     	boolean round1Passed = evaluationOnePassed();
@@ -152,8 +163,8 @@ public class DataIO {
     	}
     	
     	//Add the round1StrResult and round2StrResult to the ArrayList
-    	newSchedule[4] = round1StrResult;
-    	newSchedule[5] = round2StrResult;
+    	newSchedule.set(4, round1StrResult);
+    	newSchedule.set(5, round2StrResult);
     	
     	//Generate the date and time stamps needed for a row in the schedule
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -162,22 +173,22 @@ public class DataIO {
 		String time = tf.format(new Date());
 		
 		//Add the date and time to the corresponding positions in the ArrayList
-    	newSchedule[2] = date;
-    	newSchedule[3] = time;		
+		newSchedule.set(2, date);
+		newSchedule.set(3, time);		
     	
 		if (lastLine == "") {
 			//Case 1: The file is empty because it was just created.
 			//Start by adding the session number, which in this case is 1
-			newSchedule[1] = "1";
+			newSchedule.set(1, "1");
 			
 			if (round1Passed) {
 				//If the participant passed round 1, schedule in 3 months
-				newSchedule[6] = "3";		
+				newSchedule.set(6, "3");		
 				
 			} else {
 				//In this case, regardless of the result of the second test, the participant must
 				//come back in one month (either same interval, ie 1 month, or explicitly 1 month)
-				newSchedule[6] = "1";		
+				newSchedule.set(6, "1");		
 			}
 			
 		} else {
@@ -186,7 +197,7 @@ public class DataIO {
 			ArrayList<String> lastLineList = new ArrayList<String>(Arrays.asList(lastLine.split("\\s*,\\s*")));
 			
 			//To set the session date, get the first element in LastLineList and add 1
-			newSchedule[1] = Integer.toString(Integer.parseInt(lastLineList.get(1))+1);
+			newSchedule.set(1, Integer.toString(Integer.parseInt(lastLineList.get(1))+1));
 			
 			if (round1Passed) {
 				//If the participant passed round 1, take the previous line's "months until next session"
@@ -206,7 +217,7 @@ public class DataIO {
 					newInterval = previousInterval; //In case there's some unknown interval, double it.
 				
 				//Add the new interval to the schedule document and determine the nextSessionDate
-				newSchedule[6] = Integer.toString(newInterval);		
+				newSchedule.set(6, Integer.toString(newInterval));		
 			} else {
 				//If the participant didn't pass round 1, then their return interval is determined
 				//by their performance on the second round of CPR
@@ -214,7 +225,7 @@ public class DataIO {
 					//If the participant passes their second round after failing their first, then
 					//they return at the same interval as their most recent session
 					int newInterval = Integer.parseInt(lastLineList.get(5));
-					newSchedule[6] = Integer.toString(newInterval);					
+					newSchedule.set(6, Integer.toString(newInterval));					
 				} else {
 					//If the participant didn't pass either round of CPR, then they must return in
 					//1 month. We must also determine whether they failed both rounds of CPR
@@ -223,12 +234,12 @@ public class DataIO {
 					if (lastLineList.get(3).equals("FAIL") && lastLineList.get(4).equals("FAIL")) {
 						//In this case the participant has failed both rounds of CPR for 2 sessions
 						//in a row
-						newSchedule[6] = "1";								
+						newSchedule.set(6, "1");								
 						System.out.println("Please see trainer for further information.");
 					} else {
 						//In this case the participant failed both rounds this session, but passed
 						//at least one round last session. They must come back in 1 month.
-						newSchedule[6] = "1";		
+						newSchedule.set(6, "1");		
 					}//end else
 				}//end else
 			}//end else
@@ -353,21 +364,21 @@ public class DataIO {
     }
     
 
-    public static void setCurrentCode(int code) {
+    public static void setCurrentCode(String code) {
     	currentCode = code;
     }
     
-    public static int getCurrentCode() {
+    public static String getCurrentCode() {
     	return currentCode;
     }
     
-    public static void savePreQuestions(int exposure, int comfort) {
+    public static void savePreQuestions(String exposure, String comfort) {
 		surveyData.add(exposure);
 		surveyData.add(comfort);
     }
     
     public static void resetData() {
-    	currentCode = -1;
+    	currentCode = "";
     	surveyData.clear();
     	primaryResults.clear();
     	primaryData.clear();
@@ -378,7 +389,7 @@ public class DataIO {
     public static void exportToCSV(ArrayList<Integer> data) {
 		ArrayList<String> stringDataRow = getStringArray(data);
 		String newRow;
-		newRow = Integer.toString(currentCode) + "," + stringDataRow.stream().collect(Collectors.joining(",")) + "\n";
+		newRow = currentCode + "," + stringDataRow.stream().collect(Collectors.joining(",")) + "\n";
 		System.out.println(newRow);
     	try {
             FileWriter pw = new FileWriter(csvPath, true);
@@ -399,14 +410,7 @@ public class DataIO {
         }    	
     }
     
-    public static void exportToLockedXLSX(ArrayList<Integer> data) {
-		
-		String filePath = "C:\\Users\\colto\\OneDrive\\Desktop\\QRS_Test_Folder\\TestWorkBook.xlsx";
-		String password = "testpassword";
-		
-        //Convert the data to an ArrayList<String> and add the study code to the start
-        ArrayList<String> stringDataRow = getStringArray(data);
-        stringDataRow.add(0, Integer.toString(currentCode));
+    public static void exportToLockedXLSX(ArrayList<String> data, String filePath, String password) {
 		
         try {
         	//Create the input stream for the xlsx file
@@ -420,7 +424,7 @@ public class DataIO {
             
             //Go through each value and write it to the column that corresponds with it's index in data
             int index = 0;
-            for (String val : stringDataRow) {
+            for (String val : data) {
             	row.createCell(index).setCellValue(val);
             	index++;
             }
@@ -444,16 +448,16 @@ public class DataIO {
     	 * - May be prone to reimporting the same files that appear first under a participant's
     	 * study code and test #.
     	 */
-    	int totalCompressions;
-    	int correctlyReleasedCompressions;
-    	int compressionMeanDepth;
-    	int[] depthData = new int[3]; //[too shallow,adequate depth,too deep]
-    	int[] rateData = new int[3]; //[too slow,adequate speed,too fast]
-    	int compressionMeanRate;
-    	int corrrectHandPosition;
-    	int compressionScore;
-    	int date;
-    	int time;
+    	String totalCompressions;
+    	String correctlyReleasedCompressions;
+    	String compressionMeanDepth;
+    	String[] depthData = new String[3]; //[too shallow,adequate depth,too deep]
+    	String[] rateData = new String[3]; //[too slow,adequate speed,too fast]
+    	String compressionMeanRate;
+    	String corrrectHandPosition;
+    	String compressionScore;
+    	String date;
+    	String time;
     	
     	try {
     		//Get the current date and format into string
@@ -473,7 +477,7 @@ public class DataIO {
 	    	
 	    	File[] matchingFiles = f.listFiles(new FilenameFilter() {
 	    		public boolean accept(File dir, String name) {
-	    			return name.startsWith(Integer.toString(getCurrentCode()) + "_" + Integer.toString(testNum))
+	    			return name.startsWith(getCurrentCode() + "_" + Integer.toString(testNum))
 	    					&& name.endsWith(".xml");
 	    		}
 	    	});
@@ -496,38 +500,38 @@ public class DataIO {
 	    	Element eElement = (Element) result;
 	    	
 	    	//Extract values of interest
-	    	totalCompressions = Integer.parseInt(eElement.getElementsByTagName("TotalCompressions").item(0).getTextContent());
-	    	correctlyReleasedCompressions = Integer.parseInt(eElement.getElementsByTagName("CorrectlyReleasedCompression").item(0).getTextContent());
-	    	compressionMeanDepth = Integer.parseInt(eElement.getElementsByTagName("CompressionMeanDepth").item(0).getTextContent());
-	    	compressionMeanRate = Integer.parseInt(eElement.getElementsByTagName("CompressionMeanRate").item(0).getTextContent());
-	    	corrrectHandPosition = Integer.parseInt(eElement.getElementsByTagName("CorrectHandPosition").item(0).getTextContent());
-	    	compressionScore = Integer.parseInt(eElement.getElementsByTagName("CompressionScore").item(0).getTextContent());
+	    	totalCompressions = eElement.getElementsByTagName("TotalCompressions").item(0).getTextContent();
+	    	correctlyReleasedCompressions = eElement.getElementsByTagName("CorrectlyReleasedCompression").item(0).getTextContent();
+	    	compressionMeanDepth = eElement.getElementsByTagName("CompressionMeanDepth").item(0).getTextContent();
+	    	compressionMeanRate = eElement.getElementsByTagName("CompressionMeanRate").item(0).getTextContent();
+	    	corrrectHandPosition = eElement.getElementsByTagName("CorrectHandPosition").item(0).getTextContent();
+	    	compressionScore = eElement.getElementsByTagName("CompressionScore").item(0).getTextContent();
 	    	
 	    	Node depthList = eElement.getElementsByTagName("CompressionDepthStats").item(0);
 	    	Element eDepthList = (Element) depthList;
-	    	depthData[0] = Integer.parseInt(eDepthList.getElementsByTagName("TooShallow").item(0).getTextContent());
-	    	depthData[1] = Integer.parseInt(eDepthList.getElementsByTagName("AdequateDepth").item(0).getTextContent());
-	    	depthData[2] = Integer.parseInt(eDepthList.getElementsByTagName("TooDeep").item(0).getTextContent());
+	    	depthData[0] = eDepthList.getElementsByTagName("TooShallow").item(0).getTextContent();
+	    	depthData[1] = eDepthList.getElementsByTagName("AdequateDepth").item(0).getTextContent();
+	    	depthData[2] = eDepthList.getElementsByTagName("TooDeep").item(0).getTextContent();
 	    	
 	    	Node rateList = eElement.getElementsByTagName("CompressionRateStats").item(0);
 	    	Element eRateList = (Element) rateList;
-	    	rateData[0] = Integer.parseInt(eRateList.getElementsByTagName("TooSlow").item(0).getTextContent());
-	    	rateData[1] = Integer.parseInt(eRateList.getElementsByTagName("AdequateRate").item(0).getTextContent());
-	    	rateData[2] = Integer.parseInt(eRateList.getElementsByTagName("TooFast").item(0).getTextContent());
+	    	rateData[0] = eRateList.getElementsByTagName("TooSlow").item(0).getTextContent();
+	    	rateData[1] = eRateList.getElementsByTagName("AdequateRate").item(0).getTextContent();
+	    	rateData[2] = eRateList.getElementsByTagName("TooFast").item(0).getTextContent();
 	    	
 	    	String tempDate = eElement.getElementsByTagName("Date").item(0).getTextContent();
 	    	String tempTime = eElement.getElementsByTagName("Time").item(0).getTextContent();
 	    	
-	    	date = Integer.parseInt(tempDate.replaceAll("\\p{P}", ""));
-	    	time = Integer.parseInt(tempTime.replaceAll("\\p{P}", ""));
+	    	date = tempDate.replaceAll("\\p{P}", "");
+	    	time = tempTime.replaceAll("\\p{P}", "");
 	    	
 
 	    	if (testNum == 1) {
-	    		primaryResults.add(compressionMeanRate);
-	    		primaryResults.add(compressionMeanDepth);
-	    		primaryResults.add(correctlyReleasedCompressions);	  
+	    		primaryResults.add(Integer.parseInt(compressionMeanRate));
+	    		primaryResults.add(Integer.parseInt(compressionMeanDepth));
+	    		primaryResults.add(Integer.parseInt(correctlyReleasedCompressions));	  
 	    		
-	    		primaryData.add(1); //Add the CPR round number to the start of the row
+	    		primaryData.add("1"); //Add the CPR round number to the start of the row
 	    		primaryData.add(date);
 	    		primaryData.add(time);
 	    		primaryData.add(surveyData.get(0));
@@ -536,53 +540,59 @@ public class DataIO {
 	    		primaryData.add(correctlyReleasedCompressions);
 	    		primaryData.add(compressionMeanDepth);
 	    		primaryData.add(depthData[0]);
-	    		primaryData.add(-1);
+	    		primaryData.add("-1");
 	    		primaryData.add(depthData[1]);
-	    		primaryData.add(-1);
+	    		primaryData.add("-1");
 	    		primaryData.add(depthData[2]);
-	    		primaryData.add(-1);
+	    		primaryData.add("-1");
 	    		primaryData.add(rateData[0]);
-	    		primaryData.add(-1);
+	    		primaryData.add("-1");
 	    		primaryData.add(rateData[1]);
-	    		primaryData.add(-1);
+	    		primaryData.add("-1");
 	    		primaryData.add(rateData[2]);
-	    		primaryData.add(-1);
+	    		primaryData.add("-1");
 	    		primaryData.add(compressionMeanRate);
 	    		primaryData.add(corrrectHandPosition);
 	    		primaryData.add(compressionScore);
 	    		
-	    		exportToLockedXLSX(primaryData);
+	    		//Add the current code to the start of the ArrayList
+	    		primaryData.add(0, currentCode);
+	    		
+	    		exportToLockedXLSX(primaryData, dataFilePath, dataPassword);
 	    	}
 	    	else if (testNum == 2) {
-	    		secondaryResults.add(compressionMeanRate);
-	    		secondaryResults.add(compressionMeanDepth);
-	    		secondaryResults.add(correctlyReleasedCompressions);	    
+	    		secondaryResults.add(Integer.parseInt(compressionMeanRate));
+	    		secondaryResults.add(Integer.parseInt(compressionMeanDepth));
+	    		secondaryResults.add(Integer.parseInt(correctlyReleasedCompressions));	    
 	    		
-	    		secondaryData.add(2); //Add the CPR round number to the start of the row
+	    		secondaryData.add("2"); //Add the CPR round number to the start of the row
 	    		secondaryData.add(date);
 	    		secondaryData.add(time);
-	    		secondaryData.add(-1);
-	    		secondaryData.add(-1);
+	    		secondaryData.add("-1");
+	    		secondaryData.add("-1");
 	    		secondaryData.add(totalCompressions);
 	    		secondaryData.add(correctlyReleasedCompressions);
 	    		secondaryData.add(compressionMeanDepth);
 	    		secondaryData.add(depthData[0]);
-	    		secondaryData.add(-1);
+	    		secondaryData.add("-1");
 	    		secondaryData.add(depthData[1]);
-	    		secondaryData.add(-1);
+	    		secondaryData.add("-1");
 	    		secondaryData.add(depthData[2]);
-	    		secondaryData.add(-1);
+	    		secondaryData.add("-1");
 	    		secondaryData.add(rateData[0]);
-	    		secondaryData.add(-1);
+	    		secondaryData.add("-1");
 	    		secondaryData.add(rateData[1]);
-	    		secondaryData.add(-1);
+	    		secondaryData.add("-1");
 	    		secondaryData.add(rateData[2]);
-	    		secondaryData.add(-1);
+	    		secondaryData.add("-1");
 	    		secondaryData.add(compressionMeanRate);
 	    		secondaryData.add(corrrectHandPosition);
 	    		secondaryData.add(compressionScore);
 	    		
-	    		exportToLockedXLSX(secondaryData);
+	    		//Add the current code to the start of the ArrayList
+	    		secondaryData.add(0, currentCode);
+	    		
+	    		exportToLockedXLSX(secondaryData, dataFilePath, dataPassword);
 	    	}    
 	    	
 	    	

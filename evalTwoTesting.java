@@ -9,11 +9,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 import java.awt.AWTException;
-import java.awt;
+//import java.awt;
 
 public class evalTwoTesting {
 	@FXML // ResourceBundle that was given to the FXMLLoader

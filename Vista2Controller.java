@@ -72,7 +72,7 @@ public class Vista2Controller {
     void nextAction(ActionEvent event) {
     	int comfort = toggleGroupScale.getToggles().indexOf(toggleGroupScale.getSelectedToggle()) + 1;
     	int exposure = 1 - toggleGroupYN.getToggles().indexOf(toggleGroupYN.getSelectedToggle());
-    	DataIO.savePreQuestions(exposure, comfort);
+    	DataIO.savePreQuestions(Integer.toString(exposure), Integer.toString(comfort));
     	VistaNavigator.loadVista(VistaNavigator.VISTA_3);
     }
 
