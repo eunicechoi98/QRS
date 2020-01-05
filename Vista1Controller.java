@@ -34,9 +34,11 @@ public class Vista1Controller {
     
     @FXML
     void onEnter(ActionEvent event) {
-    	if (studyCodeTextBox.getText().isEmpty() == false) {
-    		DataIO.setCurrentCode(studyCodeTextBox.getText());
-    		VistaNavigator.loadVista(VistaNavigator.VISTA_2);
+    	String userInput = studyCodeTextBox.getText();
+    	if (userInput.isEmpty() == false) {
+    		if (DataIO.validateUsername(userInput)) {
+	    		VistaNavigator.loadVista(VistaNavigator.VISTA_2);
+	    	}
     	}
     }
     

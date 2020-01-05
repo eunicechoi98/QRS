@@ -39,7 +39,7 @@ public class MouseMovements {
 		robot.mouseRelease(InputEvent.BUTTON1_MASK);
 		robot.delay(750); 
 		
-		String saveString = DataIO.getCurrentCode() + "_" + Integer.toString(testNum);
+		String saveString = DataIO.getAnonCode() + "_" + Integer.toString(testNum);
 		StringSelection stringSelection = new StringSelection(saveString);
 		Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 		clipboard.setContents(stringSelection, stringSelection);

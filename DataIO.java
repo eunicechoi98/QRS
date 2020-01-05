@@ -24,6 +24,7 @@ import java.util.Iterator;
  
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -47,6 +48,10 @@ public class DataIO {
 	//Schedule file path and password
 	private static String scheduleFilePath = "C:\\Users\\colto\\OneDrive\\Desktop\\QRS_Test_Folder\\Scheduling_File.xlsx";
 	private static String schedulePassword = "testpassword";
+	
+	//Username file path and password
+	private static String usernameFilePath = "C:\\Users\\colto\\OneDrive\\Desktop\\QRS_Test_Folder\\Usernames.xlsx";
+	private static String usernamePassword = "testpassword";
 
 	//Contains the results of the two survey questions
 	private static ArrayList<String> surveyData = new ArrayList<>();
@@ -63,7 +68,50 @@ public class DataIO {
 	private static String csvPath = "C:\\Users\\colto\\OneDrive\\Desktop\\QRS_Test_Folder\\QRSTesting.csv";
     private static BufferedWriter bw = null;
     
-    private static String currentCode = "";
+    private static String username = "";
+    private static String anonymousCode = "";
+    
+    public static boolean validateUsername(String inputUsername) {
+    	
+        try {
+        	//Create the input stream for the xlsx file
+        	InputStream inp = new FileInputStream(usernameFilePath);
+        	//Open the workbook and get the first sheet
+            Workbook workbook = WorkbookFactory.create(inp, usernamePassword);
+            Sheet firstSheet = workbook.getSheetAt(0);
+            
+            String tempUsername;
+            
+            DataFormatter dataFormatter = new DataFormatter();
+            
+            System.out.println("inputUsername: " + inputUsername);
+            
+            //Iterate through all rows of the sheet
+            for (Row row: firstSheet) {
+            	tempUsername = dataFormatter.formatCellValue(row.getCell(0));
+            	System.out.println("current temp: " + tempUsername);
+            	if (tempUsername.equals(inputUsername)) {
+            		//In this case, the input username is found in the Username spreadsheet
+            		System.out.println("Username found!");
+            		setUsername(tempUsername);
+            		setAnonCode(dataFormatter.formatCellValue(row.getCell(1)));
+                    workbook.close();
+                    inp.close();
+                    return true;
+            	}
+            }
+            
+            System.out.println("Code was invalid");
+            
+            workbook.close();
+            inp.close();
+        } catch (EncryptedDocumentException | IOException
+                ex) {
+            ex.printStackTrace();
+        } 	
+    	
+    	return false;
+    }
     
     public static String scheduleNextSession() {
 		
@@ -87,7 +135,7 @@ public class DataIO {
 				System.out.println("Current temp: " + tmp);
 
 				//If the study code is equal to our current study code and the session number is larger than latestSessionNumber
-				if (parts[0].equals(currentCode) && Integer.parseInt(parts[1]) > latestSessionNumber) {
+				if (parts[0].equals(username) && Integer.parseInt(parts[1]) > latestSessionNumber) {
 					System.out.println("in if block");
 					studyCodeLastLine = tmp;
 					latestSessionNumber = Integer.parseInt(parts[1]);
@@ -134,7 +182,7 @@ public class DataIO {
     	ArrayList<String> newSchedule = new ArrayList<String>(Collections.nCopies(7,""));
     	
     	//Add the current study code to the 0th position
-    	newSchedule.set(0, getCurrentCode());
+    	newSchedule.set(0, getUsername());
     	
     	//Get the pass/fail status of each round of CPR completed
     	boolean round1Passed = evaluationOnePassed();
@@ -364,12 +412,20 @@ public class DataIO {
     }
     
 
-    public static void setCurrentCode(String code) {
-    	currentCode = code;
+    public static void setAnonCode(String code) {
+    	anonymousCode = code;
     }
     
-    public static String getCurrentCode() {
-    	return currentCode;
+    public static String getAnonCode() {
+    	return anonymousCode;
+    }
+    
+    public static void setUsername(String newUsername) {
+    	username = newUsername;
+    }
+    
+    public static String getUsername() {
+    	return username;
     }
     
     public static void savePreQuestions(String exposure, String comfort) {
@@ -378,7 +434,8 @@ public class DataIO {
     }
     
     public static void resetData() {
-    	currentCode = "";
+    	username = "";
+    	anonymousCode = "";
     	surveyData.clear();
     	primaryResults.clear();
     	primaryData.clear();
@@ -389,7 +446,7 @@ public class DataIO {
     public static void exportToCSV(ArrayList<Integer> data) {
 		ArrayList<String> stringDataRow = getStringArray(data);
 		String newRow;
-		newRow = currentCode + "," + stringDataRow.stream().collect(Collectors.joining(",")) + "\n";
+		newRow = anonymousCode + "," + stringDataRow.stream().collect(Collectors.joining(",")) + "\n";
 		System.out.println(newRow);
     	try {
             FileWriter pw = new FileWriter(csvPath, true);
@@ -422,11 +479,14 @@ public class DataIO {
             int lastRow = firstSheet.getLastRowNum();
             Row row = firstSheet.createRow(++lastRow);
             
+            System.out.println("lastRow: " + Integer.toString(lastRow));
+            
             //Go through each value and write it to the column that corresponds with it's index in data
             int index = 0;
             for (String val : data) {
             	row.createCell(index).setCellValue(val);
             	index++;
+            	System.out.println("Current val: " + val);
             }
 
             //Create output stream
@@ -477,7 +537,7 @@ public class DataIO {
 	    	
 	    	File[] matchingFiles = f.listFiles(new FilenameFilter() {
 	    		public boolean accept(File dir, String name) {
-	    			return name.startsWith(getCurrentCode() + "_" + Integer.toString(testNum))
+	    			return name.startsWith(getAnonCode() + "_" + Integer.toString(testNum))
 	    					&& name.endsWith(".xml");
 	    		}
 	    	});
@@ -556,7 +616,7 @@ public class DataIO {
 	    		primaryData.add(compressionScore);
 	    		
 	    		//Add the current code to the start of the ArrayList
-	    		primaryData.add(0, currentCode);
+	    		primaryData.add(0, getUsername());
 	    		
 	    		exportToLockedXLSX(primaryData, dataFilePath, dataPassword);
 	    	}
@@ -590,7 +650,7 @@ public class DataIO {
 	    		secondaryData.add(compressionScore);
 	    		
 	    		//Add the current code to the start of the ArrayList
-	    		secondaryData.add(0, currentCode);
+	    		secondaryData.add(0, getUsername());
 	    		
 	    		exportToLockedXLSX(secondaryData, dataFilePath, dataPassword);
 	    	}    
