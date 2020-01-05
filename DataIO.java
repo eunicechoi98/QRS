@@ -118,34 +118,47 @@ public class DataIO {
 		String studyCodeLastLine = "";
 		int latestSessionNumber = -1;
 		
-		try {
-			FileInputStream in = new FileInputStream(schedulingFile);
-			BufferedReader br = new BufferedReader(new InputStreamReader(in));
-
-			//Create a temporary string to hold the line being read
-			String tmp;
-	
-			//Start by reading the first line and not saving it, since this line
-			//will always contain the column headers
-			br.readLine();
-			
-			while ((tmp = br.readLine()) != null)
-			{
-				String[] parts = tmp.split("\\s*,\\s*");
-				System.out.println("Current temp: " + tmp);
-
+        try {
+        	//Create the input stream for the xlsx file
+        	InputStream inp = new FileInputStream(scheduleFilePath);
+        	//Open the workbook and get the first sheet
+            Workbook workbook = WorkbookFactory.create(inp, schedulePassword);
+            Sheet firstSheet = workbook.getSheetAt(0);
+            
+            DataFormatter dataFormatter = new DataFormatter();
+            
+            String tempUsername;
+            int tempSessionNum;
+            Row row;
+            
+            
+            //Iterate through all rows of the sheet
+            for (int i = 1; i <= firstSheet.getLastRowNum(); i++) {
+            	
+            	row = firstSheet.getRow(i);
+            	
+            	tempUsername = dataFormatter.formatCellValue(row.getCell(0));
+            	tempSessionNum = Integer.parseInt(dataFormatter.formatCellValue(row.getCell(1)));
+            	
 				//If the study code is equal to our current study code and the session number is larger than latestSessionNumber
-				if (parts[0].equals(username) && Integer.parseInt(parts[1]) > latestSessionNumber) {
+				if (tempUsername.equals(username) && tempSessionNum > latestSessionNumber) {
 					System.out.println("in if block");
-					studyCodeLastLine = tmp;
-					latestSessionNumber = Integer.parseInt(parts[1]);
+					latestSessionNumber = tempSessionNum;
+					studyCodeLastLine = "";
+					for (Cell cell: row) {
+						studyCodeLastLine = studyCodeLastLine + dataFormatter.formatCellValue(cell) + ",";
+					}
 				}
-					
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+				
+            }
+				
+			workbook.close();
+			inp.close();
+
+        } catch (EncryptedDocumentException | IOException
+                ex) {
+            ex.printStackTrace();
+        } 	
 		
 		// most important step here!!
 		ArrayList<String> nextRow = getNextScheduleRow(studyCodeLastLine);
