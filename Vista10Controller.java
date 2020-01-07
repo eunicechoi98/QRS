@@ -39,17 +39,24 @@ public class Vista10Controller {
     	
     	
 //    	DataIO.saveCPRData(2);
-    	String nextSession = DataIO.scheduleNextSession();
-    	if (DataIO.evaluationTwoPassed() == true) {
-    		if (nextSession.equals("1")) {
-    			vista10NextSession.setText(nextSession + " month");
-    		} else {
-    			vista10NextSession.setText(nextSession + " months");
-    		}
-    		
-    	} else {
-    		vista10NextSession.setText(nextSession + " months");
+    	//If we are using either a demo or testing id, do not schedule the next session and display default text
+    	if (DataIO.getUsername().equals("test1") || DataIO.getUsername().equals("test2")|| DataIO.getUsername().equals("demo"))
+    		vista10NextSession.setText("X month(s)");
+    	else {
+	    	String nextSession = DataIO.scheduleNextSession();
+	    	vista10NextSession.setText(nextSession + " month(s)");
     	}
+
+//    	if (DataIO.evaluationTwoPassed() == true) {
+//    		if (nextSession.equals("1")) {
+//    			vista10NextSession.setText(nextSession + " month");
+//    		} else {
+//    			vista10NextSession.setText(nextSession + " months");
+//    		}
+//    		
+//    	} else {
+//    		vista10NextSession.setText(nextSession + " months");
+//    	}
     	
     	DataIO.resetData();
     	Timeline timeline = new Timeline(new KeyFrame(

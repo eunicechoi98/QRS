@@ -64,10 +64,15 @@ public class evalOnePassedController {
 	    	//DataIO.saveCPRData(1);
 	    	// dont need this here because it's already done in the previous vista
 	    	
-	    	String nextSession = DataIO.scheduleNextSession();
-	    	passOneReturnDate.setText(nextSession + " month(s)");
+	    	//If we are using either a demo or testing id, do not schedule the next session and display default text
+	    	if (DataIO.getUsername().equals("test1") || DataIO.getUsername().equals("test2")|| DataIO.getUsername().equals("demo"))
+	    		passOneReturnDate.setText("X month(s)");
+	    	else {
+		    	String nextSession = DataIO.scheduleNextSession();
+		    	passOneReturnDate.setText(nextSession + " month(s)");
+	    	}
 	    	
-	    	DataIO.resetData(); //needed?
+	    	DataIO.resetData();
 	    	/*
 	    	Timeline timeline = new Timeline(new KeyFrame(
 	    	        Duration.millis(1000),

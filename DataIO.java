@@ -37,13 +37,13 @@ public class DataIO {
 //	private static String folderWithRaw = "C:/Users/CPR QRS/Documents/ResusciAnneWirelessSkillReporter/HighScore/ClassroomScore";
 	private static String folderWithRaw = "C:\\Users\\colto\\OneDrive\\Desktop\\QRS_Test_Folder\\Raw_Folder";
 	
-	//This folder value MUST BE CHANGED, for testing only
-//	private static String schedulingFolder = "C:\\Users\\cbarr\\Desktop\\QRS_Test_Folder";
-	private static String schedulingFile = "C:\\Users\\colto\\OneDrive\\Desktop\\QRS_Test_Folder\\Scheduling_File.csv";
+	//Data file path and password
+	private static String dataFilePath = "C:\\Users\\colto\\OneDrive\\Desktop\\QRS_Test_Folder\\ParticipantData.xlsx";
+	private static String dataPassword = "testpassword";
 	
 	//Data file path and password
-	private static String dataFilePath = "C:\\Users\\colto\\OneDrive\\Desktop\\QRS_Test_Folder\\TestWorkBook.xlsx";
-	private static String dataPassword = "testpassword";
+	private static String testFilePath = "C:\\Users\\colto\\OneDrive\\Desktop\\QRS_Test_Folder\\TestData.xlsx";
+	private static String testPassword = "testpassword";
 
 	//Schedule file path and password
 	private static String scheduleFilePath = "C:\\Users\\colto\\OneDrive\\Desktop\\QRS_Test_Folder\\Scheduling_File.xlsx";
@@ -660,10 +660,13 @@ public class DataIO {
 	    		primaryData.add(flowFractionScore);
 	    		primaryData.add(flowFractionPercent);
 	    		
-	    		//Add the current code to the start of the ArrayList
 	    		primaryData.add(0, getUsername());
 	    		
-	    		exportToLockedXLSX(primaryData, dataFilePath, dataPassword);
+	    		if (getUsername().equals("test1") || getUsername().equals("test2"))
+	    			exportToLockedXLSX(primaryData, testFilePath, testPassword); //Save to test file
+	    		else if (getUsername() != "demo") 
+	    			exportToLockedXLSX(primaryData, dataFilePath, dataPassword); //Only save to the data file if it is not a demo
+	    	
 	    	}
 	    	else if (testNum == 2) {
 	    		secondaryResults.add(Integer.parseInt(compressionMeanRate));
@@ -703,7 +706,11 @@ public class DataIO {
 	    		//Add the current code to the start of the ArrayList
 	    		secondaryData.add(0, getUsername());
 	    		
-	    		exportToLockedXLSX(secondaryData, dataFilePath, dataPassword);
+	    		if (getUsername().equals("test1") || getUsername().equals("test2"))
+	    			exportToLockedXLSX(secondaryData, testFilePath, testPassword); //Save to test file
+	    		else if (getUsername() != "demo") 
+	    			exportToLockedXLSX(secondaryData, dataFilePath, dataPassword); //Only save to the data file if it is not a demo
+
 	    	}    
 	    	
 	    	
