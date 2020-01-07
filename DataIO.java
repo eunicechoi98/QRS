@@ -149,7 +149,6 @@ public class DataIO {
 						studyCodeLastLine = studyCodeLastLine + dataFormatter.formatCellValue(cell) + ",";
 					}
 				}
-				
             }
 				
 			workbook.close();
@@ -524,11 +523,19 @@ public class DataIO {
     	String totalCompressions;
     	String correctlyReleasedCompressions;
     	String compressionMeanDepth;
-    	String[] depthData = new String[3]; //[too shallow,adequate depth,too deep]
-    	String[] rateData = new String[3]; //[too slow,adequate speed,too fast]
+    	String averageHandsOffTime;
+    	String[] depthPercentageData = new String[3]; //[too shallow %,adequate depth %,too deep %]
+    	String[] depthRawData = new String[3]; //[too shallow,adequate depth,too deep]
+    	String[] ratePercentageData = new String[3]; //[too slow %, adequate speed %, too fast %]
+    	String[] rateRawData = new String[3]; //[too slow,adequate speed,too fast]
     	String compressionMeanRate;
+    	String compressionMeanRatio;
     	String corrrectHandPosition;
+    	String sessionDuration;
+    	String totalCprScore;
     	String compressionScore;
+    	String flowFractionScore;
+    	String flowFractionPercent;
     	String date;
     	String time;
     	
@@ -576,21 +583,40 @@ public class DataIO {
 	    	totalCompressions = eElement.getElementsByTagName("TotalCompressions").item(0).getTextContent();
 	    	correctlyReleasedCompressions = eElement.getElementsByTagName("CorrectlyReleasedCompression").item(0).getTextContent();
 	    	compressionMeanDepth = eElement.getElementsByTagName("CompressionMeanDepth").item(0).getTextContent();
+	    	averageHandsOffTime = eElement.getElementsByTagName("AverageHandsOffTime").item(0).getTextContent();
+
+	    	Node depthPercentageList = eElement.getElementsByTagName("CompressionDepthStatsPercentage").item(0);
+	    	Element eDepthPercentageList = (Element) depthPercentageList;
+	    	depthPercentageData[0] = eDepthPercentageList.getElementsByTagName("TooShallowPercentage").item(0).getTextContent();
+	    	depthPercentageData[1] = eDepthPercentageList.getElementsByTagName("AdequateDepthPercentage").item(0).getTextContent();
+	    	depthPercentageData[2] = eDepthPercentageList.getElementsByTagName("TooDeepPercentage").item(0).getTextContent();
+
+	    	Node depthRawList = eElement.getElementsByTagName("CompressionDepthStats").item(0);
+	    	Element eDepthRawList = (Element) depthRawList;
+	    	depthRawData[0] = eDepthRawList.getElementsByTagName("TooShallow").item(0).getTextContent();
+	    	depthRawData[1] = eDepthRawList.getElementsByTagName("AdequateDepth").item(0).getTextContent();
+	    	depthRawData[2] = eDepthRawList.getElementsByTagName("TooDeep").item(0).getTextContent();
+	    	
+	    	Node ratePercentageList = eElement.getElementsByTagName("CompressionRateStatsPercentage").item(0);
+	    	Element eRatePercentageList = (Element) ratePercentageList;
+	    	ratePercentageData[0] = eRatePercentageList.getElementsByTagName("TooSlowPercentage").item(0).getTextContent();
+	    	ratePercentageData[1] = eRatePercentageList.getElementsByTagName("AdequateRatePercentage").item(0).getTextContent();
+	    	ratePercentageData[2] = eRatePercentageList.getElementsByTagName("TooFastPercentage").item(0).getTextContent();
+	    	
+	    	Node rateRawList = eElement.getElementsByTagName("CompressionRateStats").item(0);
+	    	Element eRateRawList = (Element) rateRawList;
+	    	rateRawData[0] = eRateRawList.getElementsByTagName("TooSlow").item(0).getTextContent();
+	    	rateRawData[1] = eRateRawList.getElementsByTagName("AdequateRate").item(0).getTextContent();
+	    	rateRawData[2] = eRateRawList.getElementsByTagName("TooFast").item(0).getTextContent();
+
 	    	compressionMeanRate = eElement.getElementsByTagName("CompressionMeanRate").item(0).getTextContent();
+	    	compressionMeanRatio = eElement.getElementsByTagName("CompressionMeanRatio").item(0).getTextContent();
 	    	corrrectHandPosition = eElement.getElementsByTagName("CorrectHandPosition").item(0).getTextContent();
+	    	sessionDuration = eElement.getElementsByTagName("SessionDuration").item(0).getTextContent();
+	    	totalCprScore = eElement.getElementsByTagName("TotalCprScore").item(0).getTextContent();
 	    	compressionScore = eElement.getElementsByTagName("CompressionScore").item(0).getTextContent();
-	    	
-	    	Node depthList = eElement.getElementsByTagName("CompressionDepthStats").item(0);
-	    	Element eDepthList = (Element) depthList;
-	    	depthData[0] = eDepthList.getElementsByTagName("TooShallow").item(0).getTextContent();
-	    	depthData[1] = eDepthList.getElementsByTagName("AdequateDepth").item(0).getTextContent();
-	    	depthData[2] = eDepthList.getElementsByTagName("TooDeep").item(0).getTextContent();
-	    	
-	    	Node rateList = eElement.getElementsByTagName("CompressionRateStats").item(0);
-	    	Element eRateList = (Element) rateList;
-	    	rateData[0] = eRateList.getElementsByTagName("TooSlow").item(0).getTextContent();
-	    	rateData[1] = eRateList.getElementsByTagName("AdequateRate").item(0).getTextContent();
-	    	rateData[2] = eRateList.getElementsByTagName("TooFast").item(0).getTextContent();
+	    	flowFractionScore = eElement.getElementsByTagName("FlowFractionScore").item(0).getTextContent();
+	    	flowFractionPercent = eElement.getElementsByTagName("FlowFractionPercent").item(0).getTextContent();
 	    	
 	    	String tempDate = eElement.getElementsByTagName("Date").item(0).getTextContent();
 	    	String tempTime = eElement.getElementsByTagName("Time").item(0).getTextContent();
@@ -612,21 +638,27 @@ public class DataIO {
 	    		primaryData.add(totalCompressions);
 	    		primaryData.add(correctlyReleasedCompressions);
 	    		primaryData.add(compressionMeanDepth);
-	    		primaryData.add(depthData[0]);
-	    		primaryData.add("-1");
-	    		primaryData.add(depthData[1]);
-	    		primaryData.add("-1");
-	    		primaryData.add(depthData[2]);
-	    		primaryData.add("-1");
-	    		primaryData.add(rateData[0]);
-	    		primaryData.add("-1");
-	    		primaryData.add(rateData[1]);
-	    		primaryData.add("-1");
-	    		primaryData.add(rateData[2]);
-	    		primaryData.add("-1");
+	    		primaryData.add(averageHandsOffTime);
+	    		primaryData.add(depthPercentageData[0]);
+	    		primaryData.add(depthPercentageData[1]);
+	    		primaryData.add(depthPercentageData[2]);
+	    		primaryData.add(depthRawData[0]);
+	    		primaryData.add(depthRawData[1]);
+	    		primaryData.add(depthRawData[2]);
+	    		primaryData.add(ratePercentageData[0]);
+	    		primaryData.add(ratePercentageData[1]);
+	    		primaryData.add(ratePercentageData[2]);
+	    		primaryData.add(rateRawData[0]);
+	    		primaryData.add(rateRawData[1]);
+	    		primaryData.add(rateRawData[2]);
 	    		primaryData.add(compressionMeanRate);
+	    		primaryData.add(compressionMeanRatio);
 	    		primaryData.add(corrrectHandPosition);
+	    		primaryData.add(sessionDuration);
+	    		primaryData.add(totalCprScore);
 	    		primaryData.add(compressionScore);
+	    		primaryData.add(flowFractionScore);
+	    		primaryData.add(flowFractionPercent);
 	    		
 	    		//Add the current code to the start of the ArrayList
 	    		primaryData.add(0, getUsername());
@@ -646,21 +678,27 @@ public class DataIO {
 	    		secondaryData.add(totalCompressions);
 	    		secondaryData.add(correctlyReleasedCompressions);
 	    		secondaryData.add(compressionMeanDepth);
-	    		secondaryData.add(depthData[0]);
-	    		secondaryData.add("-1");
-	    		secondaryData.add(depthData[1]);
-	    		secondaryData.add("-1");
-	    		secondaryData.add(depthData[2]);
-	    		secondaryData.add("-1");
-	    		secondaryData.add(rateData[0]);
-	    		secondaryData.add("-1");
-	    		secondaryData.add(rateData[1]);
-	    		secondaryData.add("-1");
-	    		secondaryData.add(rateData[2]);
-	    		secondaryData.add("-1");
+	    		secondaryData.add(averageHandsOffTime);
+	    		secondaryData.add(depthPercentageData[0]);
+	    		secondaryData.add(depthPercentageData[1]);
+	    		secondaryData.add(depthPercentageData[2]);
+	    		secondaryData.add(depthRawData[0]);
+	    		secondaryData.add(depthRawData[1]);
+	    		secondaryData.add(depthRawData[2]);
+	    		secondaryData.add(ratePercentageData[0]);
+	    		secondaryData.add(ratePercentageData[1]);
+	    		secondaryData.add(ratePercentageData[2]);
+	    		secondaryData.add(rateRawData[0]);
+	    		secondaryData.add(rateRawData[1]);
+	    		secondaryData.add(rateRawData[2]);
 	    		secondaryData.add(compressionMeanRate);
+	    		secondaryData.add(compressionMeanRatio);
 	    		secondaryData.add(corrrectHandPosition);
+	    		secondaryData.add(sessionDuration);
+	    		secondaryData.add(totalCprScore);
 	    		secondaryData.add(compressionScore);
+	    		secondaryData.add(flowFractionScore);
+	    		secondaryData.add(flowFractionPercent);
 	    		
 	    		//Add the current code to the start of the ArrayList
 	    		secondaryData.add(0, getUsername());
