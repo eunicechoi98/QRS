@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="famVista" prefHeight="800.0" prefWidth="1000.0" stylesheets="@vista.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FamiliarizeController">
+<StackPane fx:id="famVista" prefHeight="800.0" prefWidth="1200.0" stylesheets="@vista.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FamiliarizeController">
   <children>
       <Button fx:id="familiarizeNextButton" mnemonicParsing="false" onAction="#nextAction" text="&gt;" StackPane.alignment="CENTER_RIGHT">
          <font>
@@ -32,7 +32,7 @@
          <StackPane.margin>
             <Insets top="200.0" />
          </StackPane.margin></ImageView>
-      <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" StackPane.alignment="CENTER">
+      <HBox alignment="TOP_CENTER" prefHeight="800.0" prefWidth="1200.0" StackPane.alignment="CENTER">
          <children>
             <VBox stylesheets="@vista.css" />
             <Label alignment="TOP_CENTER" graphicTextGap="0.0" prefHeight="150.0" prefWidth="800.0" text="Familiarize yourself with the feedback software you'll be using during your practice time. When you're ready to start your practice, hit the next button." textAlignment="CENTER" textFill="#ffffffcc" wrapText="true">

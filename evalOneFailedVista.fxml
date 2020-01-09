@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane fx:id="failOneStackPane" prefHeight="800.0" prefWidth="1000.0" stylesheets="@vista.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="evalOneFailedController">
+<StackPane fx:id="failOneStackPane" prefHeight="800.0" prefWidth="1200.0" stylesheets="@vista.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="evalOneFailedController">
    <children>
       <Button fx:id="evalOneFailButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#evalOneFailedNextAction" text="&gt;" textAlignment="RIGHT" StackPane.alignment="CENTER_RIGHT">
          <font>

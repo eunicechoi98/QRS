@@ -8,24 +8,24 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane fx:id="vista3" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista3Controller">
+<StackPane fx:id="vista3" prefHeight="800.0" prefWidth="1200.0" stylesheets="@vista.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista3Controller">
   <children>
       <Label fx:id="timerLabel1" textAlignment="CENTER" textFill="#96a7ff">
          <font>
-            <Font name="System Bold" size="250.0" />
+            <Font name="System Bold" size="200.0" />
          </font>
          <StackPane.margin>
             <Insets top="150.0" />
          </StackPane.margin>
       </Label>
-      <VBox fx:id="vista3VBox" alignment="TOP_CENTER" stylesheets="@vista.css">
+      <VBox fx:id="vista3VBox" alignment="TOP_CENTER" minHeight="800.0" minWidth="1200.0" prefHeight="800.0" prefWidth="1200.0" stylesheets="@vista.css">
          <children>
             <Label fx:id="vista3LabelOne" alignment="TOP_CENTER" contentDisplay="TOP" ellipsisString="" text="Get Ready!" textAlignment="CENTER" textFill="#ffffffcc">
                <font>
                   <Font name="Microsoft JhengHei UI Bold" size="36.0" />
                </font>
                <VBox.margin>
-                  <Insets top="150.0" />
+                  <Insets top="100.0" />
                </VBox.margin>
             </Label>
             <Text fx:id="vista3Text" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="You will now perform chest compressions for 1 minute without visual feedback in: " textAlignment="CENTER" wrappingWidth="700.0">

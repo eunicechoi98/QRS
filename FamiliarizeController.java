@@ -79,6 +79,15 @@ public class FamiliarizeController {
     	timeline.setCycleCount(61);
     	timeline.playFromStart();
     	
+    	
+    	// adding an image to button
+    	/* 
+    	File arrow_file = new File("C:\\Users\\jsuni\\Desktop\\CPR\\arrow.png");
+    	Image arrow_image = new Image(file.toURI().toString());
+    	familiarizeNextButton.setBackground(arrow_image);
+    	
+    	BackgroundImage image = new BackgroundImage();
+    	*/
     	System.out.println("Familiarize Laerdal Software -> Vista 6: 2 min of Practice");
     	
     }

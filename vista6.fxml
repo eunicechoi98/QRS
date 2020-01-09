@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?scenebuilder-stylesheet vista.css?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<StackPane fx:id="vista6" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista6Controller">
+<StackPane fx:id="vista6" prefHeight="800.0" prefWidth="1200.0" stylesheets="@vista.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista6Controller">
   <children>
       <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" StackPane.alignment="CENTER">
          <children>
-            <Label prefHeight="135.0" prefWidth="879.0" text="You will now have two minutes to practice chest compressions with visual feedback. You may take short breaks if needed." textAlignment="CENTER" textFill="#000000cb" wrapText="true">
+            <VBox />
+            <Label prefHeight="135.0" prefWidth="879.0" text="You will now have two minutes to practice chest compressions with visual feedback. You may take short breaks if needed." textFill="#ffffffcc" wrapText="true">
                <HBox.margin>
                   <Insets left="50.0" top="50.0" />
                </HBox.margin>
                <font>
-                  <Font size="25.0" />
+                  <Font name="Microsoft JhengHei UI Bold" size="25.0" />
                </font>
             </Label>
             <Label fx:id="timerLabel3">
@@ -31,6 +31,5 @@
             </Label>
          </children>
       </HBox>
-      <VBox />
   </children>
 </StackPane>
